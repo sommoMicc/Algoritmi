@@ -25,7 +25,7 @@ module.exports = class UndirectedGraph {
      * @param {Number} from nodo da cui parte l'arco
      * @param {Number} to nodo a cui arriva l'arco
      */
-    addEdge(from,to) {
+    async addEdge(from,to) {
         //ignoro i cappi
         if(from == to)
             return false;
