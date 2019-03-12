@@ -1,4 +1,5 @@
 const fs = require("fs");
+const GraphWalker = require("./graphWalker");
 
 module.exports = class UndirectedGraph {
     constructor() {
@@ -77,8 +78,8 @@ module.exports = class UndirectedGraph {
 
     removeEdge(from,to) {
         if(this._edges[from] != null) {
-            this._edges[from][to] = false
-            this._edges[to][from] = false
+            delete this._edges[from][to];
+            delete this._edges[to][from];
         }
     }
 
@@ -142,6 +143,14 @@ module.exports = class UndirectedGraph {
 
     }
 
+    /**
+     * Ritorna la lista delle adiacenze di un nodo
+     * @param {Number} node indice del nodo di cui si vuol conoscere la lista delle adiacenze
+     */
+    adjacence(node) {
+        return this._edges[node];
+    }
+
     print() {
         const nodes = Object.keys(this._edges);
         nodes.forEach((from)=>{
@@ -182,5 +191,10 @@ module.exports = class UndirectedGraph {
             });
             stream.end();
         });
+    }
+
+    resilience() {
+        return GraphWalker.maxConnectedComponents(this) /
+             this.getNodesNumber();
     }
 }

@@ -1,5 +1,6 @@
 const UndirectedGraph = require("./models/undirectedGraph");
 const GraphGenerator = require("./models/graphGenerator");
+const GraphWalker = require("./models/graphWalker");
 const fileName = "./assets/file.txt"
 
 async function main() {
@@ -25,9 +26,13 @@ async function main() {
     const manualGraph = new UndirectedGraph();
     for(let i=0;i<=10;i++) {
         manualGraph.addNode(i);
+        //manualGraph.addEdge(i,0);
     }
     manualGraph.saveToFile("manualOutput.csv",",");
     printInfo("Grafo manuale",manualGraph);
+
+    manualGraph.removeNode(2);
+    console.log("Resilienza residua: "+manualGraph.resilience());
 
 }
 /**
@@ -39,6 +44,10 @@ function printInfo(graphName, graphObject) {
     console.log(graphName);
     console.log("Nodi: "+graphObject.getNodesNumber());
     console.log("Grado medio: "+graphObject.getAverageDegree());
+
+    console.log("Componente connessa: "+GraphWalker.maxConnectedComponents(graphObject));
+    console.log("Resilienza: "+graphObject.resilience());
+
     console.timeEnd(graphName);
     console.log("---------------------------");
 }
