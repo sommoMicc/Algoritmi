@@ -21,11 +21,39 @@ module.exports = class UndirectedGraph {
             }
         });       
     }
+
+    /**
+     * @param {Number} info payload (numero) del nodo
+     */
+    addNode(info) {
+        if(this._edges[info] != null) {
+            //Il nodo che tento di aggiungere esiste già
+            return false;
+        }
+        
+        this._edges[info]= {};
+    }
+
+    /**
+     * @param {Number} number indice del nodo da rimuovere
+     */
+    removeNode(number) {
+        let keys = this.getNodes();
+        keys.forEach((node) => {
+            if(this._edges[node][number] != null) {
+                delete this._edges[node][number];
+            }
+        });
+        if(this._edges[number] != null) {
+            delete this._edges[number];
+        }
+    }
+
     /**
      * @param {Number} from nodo da cui parte l'arco
      * @param {Number} to nodo a cui arriva l'arco
      */
-    async addEdge(from,to) {
+    addEdge(from,to) {
         //ignoro i cappi
         if(from == to)
             return false;
@@ -49,7 +77,8 @@ module.exports = class UndirectedGraph {
 
     removeEdge(from,to) {
         if(this._edges[from] != null) {
-            delete this._edges[from][to]
+            this._edges[from][to] = false
+            this._edges[to][from] = false
         }
     }
 
@@ -95,6 +124,24 @@ module.exports = class UndirectedGraph {
         }
     }
 
+    empty(nodesNumber = -1) {
+        let nodes = null;
+        if(nodesNumber == -1)
+            nodes = this.getNodes();
+        else {
+            nodes = [];
+            for(let i=1;i<=nodesNumber;i++) {
+                nodes.push(i);
+            }
+        }
+        for(let i=0;i<nodes.length;i++) {
+            for(let j=nodes.length; j > i;j--) {
+                this.removeEdge(nodes[i],nodes[j])
+            }
+        }
+
+    }
+
     print() {
         const nodes = Object.keys(this._edges);
         nodes.forEach((from)=>{
@@ -121,12 +168,15 @@ module.exports = class UndirectedGraph {
         stream.once('open', function(fd) {
             nodes.forEach((from)=>{
                 let row = "";
+                let realCellSeparator = "";
+
                 nodes.forEach((to)=>{
+                    row += realCellSeparator;
                     if(context.existsEdge(from,to))
                         row += "1";
                     else
                         row += "0";
-                    row += cellSeparator;
+                    realCellSeparator = cellSeparator
                 });
                 stream.write(row+"\n");
             });

@@ -16,8 +16,19 @@ async function main() {
     //erGraph.saveToFile("erOutput.csv",",");
 
     console.time("Grafo UPA");
-    const upaGraph = await GraphGenerator.UPA(graphFromFile.getNodesNumber(),2);
+    const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
     printInfo("Grafo UPA",upaGraph);
+    upaGraph.saveToFile("upaOutput.csv",",");
+    
+
+    console.time("Grafo manuale");
+    const manualGraph = new UndirectedGraph();
+    for(let i=0;i<=10;i++) {
+        manualGraph.addNode(i);
+    }
+    manualGraph.saveToFile("manualOutput.csv",",");
+    printInfo("Grafo manuale",manualGraph);
+
 }
 /**
  * @param {String} graphName nome del grafo
@@ -26,6 +37,7 @@ async function main() {
 function printInfo(graphName, graphObject) {
     console.log("---------------------------");
     console.log(graphName);
+    console.log("Nodi: "+graphObject.getNodesNumber());
     console.log("Grado medio: "+graphObject.getAverageDegree());
     console.timeEnd(graphName);
     console.log("---------------------------");
