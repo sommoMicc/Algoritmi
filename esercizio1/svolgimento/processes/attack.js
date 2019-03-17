@@ -5,9 +5,8 @@ process.on("message",async (graph) => {
     const undirectedGraph = new UndirectedGraph();
     graph.object = undirectedGraph.castToGraph(graph.object);
 
-    console.log("Iniziata random deactivation "+graph.name);
-    GraphAttacker.randomFullDeactivation(graph.object.getCopy(),graph.name);
-    console.log("Finita random deactivation "+graph.name);
+    const randomAttackResult = GraphAttacker.randomFullDeactivation(graph.object.getCopy(),graph.name);
 
+    process.send({random: randomAttackResult, index: graph.index});
     process.exit();
 });

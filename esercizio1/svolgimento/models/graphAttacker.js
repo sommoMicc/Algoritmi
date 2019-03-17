@@ -1,3 +1,5 @@
+//const ProgressBar = require('progress');
+const Multiprogress = require("multi-progress");
 module.exports = class GraphAttacker {
     /**
      * @param {UndirectedGraph} graph il grafo da disattivare
@@ -8,19 +10,24 @@ module.exports = class GraphAttacker {
         const nodesToDeactivate = GraphAttacker._shuffleArray(graph.getNodes());
         results[0] = graph.resilience();
 
+        /*const progressBar = new ProgressBar("Random attack "+name+' :bar', {
+            total: nodesToDeactivate.length
+        });*/
+
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i]);
             
             const residualResilience = graph.resilience();
             results[i+1] = residualResilience;
             
-
+            
             let progress = Math.round(i*100/nodesToDeactivate.length);
-            let progressInterval = i % (Math.round(nodesToDeactivate.length / 10));
+            let progressInterval = i % (Math.round(nodesToDeactivate.length / 5));
 
             if(progressInterval == 0) {
                 GraphAttacker.printProgress(name, progress);
             }
+            //progressBar.tick();
         }
 
         return results;

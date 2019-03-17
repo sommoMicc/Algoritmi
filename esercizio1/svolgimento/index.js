@@ -1,9 +1,9 @@
 const { fork } = require('child_process');
+const fs = require("fs");
 
 const UndirectedGraph = require("./models/undirectedGraph");
 const GraphGenerator = require("./models/graphGenerator");
 const GraphWalker = require("./models/graphWalker");
-const GraphAttacker = require("./models/graphAttacker");
 
 const fileName = "./assets/file.txt"
 
@@ -43,6 +43,7 @@ function main() {
         manualGraph.addNode(i);
     }
     graphs[3] = {
+        index: 3,
         name: "Grafo manuale",
         object: manualGraph
     };
@@ -52,14 +53,71 @@ function main() {
 }
 
 function processGraphs() {
+    const randomResults = [];
     for(let i=0;i<graphs.length;i++) {
+        randomResults[i] = null;
+
         printInfo(graphs[i].name,graphs[i].object);
         const process = fork('./processes/attack.js');
         process.send(graphs[i]);
+
+        process.on("message",async (message) => {
+            console.log("Ricevuto messaggio");
+            if(message.random != null) {
+                console.log("Ricevuto risultato random per indice: "+message.index);
+                randomResults[message.index] = message.random;
+
+                let finished = true;
+                for(let r = 0; r<randomResults.length && finished; r++) {
+                    if(randomResults[r] == null) {
+                        finished = false;
+                        console.log("Trovato elemento nullo in results: "+r);
+                    }
+                }
+
+                if(finished)
+                    saveAttackResultToFile(randomResults);
+            }
+        });
+    
+    }
+}
+
+function saveAttackResultToFile(results,fileName="output.csv") {
+    const header = [];
+    header[0] = "Numero nodi disattivati";
+    for(let graphIndex = 0; graphIndex<results.length; graphIndex++) {
+        header[graphIndex+1] = graphs[graphIndex].name
     }
 
+    const maxRows = Math.max(...results.map((r)=>{
+        return r.length;
+    }));
 
-}
+    console.log("Max rows: "+maxRows);
+
+    const stream = fs.createWriteStream("assets/"+fileName);
+    stream.once('open', function(fd) {
+        for(let row = 0; row < maxRows; row++) {
+            let rowContent = "0";
+            let separator = ",";
+    
+            for(let graphIndex = 0; graphIndex < results.length; graphIndex++) {
+                if(results[graphIndex][row] != null) {
+                    rowContent+=separator+results[graphIndex][row];
+                }
+                else {
+                    rowContent+=separator+"0";
+                }
+            }
+    
+            rowContent+"\n";
+            stream.write(rowContent);
+        }
+        stream.end();
+        console.log("Risultati salvati su file");
+    });
+} 
 
 /**
  * @param {String} graphName nome del grafo
