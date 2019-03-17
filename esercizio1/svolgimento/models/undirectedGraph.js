@@ -209,4 +209,11 @@ module.exports = class UndirectedGraph {
     getCopy() {
         return Object.assign( Object.create( Object.getPrototypeOf(this)), this);
     }
+    /**
+     * 
+     * @param {UndirectedGraph} other l'altro grafo da convertire in oggetto
+     */
+    castToGraph(other)  {
+        return Object.assign( Object.create( Object.getPrototypeOf(this)), other);
+    }
 }

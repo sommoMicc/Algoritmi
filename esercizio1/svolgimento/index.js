@@ -1,8 +1,9 @@
+const { fork } = require('child_process');
+
 const UndirectedGraph = require("./models/undirectedGraph");
 const GraphGenerator = require("./models/graphGenerator");
 const GraphWalker = require("./models/graphWalker");
 const GraphAttacker = require("./models/graphAttacker");
-const parallel = require('run-parallel');
 
 const fileName = "./assets/file.txt"
 
@@ -14,12 +15,14 @@ function main() {
     const averageDegree = graphFromFile.getAverageDegree();
     console.log("Costruito grafo da file");
     graphs[0] = {
+        index: 0,
         name: "Grafo file",
         object: graphFromFile
     };
 
     const erGraph = GraphGenerator.ER(graphFromFile.getNodes(),averageDegree);
     graphs[1] = {
+        index: 1,
         name: "Grafo ER",
         object: erGraph
     };
@@ -28,6 +31,7 @@ function main() {
 
     const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
     graphs[2] = {
+        index: 2,
         name: "Grafo UPA",
         object: erGraph
     };
@@ -44,16 +48,17 @@ function main() {
     };
     console.log("Costruito grafo manuale di debug");
     
-  
+    processGraphs();
 }
 
-/**
- * @param {UndirectedGraph} graphObject istanza del grafo da processare
- */
-function processGraph(i) {
-    printInfo(graphs[i].name,graphs[i].object);
+function processGraphs() {
+    for(let i=0;i<graphs.length;i++) {
+        printInfo(graphs[i].name,graphs[i].object);
+        const process = fork('./processes/attack.js');
+        process.send(graphs[i]);
+    }
 
-    GraphAttacker.randomFullDeactivation(graphs[i].object.getCopy());
+
 }
 
 /**
