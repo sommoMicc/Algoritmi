@@ -1,5 +1,6 @@
 const { fork } = require('child_process');
 const fs = require("fs");
+const MultiProgress = require("multi-progress");
 
 const UndirectedGraph = require("./models/undirectedGraph");
 const GraphGenerator = require("./models/graphGenerator");
@@ -54,18 +55,27 @@ function main() {
 
 function processGraphs() {
     const randomResults = [];
+
+    const multiprogressBar = new MultiProgress();
+    
     for(let i=0;i<graphs.length;i++) {
         randomResults[i] = null;
 
-        printInfo(graphs[i].name,graphs[i].object);
+        let progressBar = multiprogressBar.newBar(
+            'Random attack '+graphs[i].name+' [:bar] :percent', {
+            total: 100
+        });
+
+
+        //printInfo(graphs[i].name,graphs[i].object);
         const process = fork('./processes/attack.js');
         process.send(graphs[i]);
 
         process.on("message",async (message) => {
-            console.log("Ricevuto messaggio");
+            //console.log("Ricevuto messaggio");
             if(message.random != null) {
-                console.log("Ricevuto risultato random per indice: "+message.index);
-                randomResults[message.index] = message.random;
+                console.log("Ricevuto risultato random per indice: "+i);
+                randomResults[i] = message.random;
 
                 let finished = true;
                 for(let r = 0; r<randomResults.length && finished; r++) {
@@ -75,8 +85,15 @@ function processGraphs() {
                     }
                 }
 
-                if(finished)
+                if(finished) {
                     saveAttackResultToFile(randomResults);
+                    multiprogressBar.terminate();
+                }
+            }
+            if(message.progress != null) {
+                //console.log("Aggiornamento progresso");
+                //console.log("Aggiornamento progresso "+i+": "+message.progress);
+                progressBar.update(message.progress/100.0);
             }
         });
     

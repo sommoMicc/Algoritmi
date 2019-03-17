@@ -2,15 +2,11 @@ module.exports = class GraphAttacker {
     /**
      * @param {UndirectedGraph} graph il grafo da disattivare
      */
-    static randomFullDeactivation(graph,name) {
+    static randomFullDeactivation(graph,progressWatcher) {
         const results = [];
 
         const nodesToDeactivate = GraphAttacker._shuffleArray(graph.getNodes());
         results[0] = graph.resilience();
-
-        /*const progressBar = new ProgressBar("Random attack "+name+' :bar', {
-            total: nodesToDeactivate.length
-        });*/
 
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i]);
@@ -20,20 +16,14 @@ module.exports = class GraphAttacker {
             
             
             let progress = Math.round(i*100/nodesToDeactivate.length);
-            let progressInterval = i % (Math.round(nodesToDeactivate.length / 5));
+            let progressInterval = i % (Math.round(nodesToDeactivate.length / 100));
 
             if(progressInterval == 0) {
-                GraphAttacker.printProgress(name, progress);
+                progressWatcher.onProgress(progress);
             }
-            //progressBar.tick();
         }
 
         return results;
-    }
-
-
-    static printProgress(name,progress) {
-        console.log("Avanzamento "+name+" random attack: "+progress+"%");
     }
 
     static _shuffleArray(array) {
