@@ -1,40 +1,61 @@
 const UndirectedGraph = require("./models/undirectedGraph");
 const GraphGenerator = require("./models/graphGenerator");
 const GraphWalker = require("./models/graphWalker");
+const GraphAttacker = require("./models/graphAttacker");
+const parallel = require('run-parallel');
+
 const fileName = "./assets/file.txt"
 
-async function main() {
-    console.time("Grafo file");
+let graphs = [];
+function main() {
     const graphFromFile = new UndirectedGraph();
     graphFromFile.loadFromFile(fileName);
 
     const averageDegree = graphFromFile.getAverageDegree();
-    printInfo("Grafo file",graphFromFile);
+    console.log("Costruito grafo da file");
+    graphs[0] = {
+        name: "Grafo file",
+        object: graphFromFile
+    };
 
-    console.time("Grafo ER");
     const erGraph = GraphGenerator.ER(graphFromFile.getNodes(),averageDegree);
-    printInfo("Grafo ER",erGraph);
-    //erGraph.saveToFile("erOutput.csv",",");
+    graphs[1] = {
+        name: "Grafo ER",
+        object: erGraph
+    };
+    console.log("Costruito grafo ER");
 
-    console.time("Grafo UPA");
+
     const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
-    printInfo("Grafo UPA",upaGraph);
-    upaGraph.saveToFile("upaOutput.csv",",");
-    
+    graphs[2] = {
+        name: "Grafo UPA",
+        object: erGraph
+    };
+    console.log("Costruito grafo UPA");
 
-    console.time("Grafo manuale");
+
     const manualGraph = new UndirectedGraph();
     for(let i=0;i<=10;i++) {
         manualGraph.addNode(i);
-        //manualGraph.addEdge(i,0);
     }
-    manualGraph.saveToFile("manualOutput.csv",",");
-    printInfo("Grafo manuale",manualGraph);
-
-    manualGraph.removeNode(2);
-    console.log("Resilienza residua: "+manualGraph.resilience());
-
+    graphs[3] = {
+        name: "Grafo manuale",
+        object: manualGraph
+    };
+    console.log("Costruito grafo manuale di debug");
+    
+  
 }
+
+/**
+ * @param {UndirectedGraph} graphObject istanza del grafo da processare
+ */
+function processGraph(i) {
+    printInfo(graphs[i].name,graphs[i].object);
+
+    GraphAttacker.randomFullDeactivation(graphs[i].object.getCopy());
+}
+
 /**
  * @param {String} graphName nome del grafo
  * @param {UndirectedGraph} graphObject istanza del grafo
@@ -48,7 +69,7 @@ function printInfo(graphName, graphObject) {
     console.log("Componente connessa: "+GraphWalker.maxConnectedComponents(graphObject));
     console.log("Resilienza: "+graphObject.resilience());
 
-    console.timeEnd(graphName);
+    //console.timeEnd(graphName);
     console.log("---------------------------");
 }
 

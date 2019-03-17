@@ -73,11 +73,12 @@ module.exports = class GraphWalker {
             color[v] = GraphWalker.Colors.WHITE;
         });
         let CC = [];
-        G.getNodes().forEach((v)=>{
-            if(color[v] == GraphWalker.Colors.WHITE) {
-                CC.push(GraphWalker._DFS_Visited(G,v,[],color));
+        const nodes = G.getNodes();
+        for(let v=0;v<nodes.length;v++) {
+            if(color[nodes[v]] == GraphWalker.Colors.WHITE) {
+                CC.push(GraphWalker._DFS_Visited(G,nodes[v],[],color))
             }
-        });
+        }
         return CC;
     }
 
@@ -86,12 +87,14 @@ module.exports = class GraphWalker {
         visited.push(u);
 
         let adj = G.adjacence(u);
-        if(adj != null)
-            Object.keys(adj).forEach((v)=>{
-                if(color[v] == GraphWalker.Colors.WHITE) {
-                    visited = GraphWalker._DFS_Visited(G,v,visited,color);
+        if(adj != null) {
+            let keys = Object.keys(adj);
+            for(let i=0;i<keys.length;i++) {
+                if(color[keys[i]] == GraphWalker.Colors.WHITE) {
+                    visited = GraphWalker._DFS_Visited(G,keys[i],visited,color);
                 }
-            });
+            }
+        }
         color[u] = GraphWalker.Colors.BLACK;
         return visited;
     }

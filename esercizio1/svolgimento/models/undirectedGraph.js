@@ -35,16 +35,24 @@ module.exports = class UndirectedGraph {
         this._edges[info]= {};
     }
 
-    /**
-     * @param {Number} number indice del nodo da rimuovere
+   /**
+     * @param {Number} number indice del nodo da disconnettere
      */
-    removeNode(number) {
+    disconnectNode(number) {
         let keys = this.getNodes();
         keys.forEach((node) => {
             if(this._edges[node][number] != null) {
                 delete this._edges[node][number];
             }
         });
+        this._edges[number] = {};
+    }
+
+    /**
+     * @param {Number} number indice del nodo da rimuovere
+     */
+    removeNode(number) {
+        this.disconnectNode(number);
         if(this._edges[number] != null) {
             delete this._edges[number];
         }
@@ -196,5 +204,9 @@ module.exports = class UndirectedGraph {
     resilience() {
         return GraphWalker.maxConnectedComponents(this) /
              this.getNodesNumber();
+    }
+
+    getCopy() {
+        return Object.assign( Object.create( Object.getPrototypeOf(this)), this);
     }
 }
