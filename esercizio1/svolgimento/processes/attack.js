@@ -12,8 +12,7 @@ process.on("message",async (graph) => {
             process.send({progress: progress});
         }
     });
-
-    
+   
     process.send({random: randomAttackResult});
     process.exit();
 });

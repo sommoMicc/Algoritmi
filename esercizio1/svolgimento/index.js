@@ -74,14 +74,14 @@ function processGraphs() {
         process.on("message",async (message) => {
             //console.log("Ricevuto messaggio");
             if(message.random != null) {
-                console.log("Ricevuto risultato random per indice: "+i);
+                progressBar.update(1);
+                //console.log("Ricevuto risultato random per indice: "+i);
                 randomResults[i] = message.random;
 
                 let finished = true;
                 for(let r = 0; r<randomResults.length && finished; r++) {
                     if(randomResults[r] == null) {
                         finished = false;
-                        console.log("Trovato elemento nullo in results: "+r);
                     }
                 }
 
@@ -93,7 +93,7 @@ function processGraphs() {
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
                 //console.log("Aggiornamento progresso "+i+": "+message.progress);
-                progressBar.update(message.progress/100.0);
+                progressBar.update(Math.min(message.progress/100,1));
             }
         });
     
@@ -101,23 +101,22 @@ function processGraphs() {
 }
 
 function saveAttackResultToFile(results,fileName="output.csv") {
-    const header = [];
-    header[0] = "Numero nodi disattivati";
+    let header = "Numero nodi disattivati";
     for(let graphIndex = 0; graphIndex<results.length; graphIndex++) {
-        header[graphIndex+1] = graphs[graphIndex].name
+        header += ";"+graphs[graphIndex].name
     }
 
     const maxRows = Math.max(...results.map((r)=>{
         return r.length;
     }));
 
-    console.log("Max rows: "+maxRows);
 
     const stream = fs.createWriteStream("assets/"+fileName);
     stream.once('open', function(fd) {
+        stream.write(header+"\n")
         for(let row = 0; row < maxRows; row++) {
-            let rowContent = "0";
-            let separator = ",";
+            let rowContent = ""+row;
+            let separator = ";";
     
             for(let graphIndex = 0; graphIndex < results.length; graphIndex++) {
                 if(results[graphIndex][row] != null) {
@@ -127,8 +126,8 @@ function saveAttackResultToFile(results,fileName="output.csv") {
                     rowContent+=separator+"0";
                 }
             }
-    
-            rowContent+"\n";
+            rowContent = rowContent.replace("\.",",");
+            rowContent+="\n";
             stream.write(rowContent);
         }
         stream.end();
