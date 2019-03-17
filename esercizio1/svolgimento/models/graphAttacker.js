@@ -1,5 +1,3 @@
-//const ProgressBar = require('progress');
-const Multiprogress = require("multi-progress");
 module.exports = class GraphAttacker {
     /**
      * @param {UndirectedGraph} graph il grafo da disattivare
