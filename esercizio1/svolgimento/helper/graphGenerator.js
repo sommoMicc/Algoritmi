@@ -1,4 +1,4 @@
-const UndirectedGraph = require("./undirectedGraph");
+const UndirectedGraph = require("../models/undirectedGraph");
 
 module.exports = class GraphGenerator {
     /**

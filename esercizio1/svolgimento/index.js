@@ -1,10 +1,12 @@
 const { fork } = require('child_process');
 const fs = require("fs");
+
 const MultiProgress = require("multi-progress");
 
+const GraphPlotter = require("./helper/graphPlotter");
 const UndirectedGraph = require("./models/undirectedGraph");
-const GraphGenerator = require("./models/graphGenerator");
-const GraphWalker = require("./models/graphWalker");
+const GraphGenerator = require("./helper/graphGenerator");
+const GraphWalker = require("./helper/graphWalker");
 
 const fileName = "./assets/file.txt"
 
@@ -37,11 +39,15 @@ function main() {
         object: erGraph
     };
     console.log("Costruito grafo UPA");
-
-
+    
     const manualGraph = new UndirectedGraph();
     for(let i=0;i<=10;i++) {
         manualGraph.addNode(i);
+        if(i > 0)
+            manualGraph.addEdge(i,i-1);
+        
+        if(i>3) 
+            manualGraph.addEdge(i,3);
     }
     graphs[3] = {
         index: 3,
@@ -86,8 +92,9 @@ function processGraphs() {
                 }
 
                 if(finished) {
-                    saveAttackResultToFile(randomResults);
+                    //saveAttackResultToFile(randomResults);
                     multiprogressBar.terminate();
+                    GraphPlotter.plotResilience(graphs,randomResults);
                 }
             }
             if(message.progress != null) {
@@ -103,13 +110,12 @@ function processGraphs() {
 function saveAttackResultToFile(results,fileName="output.csv") {
     let header = "Numero nodi disattivati";
     for(let graphIndex = 0; graphIndex<results.length; graphIndex++) {
-        header += ";"+graphs[graphIndex].name
+        if(graphs[graphIndex] != null)
+            header += ";"+graphs[graphIndex].name
     }
 
-    const maxRows = Math.max(...results.map((r)=>{
-        return r.length;
-    }));
-
+    const maxRows = GraphPlotter.findMaxRows(results);
+    console.log("Max rows: "+maxRows);
 
     const stream = fs.createWriteStream("assets/"+fileName);
     stream.once('open', function(fd) {
@@ -119,16 +125,18 @@ function saveAttackResultToFile(results,fileName="output.csv") {
             let separator = ";";
     
             for(let graphIndex = 0; graphIndex < results.length; graphIndex++) {
-                if(results[graphIndex][row] != null) {
-                    rowContent+=separator+results[graphIndex][row];
+                if(results[graphIndex] != null) {
+                    if(results[graphIndex][row] != null) {
+                        rowContent+=separator+results[graphIndex][row];
+                    }
+                    else {
+                        rowContent+=separator+"0";
+                    }
+                    rowContent = rowContent.replace("\.",",");
+                    rowContent+="\n";
+                    stream.write(rowContent);
                 }
-                else {
-                    rowContent+=separator+"0";
-                }
-            }
-            rowContent = rowContent.replace("\.",",");
-            rowContent+="\n";
-            stream.write(rowContent);
+            }   
         }
         stream.end();
         console.log("Risultati salvati su file");

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const GraphWalker = require("./graphWalker");
+const GraphWalker = require("../helper/graphWalker");
 
 module.exports = class UndirectedGraph {
     constructor() {

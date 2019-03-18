@@ -1,4 +1,4 @@
-const GraphAttacker = require("../models/graphAttacker");
+const GraphAttacker = require("../helper/graphAttacker");
 const UndirectedGraph = require("../models/undirectedGraph");
 
 

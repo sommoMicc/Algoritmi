@@ -1,0 +1,25 @@
+{
+  "name": "esercizio1",
+  "version": "1.0.0",
+  "description": "Esercizio 1 di Algorimti Avanzati (Michele Tagliabue, Matricola 1123581)",
+  "main": "index.js",
+  "dependencies": {
+    "multi-progress": "^2.0.0",
+    "opn": "^5.5.0",
+    "plotly": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sommoMicc/Algoritmi.git"
+  },
+  "author": "Michele Tagliabue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sommoMicc/Algoritmi/issues"
+  },
+  "homepage": "https://github.com/sommoMicc/Algoritmi#readme"
+}

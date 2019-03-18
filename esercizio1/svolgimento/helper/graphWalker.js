@@ -1,4 +1,4 @@
-const Queue = require("./queue");
+const Queue = require("../models/queue");
 module.exports = class GraphWalker {
     static get Colors() {
         return {
