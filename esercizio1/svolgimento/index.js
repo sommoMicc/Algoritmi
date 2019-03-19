@@ -31,7 +31,6 @@ function main() {
     };
     console.log("Costruito grafo ER");
 
-
     const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
     graphs[2] = {
         index: 2,
@@ -61,6 +60,7 @@ function main() {
 
 function processGraphs() {
     const randomResults = [];
+    const cleverResults = [];
 
     const multiprogressBar = new MultiProgress();
     
@@ -68,8 +68,8 @@ function processGraphs() {
         randomResults[i] = null;
 
         let progressBar = multiprogressBar.newBar(
-            'Random attack '+graphs[i].name+' [:bar] :percent', {
-            total: 100
+            'Attack '+graphs[i].name+' [:bar] :percent', {
+            total: 200
         });
 
 
@@ -80,7 +80,6 @@ function processGraphs() {
         process.on("message",async (message) => {
             //console.log("Ricevuto messaggio");
             if(message.random != null) {
-                progressBar.update(1);
                 //console.log("Ricevuto risultato random per indice: "+i);
                 randomResults[i] = message.random;
 
@@ -97,10 +96,27 @@ function processGraphs() {
                     GraphPlotter.plotResilience(graphs,randomResults);
                 }
             }
+            if(message.clever != null) {
+                //console.log("Ricevuto risultato random per indice: "+i);
+                cleverResults[i] = message.clever;
+
+                let finished = true;
+                for(let r = 0; r<cleverResults.length && finished; r++) {
+                    if(cleverResults[r] == null) {
+                        finished = false;
+                    }
+                }
+
+                if(finished) {
+                    //saveAttackResultToFile(randomResults);
+                    multiprogressBar.terminate();
+                    GraphPlotter.plotResilience(graphs,cleverResults,"clever");
+                }
+            }
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
                 //console.log("Aggiornamento progresso "+i+": "+message.progress);
-                progressBar.update(Math.min(message.progress/100,1));
+                progressBar.update(Math.min(message.progress/100,2));
             }
         });
     

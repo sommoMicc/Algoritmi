@@ -1,3 +1,5 @@
+const GraphWalker = require("./graphWalker");
+
 module.exports = class GraphAttacker {
     /**
      * @param {UndirectedGraph} graph il grafo da disattivare
@@ -32,5 +34,28 @@ module.exports = class GraphAttacker {
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
+    }
+
+    static cleverFullDeactivation(graph,progressWatcher) {
+        const results = [];
+        results[0] = graph.resilience();
+        
+        let nodesToDeactivate = graph.getNodesOrderedByGrade();
+        for(let i=0;i<nodesToDeactivate.length;i++) {
+            graph.disconnectNode(nodesToDeactivate[i].node);
+            
+            const residualResilience = graph.resilience();
+            results[i+1] = residualResilience;
+            
+            
+            let progress = Math.round(i*100/nodesToDeactivate.length);
+            let progressInterval = i % (Math.round(nodesToDeactivate.length / 100));
+
+            if(progressInterval == 0) {
+                progressWatcher.onProgress(progress);
+            }
+        }
+
+        return results;
     }
 };

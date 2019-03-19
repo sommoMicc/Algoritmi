@@ -76,7 +76,10 @@ module.exports = class GraphWalker {
         const nodes = G.getNodes();
         for(let v=0;v<nodes.length;v++) {
             if(color[nodes[v]] == GraphWalker.Colors.WHITE) {
-                CC.push(GraphWalker._DFS_Visited(G,nodes[v],[],color))
+                CC.push({
+                    v: v,
+                    connectedComponent: GraphWalker._DFS_Visited(G,nodes[v],[],color)
+                });
             }
         }
         return CC;
@@ -106,8 +109,8 @@ module.exports = class GraphWalker {
         const connectedComponents = GraphWalker.connectedComponents(G);
         let max = 0;
         connectedComponents.forEach((i) => {
-            if(i.length > max) {
-                max = i.length;
+            if(i.connectedComponent.length > max) {
+                max = i.connectedComponent.length;
             }
         });
 

@@ -40,12 +40,14 @@ module.exports = class UndirectedGraph {
      */
     disconnectNode(number) {
         let keys = this.getNodes();
-        keys.forEach((node) => {
-            if(this._edges[node][number] != null) {
-                delete this._edges[node][number];
+        for(let i=0;i<keys.length;i++) {
+            if(this._edges[keys[i]][number] != null) {
+                delete this._edges[keys[i]][number];
             }
-        });
-        this._edges[number] = {};
+        }
+        
+        //this._edges[number] = {};
+        delete this._edges[number];
     }
 
     /**
@@ -215,5 +217,40 @@ module.exports = class UndirectedGraph {
      */
     castToGraph(other)  {
         return Object.assign( Object.create( Object.getPrototypeOf(this)), other);
+    }
+
+    /**
+     * @param {Number} node indice del nodo di cui calcolare il grado
+     */
+    getNodeGrade(node) {
+        if(this._edges[node] != null) {
+            const k = Object.keys(this._edges[node]);
+            if(k != null) {
+                return k.length;
+            }
+        } 
+        return 0;
+    }
+
+    getNodesOrderedByGrade() {
+        const nodesOrder = [];
+        const graphNodes = this.getNodes();
+        for(let i=0;i<graphNodes.length;i++) {
+            let currentGrade = this.getNodeGrade(graphNodes[i]);
+
+            let j;
+            let found = false;
+            for(j=0;j<nodesOrder.length && !found;j++) {
+                if(nodesOrder[j].grade < currentGrade) {
+                    found = true;
+                }
+            }
+            nodesOrder.splice(j >= 1 ? j - 1 : j,0,{
+                node: graphNodes[i],
+                grade: currentGrade
+            });
+            //console.log(this._edges[graphNodes[i]].length);
+        }
+        return nodesOrder;
     }
 }
