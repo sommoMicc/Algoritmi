@@ -46,8 +46,8 @@ module.exports = class UndirectedGraph {
             }
         }
         
-        //this._edges[number] = {};
-        delete this._edges[number];
+        this._edges[number] = {};
+        //delete this._edges[number];
     }
 
     /**

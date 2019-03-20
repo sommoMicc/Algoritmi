@@ -62,22 +62,23 @@ function processGraphs() {
     const randomResults = [];
     const cleverResults = [];
 
+    const skipHeavy = false;
+
     const multiprogressBar = new MultiProgress();
     
     for(let i=0;i<graphs.length;i++) {
         randomResults[i] = null;
+        cleverResults[i] = null;
 
-        let progressBar = multiprogressBar.newBar(
-            'Attack '+graphs[i].name+' [:bar] :percent', {
-            total: 200
+        let randomProgressBar = multiprogressBar.newBar(
+            'Random attack '+graphs[i].name+' [:bar] :percent', {
+            total: 100
         });
 
+        const randomAttackProcess = fork('./processes/random_attack.js');
+        randomAttackProcess.send(graphs[i]);
 
-        //printInfo(graphs[i].name,graphs[i].object);
-        const process = fork('./processes/attack.js');
-        process.send(graphs[i]);
-
-        process.on("message",async (message) => {
+        randomAttackProcess.on("message",async (message) => {
             //console.log("Ricevuto messaggio");
             if(message.random != null) {
                 //console.log("Ricevuto risultato random per indice: "+i);
@@ -85,41 +86,60 @@ function processGraphs() {
 
                 let finished = true;
                 for(let r = 0; r<randomResults.length && finished; r++) {
-                    if(randomResults[r] == null) {
+                    if(!skipHeavy && randomResults[r] == null) {
                         finished = false;
                     }
                 }
 
                 if(finished) {
                     //saveAttackResultToFile(randomResults);
-                    multiprogressBar.terminate();
+                    //multiprogressBar.terminate();
                     GraphPlotter.plotResilience(graphs,randomResults);
                 }
             }
+            if(message.progress != null) {
+                //console.log("Aggiornamento progresso");
+                //console.log("Aggiornamento progresso "+i+": "+message.progress);
+                randomProgressBar.update(Math.min(message.progress/100,1));
+            }            
+        });
+
+        let cleverProgressBar = multiprogressBar.newBar(
+            'Clever attack '+graphs[i].name+' [:bar] :percent', {
+            total: 100
+        });
+
+
+        const cleverAttackProcess = fork('./processes/clever_attack.js');
+        cleverAttackProcess.send(graphs[i]);
+
+        cleverAttackProcess.on("message",async (message) => {
+
             if(message.clever != null) {
                 //console.log("Ricevuto risultato random per indice: "+i);
                 cleverResults[i] = message.clever;
 
                 let finished = true;
                 for(let r = 0; r<cleverResults.length && finished; r++) {
-                    if(cleverResults[r] == null) {
+                    if(!skipHeavy && cleverResults[r] == null) {
                         finished = false;
                     }
                 }
 
+                console.log("Ricevuto risultato clever!");
+
                 if(finished) {
                     //saveAttackResultToFile(randomResults);
-                    multiprogressBar.terminate();
+                    //multiprogressBar.terminate();
                     GraphPlotter.plotResilience(graphs,cleverResults,"clever");
                 }
             }
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
                 //console.log("Aggiornamento progresso "+i+": "+message.progress);
-                progressBar.update(Math.min(message.progress/100,2));
+                cleverProgressBar.update(Math.min(message.progress/100,2));
             }
         });
-    
     }
 }
 

@@ -41,12 +41,12 @@ module.exports = class GraphAttacker {
         results[0] = graph.resilience();
         
         let nodesToDeactivate = graph.getNodesOrderedByGrade();
+
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i].node);
             
             const residualResilience = graph.resilience();
             results[i+1] = residualResilience;
-            
             
             let progress = Math.round(i*100/nodesToDeactivate.length);
             let progressInterval = i % (Math.round(nodesToDeactivate.length / 100));
@@ -55,6 +55,8 @@ module.exports = class GraphAttacker {
                 progressWatcher.onProgress(progress);
             }
         }
+
+        //console.log(results);
 
         return results;
     }
