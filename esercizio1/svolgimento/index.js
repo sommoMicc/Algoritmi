@@ -35,10 +35,11 @@ function main() {
     graphs[2] = {
         index: 2,
         name: "Grafo UPA",
-        object: erGraph
+        object: upaGraph
     };
     console.log("Costruito grafo UPA");
     
+    /*
     const manualGraph = new UndirectedGraph();
     for(let i=0;i<=10;i++) {
         manualGraph.addNode(i);
@@ -54,7 +55,7 @@ function main() {
         object: manualGraph
     };
     console.log("Costruito grafo manuale di debug");
-    
+    */
     processGraphs();
 }
 
@@ -63,6 +64,8 @@ function processGraphs() {
     const cleverResults = [];
 
     const skipHeavy = false;
+    let randomFinished = false;
+    let cleverFinished = false;
 
     const multiprogressBar = new MultiProgress();
     
@@ -74,35 +77,41 @@ function processGraphs() {
             'Random attack '+graphs[i].name+' [:bar] :percent', {
             total: 100
         });
-
+        
         const randomAttackProcess = fork('./processes/random_attack.js');
         randomAttackProcess.send(graphs[i]);
 
         randomAttackProcess.on("message",async (message) => {
-            //console.log("Ricevuto messaggio");
             if(message.random != null) {
+                console.log("Ricevuto messaggio random per indice "+i);
+                randomProgressBar.update(1);
                 //console.log("Ricevuto risultato random per indice: "+i);
                 randomResults[i] = message.random;
 
                 let finished = true;
                 for(let r = 0; r<randomResults.length && finished; r++) {
                     if(!skipHeavy && randomResults[r] == null) {
+                        console.log("Trovato risultato random incompleto: "+r);
                         finished = false;
                     }
                 }
 
                 if(finished) {
-                    //saveAttackResultToFile(randomResults);
-                    //multiprogressBar.terminate();
+                    console.log("Random finished");
+                    randomFinished = true;
                     GraphPlotter.plotResilience(graphs,randomResults);
+                    //saveAttackResultToFile(randomResults);
+                    if(randomFinished && cleverFinished)
+                        multiprogressBar.terminate();
                 }
             }
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
                 //console.log("Aggiornamento progresso "+i+": "+message.progress);
-                randomProgressBar.update(Math.min(message.progress/100,1));
+                //randomProgressBar.update(Math.min(message.progress/100,1));
             }            
         });
+        
 
         let cleverProgressBar = multiprogressBar.newBar(
             'Clever attack '+graphs[i].name+' [:bar] :percent', {
@@ -116,28 +125,34 @@ function processGraphs() {
         cleverAttackProcess.on("message",async (message) => {
 
             if(message.clever != null) {
-                //console.log("Ricevuto risultato random per indice: "+i);
+                console.log("Ricevuto messaggio clever per indice: "+i);
                 cleverResults[i] = message.clever;
+                cleverProgressBar.update(1);
 
                 let finished = true;
                 for(let r = 0; r<cleverResults.length && finished; r++) {
                     if(!skipHeavy && cleverResults[r] == null) {
+                        console.log("Trovato risultato clever incompleto: "+r);
                         finished = false;
                     }
                 }
 
-                console.log("Ricevuto risultato clever!");
+                //console.log("Ricevuto risultato clever!");
 
                 if(finished) {
-                    //saveAttackResultToFile(randomResults);
-                    //multiprogressBar.terminate();
+                    console.log("Clever finished");
+                    cleverFinished = true;
                     GraphPlotter.plotResilience(graphs,cleverResults,"clever");
+                
+                    if(randomFinished && cleverFinished)
+                        multiprogressBar.terminate();
+
                 }
             }
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
                 //console.log("Aggiornamento progresso "+i+": "+message.progress);
-                cleverProgressBar.update(Math.min(message.progress/100,2));
+                //cleverProgressBar.update(Math.min(message.progress/100,1));
             }
         });
     }
