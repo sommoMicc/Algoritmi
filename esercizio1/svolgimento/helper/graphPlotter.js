@@ -44,8 +44,8 @@ module.exports = class GraphPlotter {
             y: twentyPercentY,
             type: "scatter",
             name: "20% dei nodi"
-        }
-    );
+        })
+        ;
         //console.log(graphData);
         console.log("Generazione del grafico in corso. Verificare di essere connessi ad internet e attendere...")
         var graphOptions = {
