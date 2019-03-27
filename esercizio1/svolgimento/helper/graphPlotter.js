@@ -19,6 +19,17 @@ module.exports = class GraphPlotter {
                 );
             }
         }
+        const resilientBehaviour = [];
+        for(let i=0;i<results[0].length;i++) {
+            resilientBehaviour.push(Math.round(((results[0].length - i)*0.75)));
+        }
+        graphData.push({
+                x: Array.apply(null, {length: resilientBehaviour.length}).map(Number.call, Number),
+                y: resilientBehaviour,
+                type: "scatter",
+                name: "Comportamento resiliente"
+            }
+        );
         //console.log(graphData);
         console.log("Generazione del grafico in corso. Verificare di essere connessi ad internet e attendere...")
         var graphOptions = {
@@ -26,9 +37,11 @@ module.exports = class GraphPlotter {
                 title: fileName == "random-attack-result" ? "Random attack" : "Clever attack",
                 yaxis: {
                     title: "Dimensione massima componente connessa",
+                    rangemode: "nonnegative" //nascondo valori negativi
                 },
                 xaxis: {
                     title: "Numero nodi disattivati",
+                    rangemode: "nonnegative" //nascondo valori negativi
                 }
             },
             filename: fileName,
