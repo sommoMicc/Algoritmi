@@ -26,7 +26,7 @@ function main() {
     const erGraph = GraphGenerator.ER(graphFromFile.getNodes(),averageDegree);
     graphs[1] = {
         index: 1,
-        name: "Grafo ER",
+        name: "Grafo ER, p: "+averageDegree,
         object: erGraph
     };
     console.log("[✓] Costruito grafo ER");
@@ -34,7 +34,7 @@ function main() {
     const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
     graphs[2] = {
         index: 2,
-        name: "Grafo UPA",
+        name: "Grafo UPA, n: "+graphFromFile.getNodesNumber()+", m: "+Math.ceil(averageDegree),
         object: upaGraph
     };
     console.log("[✓] Costruito grafo UPA");
