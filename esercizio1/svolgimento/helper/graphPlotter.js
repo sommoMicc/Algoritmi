@@ -30,6 +30,22 @@ module.exports = class GraphPlotter {
                 name: "Comportamento resiliente"
             }
         );
+
+        const twentyPercentY = [];
+        const twentyPercentX = [];
+        const twentyPercentValue = results[0][0] * 0.2;
+        for(let i=0;i<=results[0][0];i++) {
+            twentyPercentY.push(i);
+            twentyPercentX.push(twentyPercentValue);
+        }
+
+        graphData.push({
+            x: twentyPercentX,
+            y: twentyPercentY,
+            type: "scatter",
+            name: "20% dei nodi"
+        }
+    );
         //console.log(graphData);
         console.log("Generazione del grafico in corso. Verificare di essere connessi ad internet e attendere...")
         var graphOptions = {
