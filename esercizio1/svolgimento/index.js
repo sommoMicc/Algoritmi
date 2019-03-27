@@ -16,7 +16,7 @@ function main() {
     graphFromFile.loadFromFile(fileName);
 
     const averageDegree = graphFromFile.getAverageDegree();
-    console.log("Costruito grafo da file");
+    console.log("[✓] Costruito grafo da file");
     graphs[0] = {
         index: 0,
         name: "Grafo file",
@@ -29,7 +29,7 @@ function main() {
         name: "Grafo ER",
         object: erGraph
     };
-    console.log("Costruito grafo ER");
+    console.log("[✓] Costruito grafo ER");
 
     const upaGraph = GraphGenerator.UPA(graphFromFile.getNodesNumber(),Math.ceil(averageDegree));
     graphs[2] = {
@@ -37,7 +37,7 @@ function main() {
         name: "Grafo UPA",
         object: upaGraph
     };
-    console.log("Costruito grafo UPA");
+    console.log("[✓] Costruito grafo UPA");
     
     /*
     const manualGraph = new UndirectedGraph();
