@@ -3,7 +3,7 @@ const UndirectedGraph = require("../models/undirectedGraph");
 module.exports = class GraphGenerator {
     /**
      * @param {Array<Number>} nodes array di nodi, ad esempio [1,2,3,4,5,...6581]
-     * @param {Number} p probabilità di creare un arco
+     * @param {Number} p probabilità di creare un arco espressa in base al numero di nodi totali
      */
     static ER(nodes,p) {
         const graph = new UndirectedGraph();

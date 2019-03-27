@@ -26,7 +26,7 @@ function main() {
     const erGraph = GraphGenerator.ER(graphFromFile.getNodes(),averageDegree);
     graphs[1] = {
         index: 1,
-        name: "Grafo ER, p: "+averageDegree,
+        name: "Grafo ER, p: "+(averageDegree/graphFromFile.getNodesNumber()),
         object: erGraph
     };
     console.log("[✓] Costruito grafo ER");
