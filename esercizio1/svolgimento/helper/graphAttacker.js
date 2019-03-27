@@ -13,8 +13,8 @@ module.exports = class GraphAttacker {
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i]);
             
-            const residualResilience = graph.resilience();
-            results[i+1] = residualResilience;
+            const maxConnectedComponent = GraphWalker.maxConnectedComponents(graph);
+            results[i+1] = maxConnectedComponent;
             
             
             let progress = Math.round(i*100/nodesToDeactivate.length);
