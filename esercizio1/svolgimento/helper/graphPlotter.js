@@ -22,12 +22,14 @@ module.exports = class GraphPlotter {
         //console.log(graphData);
         console.log("Generazione del grafico in corso. Verificare di essere connessi ad internet e attendere...")
         var graphOptions = {
-            title: fileName == "random-attack-result" ? "Random attack" : "Clever attack",
-            yaxis: {
-                title: "Dimensione massima componente connessa"
-            },
-            xaxis: {
-                title: "Numero nodi disattivati"
+            layout: {
+                title: fileName == "random-attack-result" ? "Random attack" : "Clever attack",
+                yaxis: {
+                    title: "Dimensione massima componente connessa",
+                },
+                xaxis: {
+                    title: "Numero nodi disattivati",
+                }
             },
             filename: fileName,
             fileopt: "overwrite"

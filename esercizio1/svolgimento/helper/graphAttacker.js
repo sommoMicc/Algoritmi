@@ -8,7 +8,7 @@ module.exports = class GraphAttacker {
         const results = [];
 
         const nodesToDeactivate = GraphAttacker._shuffleArray(graph.getNodes());
-        results[0] = graph.resilience();
+        results[0] = GraphWalker.maxConnectedComponents(graph);
 
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i]);
@@ -38,15 +38,15 @@ module.exports = class GraphAttacker {
 
     static cleverFullDeactivation(graph,progressWatcher) {
         const results = [];
-        results[0] = graph.resilience();
+        results[0] = GraphWalker.maxConnectedComponents(graph);
         
         let nodesToDeactivate = graph.getNodesOrderedByGrade();
 
         for(let i=0;i<nodesToDeactivate.length;i++) {
             graph.disconnectNode(nodesToDeactivate[i].node);
             
-            const residualResilience = graph.resilience();
-            results[i+1] = residualResilience;
+            const residualConnectedComponent = GraphWalker.maxConnectedComponents(graph);
+            results[i+1] = residualConnectedComponent;
             
             let progress = Math.round(i*100/nodesToDeactivate.length);
             let progressInterval = i % (Math.round(nodesToDeactivate.length / 100));
