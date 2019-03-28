@@ -3,14 +3,18 @@ const opn = require("opn");
 
 module.exports = class GraphPlotter {
     /**
-     * 
-     * @param {Array<Array<Integer>>} results matrice da rappresentare graficamente
+     * Genero il grafico di un attacco
+     * @param {Array<Object>} graphs lista dei grafi considerati
+     * @param {Array<Array<Integer>>} results risultati dell'attacco
+     * @param {String} fileName nome del "file" (plotly li chiama così) da generare
      */
     static plotResilience(graphs,results,fileName="random-attack-result") {
         var graphData = [];
         for(let i=0;i<results.length;i++) {
             if(results[i] != null) {
                 graphData.push({
+                        //Ottengo un array che va da 0 a results[i].length - 1, che indica cioè
+                        //il numero di nodi disattivati (asse x del grafico)
                         x: Array.apply(null, {length: results[i].length}).map(Number.call, Number),
                         y: results[i],
                         type: "scatter",
@@ -24,6 +28,8 @@ module.exports = class GraphPlotter {
             resilientBehaviour.push(Math.round(((results[0].length - i)*0.75)));
         }
         graphData.push({
+                //Ottengo un array che va da 0 a results[i].length - 1, che indica cioè
+                //il numero di nodi disattivati (asse x del grafico)
                 x: Array.apply(null, {length: resilientBehaviour.length}).map(Number.call, Number),
                 y: resilientBehaviour,
                 type: "scatter",
@@ -31,6 +37,7 @@ module.exports = class GraphPlotter {
             }
         );
 
+        //Calcolo la linea verticale del 20%
         const twentyPercentY = [];
         const twentyPercentX = [];
         const twentyPercentValue = results[0][0] * 0.2;
@@ -63,6 +70,7 @@ module.exports = class GraphPlotter {
             filename: fileName,
             fileopt: "overwrite"
         };
+        //Disegno il grafico con plotly (RICHIEDE INTERNET!)
         plotly.plot(graphData, graphOptions, function (err, msg) {
             if(err == null && msg.url != null) {
                 console.log("Grafico "+graphTitle+" generato, disponibile all'url: "+msg.url+" ,"+ 
@@ -78,7 +86,7 @@ module.exports = class GraphPlotter {
     }
 
     /**
-     * 
+     * Ritorna la lunghezza del massimo vettore contenuto nella lista di array "results"
      * @param {Array<Array<>>} results lista di array di cui determinare il massimo numero di righe
      */
     static findMaxRows(results) {
