@@ -44,13 +44,13 @@ module.exports = class GraphPlotter {
             y: twentyPercentY,
             type: "scatter",
             name: "20% dei nodi"
-        })
-        ;
-        //console.log(graphData);
-        console.log("Generazione del grafico in corso. Verificare di essere connessi ad internet e attendere...")
+        });
+        const graphTitle = fileName == "random-attack-result" ? "Random attack" : "Clever attack"
+        console.log("Generazione del grafico "+graphTitle+" in corso. Verificare di essere "+
+                    "connessi ad internet e attendere...")
         var graphOptions = {
             layout: {
-                title: fileName == "random-attack-result" ? "Random attack" : "Clever attack",
+                title: graphTitle,
                 yaxis: {
                     title: "Dimensione massima componente connessa",
                     rangemode: "nonnegative" //nascondo valori negativi
@@ -64,12 +64,15 @@ module.exports = class GraphPlotter {
             fileopt: "overwrite"
         };
         plotly.plot(graphData, graphOptions, function (err, msg) {
-            console.log(msg);
             if(err == null && msg.url != null) {
-                opn(msg.url);
+                console.log("Grafico "+graphTitle+" generato, disponibile all'url: "+msg.url+" ,"+ 
+                            " che verrà aperto automaticamente tra pochi secondi");
+
+                setTimeout(()=>opn(msg.url),3000);
+                
             }
             else {
-                console.error("Impossibile generare il grafico: "+err);
+                console.error("Impossibile generare il grafico "+graphTitle+": "+err);
             }
         });
     }

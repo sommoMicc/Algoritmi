@@ -39,33 +39,13 @@ function main() {
     };
     console.log("[✓] Costruito grafo UPA");
     
-    /*
-    const manualGraph = new UndirectedGraph();
-    for(let i=0;i<=10;i++) {
-        manualGraph.addNode(i);
-        if(i > 0)
-            manualGraph.addEdge(i,i-1);
-        
-        if(i>3) 
-            manualGraph.addEdge(i,3);
-    }
-    graphs[3] = {
-        index: 3,
-        name: "Grafo manuale",
-        object: manualGraph
-    };
-    console.log("Costruito grafo manuale di debug");
-    */
+    console.time("Elaborazione completata");
     processGraphs();
 }
 
 function processGraphs() {
     const randomResults = [];
     const cleverResults = [];
-
-    const skipHeavy = false;
-    let randomFinished = false;
-    let cleverFinished = false;
 
     const multiprogressBar = new MultiProgress();
     
@@ -83,31 +63,12 @@ function processGraphs() {
 
         randomAttackProcess.on("message",async (message) => {
             if(message.random != null) {
-                //console.log("Ricevuto messaggio random per indice "+i);
-                randomProgressBar.update(1);
-                //console.log("Ricevuto risultato random per indice: "+i);
                 randomResults[i] = message.random;
+                randomProgressBar.update(1);
 
-                let finished = true;
-                for(let r = 0; r<randomResults.length && finished; r++) {
-                    if(!skipHeavy && randomResults[r] == null) {
-                        //console.log("Trovato risultato random incompleto: "+r);
-                        finished = false;
-                    }
-                }
-
-                if(finished) {
-                    //console.log("Random finished");
-                    randomFinished = true;
-                    GraphPlotter.plotResilience(graphs,randomResults);
-                    //saveAttackResultToFile(randomResults);
-                    if(randomFinished && cleverFinished)
-                        multiprogressBar.terminate();
-                }
+                checkIfAttackFinished(cleverResults,randomResults,multiprogressBar);
             }
             if(message.progress != null) {
-                //console.log("Aggiornamento progresso");
-                //console.log("Aggiornamento progresso "+i+": "+message.progress);
                 randomProgressBar.update(Math.min(message.progress/100,1));
             }            
         });
@@ -129,25 +90,7 @@ function processGraphs() {
                 cleverResults[i] = message.clever;
                 cleverProgressBar.update(1);
 
-                let finished = true;
-                for(let r = 0; r<cleverResults.length && finished; r++) {
-                    if(!skipHeavy && cleverResults[r] == null) {
-                        //console.log("Trovato risultato clever incompleto: "+r);
-                        finished = false;
-                    }
-                }
-
-                //console.log("Ricevuto risultato clever!");
-
-                if(finished) {
-                    //console.log("Clever finished");
-                    cleverFinished = true;
-                    GraphPlotter.plotResilience(graphs,cleverResults,"clever");
-                
-                    if(randomFinished && cleverFinished)
-                        multiprogressBar.terminate();
-
-                }
+                checkIfAttackFinished(cleverResults,randomResults,multiprogressBar);
             }
             if(message.progress != null) {
                 //console.log("Aggiornamento progresso");
@@ -158,57 +101,48 @@ function processGraphs() {
     }
 }
 
-function saveAttackResultToFile(results,fileName="output.csv") {
-    let header = "Numero nodi disattivati";
-    for(let graphIndex = 0; graphIndex<results.length; graphIndex++) {
-        if(graphs[graphIndex] != null)
-            header += ";"+graphs[graphIndex].name
-    }
-
-    const maxRows = GraphPlotter.findMaxRows(results);
-    console.log("Max rows: "+maxRows);
-
-    const stream = fs.createWriteStream("assets/"+fileName);
-    stream.once('open', function(fd) {
-        stream.write(header+"\n")
-        for(let row = 0; row < maxRows; row++) {
-            let rowContent = ""+row;
-            let separator = ";";
-    
-            for(let graphIndex = 0; graphIndex < results.length; graphIndex++) {
-                if(results[graphIndex] != null) {
-                    if(results[graphIndex][row] != null) {
-                        rowContent+=separator+results[graphIndex][row];
-                    }
-                    else {
-                        rowContent+=separator+"0";
-                    }
-                    rowContent = rowContent.replace("\.",",");
-                    rowContent+="\n";
-                    stream.write(rowContent);
-                }
-            }   
+async function checkIfAttackFinished(cleverResults,randomResults, multiprogressBar) {
+    await syncExecution(function (){
+        let cleverFinished = true;
+        for(let r = 0; r<cleverResults.length && cleverFinished; r++) {
+            if(cleverResults[r] == null) {
+                //console.log("Trovato risultato clever incompleto: "+r);
+                cleverFinished = false;
+            }
         }
-        stream.end();
-        console.log("Risultati salvati su file");
+    
+        let randomFinished = true;
+        for(let r = 0; r<randomResults.length && randomFinished; r++) {
+            if(randomResults[r] == null) {
+                //console.log("Trovato risultato random incompleto: "+r);
+                randomFinished = false;
+            }
+        }
+    
+        if(cleverFinished && randomFinished) {
+            multiprogressBar.terminate();
+            console.timeEnd("Elaborazione completata");
+
+            GraphPlotter.plotResilience(graphs,randomResults);
+            GraphPlotter.plotResilience(graphs,cleverResults,"clever");        
+        }
     });
-} 
+}
 
-/**
- * @param {String} graphName nome del grafo
- * @param {UndirectedGraph} graphObject istanza del grafo
- */
-function printInfo(graphName, graphObject) {
-    console.log("---------------------------");
-    console.log(graphName);
-    console.log("Nodi: "+graphObject.getNodesNumber());
-    console.log("Grado medio: "+graphObject.getAverageDegree());
-
-    console.log("Componente connessa: "+GraphWalker.maxConnectedComponents(graphObject));
-    console.log("Resilienza: "+graphObject.resilience());
-
-    //console.timeEnd(graphName);
-    console.log("---------------------------");
+let promise = null;
+async function syncExecution(callback) {
+    if(promise != null)
+        promise.then(function(){
+            promise = new Promise(function (resolve,reject){
+                callback();
+                resolve(true);
+            });
+        });
+    else
+        promise = new Promise(function (resolve,reject){
+            callback();
+            resolve(true);
+        });
 }
 
 main();
