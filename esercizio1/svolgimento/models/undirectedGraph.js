@@ -249,7 +249,6 @@ module.exports = class UndirectedGraph {
                 node: graphNodes[i],
                 grade: currentGrade
             });
-            //console.log(this._edges[graphNodes[i]].length);
         }
         return nodesOrder;
     }

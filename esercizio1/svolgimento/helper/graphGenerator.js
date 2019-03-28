@@ -2,6 +2,7 @@ const UndirectedGraph = require("../models/undirectedGraph");
 
 module.exports = class GraphGenerator {
     /**
+     * Genera un grafo secondo la procedura ER, con il significato del parametro "p" leggermente modificato
      * @param {Array<Number>} nodes array di nodi, ad esempio [1,2,3,4,5,...6581]
      * @param {Number} p probabilità di creare un arco espressa in base al numero di nodi totali
      */
@@ -24,6 +25,7 @@ module.exports = class GraphGenerator {
     }
 
     /**
+     * Genera un grafo secondo la procedura UPA (DPA modificata per grafi non orientati)
      * @param {Number} n numero di nodi del grafo finale 
      * @param {Number} m numero di nodi del sottoinsieme a cui vengono connessi i nuovi nodi
      */
