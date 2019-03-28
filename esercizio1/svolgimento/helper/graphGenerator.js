@@ -15,7 +15,6 @@ module.exports = class GraphGenerator {
                     let a = Math.random() * (nodes.length);
                     graph.addNode(nodes[v]);
                     if(a <= p) {
-                        //console.log("Aggiungo arco da "+ nodes[u]+" a "+nodes[v]);
                         graph.addEdge(nodes[u],nodes[v]);
                     }
                 }
