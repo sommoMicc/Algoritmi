@@ -1,3 +1,7 @@
+/**
+ * Primo laboratorio di Algorimti Avanzati
+ * Michele Tagliabue - Matricola 1206966
+ */
 const { fork } = require('child_process');
 
 const MultiProgress = require("multi-progress");
