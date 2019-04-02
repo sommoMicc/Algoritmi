@@ -6,25 +6,27 @@ module.exports = class FileUtils {
         return "./assets/"
     };
 
-    static readAllFiles(onFileRead, ignore = []) {
+    static readAllFiles(onFileRead, ignore = [], onFinished = null) {
         fs.readdir(FileUtils.ASSETS_DIRECTORY, function(err, filenames) {
             if (err) {
                 throw err;
             }
-            filenames.forEach(function(filename) {
-                if(!ignore.includes(filename.toLowerCase()))
-                    fs.readFile(FileUtils.ASSETS_DIRECTORY + filename, 'utf-8', function(err, content) {
+            for(let i=0;i<filenames.length;i++) {
+                const filename = filenames[i];
+                if (!ignore.includes(filename.toLowerCase()))
+                    fs.readFile(FileUtils.ASSETS_DIRECTORY + filename, 'utf-8', function (err, content) {
                         if (err) {
                             throw err;
                         }
                         const extension = FileUtils.getExtension(filename);
                         onFileRead(
-                            filename.substr(0,filename.length - extension.length - 1),
+                            filenames.length - ignore.length,
+                            //filename.substr(0,filename.length - extension.length - 1),
                             extension,
                             content
                         );
                     });
-            });
+            }
         });
     }
 

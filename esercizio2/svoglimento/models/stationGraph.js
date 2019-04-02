@@ -12,6 +12,7 @@ module.exports = class StationGraph {
      */
     addStation(station) {
         this.stations[station.code] = station;
+        this.stationEdges[station.code] = {};
     }
 
     /**
@@ -28,5 +29,21 @@ module.exports = class StationGraph {
      */
     getStationsNumber() {
         return this.getStations().length;
+    }
+
+    /**
+     * Aggiunge un segmento (inteso come pezzo di linea di un bus/treno) al grafo
+     * @param {string} from la stazione di partenza
+     * @param {string} to la stazione di arrivo
+     * @param {Segment} segment il segmento da aggiungere
+     */
+    addEdge(from,to,segment) {
+        if(this.stationEdges[from][to] == null) {
+            this.stationEdges[from][to] = [segment];
+        }
+        else {
+            this.stationEdges[from][to].push(segment);
+            //this.stationEdges[from][to].sort()
+        }
     }
 };
