@@ -1,4 +1,5 @@
 const Station = require("./station");
+const Segment = require("./segment");
 
 module.exports = class StationGraph {
     constructor() {
@@ -52,17 +53,62 @@ module.exports = class StationGraph {
      * per facilitare la ricerca
      * @param {{setTotal: function,update: function(number)}} progressWatcher
      * observer per il progresso
+     * @returns {Promise<boolean>} true quando ha finito
      */
     sortEdges(progressWatcher) {
-        const stationsFrom = Object.keys(this.stationEdges);
-        progressWatcher.setTotal(stationsFrom.length);
-        for(let i=0;i<stationsFrom.length;i++) {
-            const stationsTo = Object.keys(this.stationEdges[stationsFrom[i]]);
-            for(let j=0;j<stationsTo.length;j++) {
-                this.stationEdges[stationsFrom[i]][stationsTo[j]].sort();
+        return new Promise((resolve)=>{
+            const stationsFrom = Object.keys(this.stationEdges);
+            progressWatcher.setTotal(stationsFrom.length);
+            for(let i=0;i<stationsFrom.length;i++) {
+                const stationsTo = Object.keys(this.stationEdges[stationsFrom[i]]);
+                for(let j=0;j<stationsTo.length;j++) {
+                    this.stationEdges[stationsFrom[i]][stationsTo[j]].sort();
+                }
+                progressWatcher.update(i+1);
             }
-            progressWatcher.update(i+1);
+            console.log("Totale: "+this.stationEdges["200415016"]["200415009"].length);
+            resolve(true);
+        });
+    }
+
+
+    getEligibleSegments(from,to,departureTime) {
+        const availableSegments = this.stationEdges[from][to];
+
+        let i = Math.floor(availableSegments.length / 2);
+        let found = false;
+        //Variabile che, se impostata a 1, indica che all'iterazione precedente
+        //ho trovato un valore di i per cui
+        //availableSegments[i].isDepartureTimeFollowing è true, quindi valido
+        //ma potenzialmente non ottimo
+        let previousState = null;
+
+        while(i>=0 && i<availableSegments.length && !found) {
+            if(availableSegments[i].isDepartureTimeFollowing(departureTime)) {
+                previousState = 1;
+                i--;
+                continue;
+            }
+            if(!availableSegments[i].isDepartureTimeFollowing(departureTime)
+                && previousState != null && previousState === 1) {
+                i++;
+                found = true;
+                continue;
+            }
+            if(!availableSegments[i].isDepartureTimeFollowing(departureTime)) {
+                i++;
+                previousState = -1;
+            }
         }
-        console.log(this.stationEdges["200415016"]["200415009"]);
+
+        if(!found && !(previousState != null && previousState === 1 && i<0)) {
+            i = 0;
+            found = true;
+        }
+
+        if(!found) {
+            return null;
+        }
+        return availableSegments.slice(i,availableSegments.length);
     }
 };

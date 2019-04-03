@@ -35,8 +35,7 @@ module.exports = class Segment {
      * @returns {boolean} true se è fattibile prendere questa tratta, false altrimenti
      */
     isDepartureTimeFollowing(time) {
-        return (Segment.timeStringToInteger(time)
-            - this.numericDepartureTime) < 0;
+        return this.numericDepartureTime >= Segment.timeStringToInteger(time);
     }
 
     /**
@@ -45,9 +44,14 @@ module.exports = class Segment {
      * @returns {number} il numero di minuti passati dalla mezzanotte di timeString
      */
     static timeStringToInteger(timeString) {
+        /*console.log(
+            timeString.substring(0,1)+"*24*60+"+
+            timeString.substring(1,3)+"*60+"+
+            timeString.substring(3,5)
+        );*/
         return parseInt(timeString.substring(0,1)) * 24 * 60 +
-            parseInt(timeString.substring(1,2)) * 60 +
-            parseInt(timeString.substring(3,2));
+            parseInt(timeString.substring(1,3)) * 60 +
+            parseInt(timeString.substring(3,5));
     }
     /**
      * Sovrascrivo il metodo toString per facilitare l'ordinamento in

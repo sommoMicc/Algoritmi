@@ -69,16 +69,21 @@ async function main() {
         if(progress >= tot) {
             await progressBar.terminate();
 
-            STATIONS.sortEdges({
+            await STATIONS.sortEdges({
                 setTotal: (tot) => {
                     progressBar = new ProgressBar("Riordino archi: [:bar]",{total: tot});
                 },
                 update: () => {
                     progressBar.tick();
                 }
-            })
+            });
+            await progressBar.terminate();
+            console.log(STATIONS.getEligibleSegments("200415016","200415009","02037"));
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
 
+/*console.log(Segment.timeStringToInteger("02037"));
+console.log(Segment.timeStringToInteger("02034"));
+*/
 main();
