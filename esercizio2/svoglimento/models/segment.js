@@ -6,6 +6,50 @@ module.exports = class Segment {
     }
 
     /**
+     * Getter per il departure time in formato numerico (minuti dalla mezzanotte)
+     * @returns {number}
+     */
+    get numericDepartureTime() {
+        return Segment.timeStringToInteger(this.departureTime);
+    }
+
+    /**
+     * Getter per l'arrival time in formato numerico (minuti dalla mezzanotte)
+     * @returns {number}
+     */
+    get numericArrivalTime() {
+        return Segment.timeStringToInteger(this.arrivalTime);
+    }
+    /**
+     * Ritorna il peso del segmento (tempo di percorrenza) in minuti
+     * @returns {number} il tempo di percorrenza del segmento
+     */
+    getWeight() {
+        return this.numericDepartureTime - this.numericArrivalTime;
+    }
+
+    /**
+     * Ritorna true se il tempo passato come parametro è precedente al departure time.
+     * In altre parole, ritorna true se riesco a prendere questa tratta, false altrimenti
+     * @param {string} time il tempo da comparare con il departureTime
+     * @returns {boolean} true se è fattibile prendere questa tratta, false altrimenti
+     */
+    isDepartureTimeFollowing(time) {
+        return (Segment.timeStringToInteger(time)
+            - this.numericDepartureTime) < 0;
+    }
+
+    /**
+     * Converte una stringa orario come 10324 nel numero di minuti passati dalla mezzanotte
+     * @param {String} timeString la stringa orario da convertire
+     * @returns {number} il numero di minuti passati dalla mezzanotte di timeString
+     */
+    static timeStringToInteger(timeString) {
+        return parseInt(timeString.substring(0,1)) * 24 * 60 +
+            parseInt(timeString.substring(1,2)) * 60 +
+            parseInt(timeString.substring(3,2));
+    }
+    /**
      * Sovrascrivo il metodo toString per facilitare l'ordinamento in
      * ordine crescente di orario di partenza (departureTime) in modo da
      * semplificare la ricerca
@@ -22,7 +66,8 @@ module.exports = class Segment {
      */
     static parseRow(row) {
         const arrivalTime = row.substring(32,37).trim();
-        const departureTime = row.substring(39,43).trim();
+        const departureTime = row.substring(39,44).trim();
+
 
         return {
             station: row.substring(0,9),
@@ -30,5 +75,6 @@ module.exports = class Segment {
             departureTime: departureTime.length > 0 ? departureTime : null
         }
     }
+
 }
 ;

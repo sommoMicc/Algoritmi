@@ -38,7 +38,8 @@ async function main() {
                 continue;
             }
             if(rows[i].startsWith("*Z")) {
-                lastStrokeId = rows[1].substr(3,5);
+                //lastStrokeId = rows[1].substr(3,5);
+                lastStrokeId = rows[i].substr(3,9);
                 lastStation = null;
                 lastDepartureTime = null;
                 continue;
@@ -66,7 +67,16 @@ async function main() {
         }
         progress++;
         if(progress >= tot) {
-            progressBar.terminate();
+            await progressBar.terminate();
+
+            STATIONS.sortEdges({
+                setTotal: (tot) => {
+                    progressBar = new ProgressBar("Riordino archi: [:bar]",{total: tot});
+                },
+                update: () => {
+                    progressBar.tick();
+                }
+            })
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }

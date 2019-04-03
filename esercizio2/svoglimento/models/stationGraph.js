@@ -46,4 +46,23 @@ module.exports = class StationGraph {
             //this.stationEdges[from][to].sort()
         }
     }
+
+    /**
+     * Riordina gli orari degli archi in ordine di departureDate crescente
+     * per facilitare la ricerca
+     * @param {{setTotal: function,update: function(number)}} progressWatcher
+     * observer per il progresso
+     */
+    sortEdges(progressWatcher) {
+        const stationsFrom = Object.keys(this.stationEdges);
+        progressWatcher.setTotal(stationsFrom.length);
+        for(let i=0;i<stationsFrom.length;i++) {
+            const stationsTo = Object.keys(this.stationEdges[stationsFrom[i]]);
+            for(let j=0;j<stationsTo.length;j++) {
+                this.stationEdges[stationsFrom[i]][stationsTo[j]].sort();
+            }
+            progressWatcher.update(i+1);
+        }
+        console.log(this.stationEdges["200415016"]["200415009"]);
+    }
 };
