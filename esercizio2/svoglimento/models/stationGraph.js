@@ -71,7 +71,15 @@ module.exports = class StationGraph {
         });
     }
 
-
+    /**
+     * Ritorna la lista di segmenti che riesco a prendere, considerando il
+     * departureTime, e date le stazioni di partenza e di arrivo
+     * @param {string} from stazione di partenza
+     * @param {string} to stazione di destinazione
+     * @param {number|string} departureTime l'orario minimo di partenza
+     * @returns {null|Array<Segment>} lista di tratte che soddisfano i criteri
+     *          di ricerca
+     */
     getEligibleSegments(from,to,departureTime) {
         const availableSegments = this.stationEdges[from][to];
 

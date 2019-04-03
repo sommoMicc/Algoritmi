@@ -35,7 +35,8 @@ module.exports = class Segment {
      * @returns {boolean} true se è fattibile prendere questa tratta, false altrimenti
      */
     isDepartureTimeFollowing(time) {
-        return this.numericDepartureTime >= Segment.timeStringToInteger(time);
+        const timeToCompare = typeof (time) === "string" ? Segment.timeStringToInteger(time) : time;
+        return this.numericDepartureTime >= timeToCompare;
     }
 
     /**
