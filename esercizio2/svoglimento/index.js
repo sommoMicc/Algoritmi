@@ -63,6 +63,7 @@ async function main() {
                     rowInfo.arrivalTime
                 ));
                 lastDepartureTime = rowInfo.departureTime;
+                lastStation = rowInfo.station;
             }
             //console.log(rows[i]);
         }
@@ -80,8 +81,8 @@ async function main() {
             });
             await progressBar.terminate();
 
-            const routes = GraphWalker.dijkstraSSSP(STATIONS,"200415016","00600");
-            console.log("Risultato: "+routes["200415009"]);
+            const routes = GraphWalker.dijkstraSSSP(STATIONS,"200417007","00600");
+            console.log(routes["200417019"]);
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
