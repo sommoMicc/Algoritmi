@@ -2,9 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cb52036-7d89-44ad-b058-bf6299d88916" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/models/binaryHeap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/graphWalker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/segment.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/segment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/stationGraph.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/stationGraph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Bold-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Bold-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Bold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-BoldItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-BoldItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-BoldItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Italic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Italic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Italic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Light-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Light-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Light-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-LightItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-LightItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-LightItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Regular-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Regular-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/fonts/OpenSans-Regular-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/scripts/linenumber.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/scripts/prettify/Apache-License-2.0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/scripts/prettify/lang-css.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/scripts/prettify/prettify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/styles/jsdoc-default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/styles/prettify-jsdoc.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/styles/prettify-tomorrow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,23 +47,32 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55854124">
+    <splitter split-orientation="horizontal" split-proportion="0.46681222">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="639">
-                  <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
+                <state relative-caret-position="599">
+                  <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/segment.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="646">
+                  <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/models/segment.js">
+            <entry file="file://$PROJECT_DIR$/models/stationGraph.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="833">
-                  <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="77" selection-end-column="5" />
+                <state relative-caret-position="259">
+                  <caret line="149" selection-start-line="149" selection-end-line="149" />
                 </state>
               </provider>
             </entry>
@@ -45,17 +84,29 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/utils/fileUtils.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-398">
-                  <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+                <state relative-caret-position="408">
+                  <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/models/stationGraph.js">
+            <entry file="file://$PROJECT_DIR$/models/graphWalker.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-245">
-                  <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+                <state relative-caret-position="415">
+                  <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/binaryHeap.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="276">
+                  <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -74,6 +125,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>AVL---_1</find>
+      <find>score</find>
+      <find>valueProp</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -83,8 +136,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/utils/fileUtils.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/models/segment.js" />
+        <option value="$PROJECT_DIR$/models/Queue.js" />
+        <option value="$PROJECT_DIR$/models/binaryHeap.js" />
+        <option value="$PROJECT_DIR$/models/graphWalker.js" />
+        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/models/stationGraph.js" />
       </list>
     </option>
@@ -96,17 +152,16 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="136" />
-    <option name="y" value="31" />
-    <option name="width" value="2456" />
-    <option name="height" value="1705" />
+    <option name="x" value="132" />
+    <option name="y" value="27" />
+    <option name="width" value="2463" />
+    <option name="height" value="1710" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,6 +179,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -131,7 +187,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.15.1" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.13.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -169,6 +225,13 @@
       <workItem from="1554195204913" duration="8120000" />
       <workItem from="1554231444715" duration="284000" />
       <workItem from="1554272859035" duration="5960000" />
+      <workItem from="1554292886073" duration="12000" />
+      <workItem from="1554292917524" duration="1128000" />
+      <workItem from="1554311898399" duration="159000" />
+      <workItem from="1554359583771" duration="329000" />
+      <workItem from="1554367419825" duration="365000" />
+      <workItem from="1554376134594" duration="1836000" />
+      <workItem from="1554401909522" duration="5377000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <created>1554276066846</created>
@@ -181,12 +244,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14644000" />
+    <option name="totallyTimeSpent" value="23850000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1577" height="1026" extended-state="6" />
+    <frame x="-7" y="-7" width="2575" height="1424" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2034549" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10581804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -204,7 +268,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32824427" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3269962" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32927758" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -235,31 +299,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/out/index.html" />
     <entry file="file://$PROJECT_DIR$/utils/fileUtils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        <state relative-caret-position="408">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/binaryHeap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-131883">
+          <caret line="4" column="691" lean-forward="true" selection-start-line="4" selection-start-column="691" selection-end-line="4" selection-end-column="691" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/graphWalker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
+        <state relative-caret-position="599">
+          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/segment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="77" selection-end-column="5" />
+        <state relative-caret-position="646">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/stationGraph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245">
-          <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+        <state relative-caret-position="259">
+          <caret line="149" selection-start-line="149" selection-end-line="149" />
         </state>
       </provider>
     </entry>

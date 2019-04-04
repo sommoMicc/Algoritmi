@@ -4,6 +4,7 @@ const FileUtils = require("./utils/fileUtils");
 const Station = require("./models/station");
 const StationGraph = require("./models/stationGraph");
 const Segment = require("./models/segment");
+const GraphWalker = require("./models/graphWalker");
 
 const STATION_NAMES_FILE = "bahnhof";
 const STATIONS = new StationGraph();
@@ -22,7 +23,7 @@ async function main() {
     let progress = 0;
     FileUtils.readAllFiles(async (tot,extension,content)=>{
         if(progressBar == null) {
-            progressBar = new ProgressBar("Lettura file [:bar]",{total: tot});
+            progressBar = new ProgressBar("Lettura file [:bar] :percent",{total: tot});
         }
         progressBar.tick();
         let rows = content.split("\n");
@@ -71,14 +72,16 @@ async function main() {
 
             await STATIONS.sortEdges({
                 setTotal: (tot) => {
-                    progressBar = new ProgressBar("Riordino archi: [:bar]",{total: tot});
+                    progressBar = new ProgressBar("Riordino archi: [:bar] :percent",{total: tot});
                 },
                 update: () => {
                     progressBar.tick();
                 }
             });
             await progressBar.terminate();
-            console.log(STATIONS.getEligibleSegments("200415016","200415009","02037"));
+
+            const routes = GraphWalker.dijkstraSSSP(STATIONS,"200415016","00600");
+            console.log("Risultato: "+routes["200415009"]);
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }

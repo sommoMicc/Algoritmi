@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "cli-progress": "^2.1.1",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "tinyqueue": "^2.0.0"
   }
 }

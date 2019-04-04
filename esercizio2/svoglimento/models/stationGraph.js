@@ -1,6 +1,11 @@
 const Station = require("./station");
 const Segment = require("./segment");
 
+/**
+ * Classe che gestisce il grafo i cui nodi sono le stazioni e i cui archi sono le varie
+ * tratte che li collegano
+ * @type {StationGraph}
+ */
 module.exports = class StationGraph {
     constructor() {
         this.stations = {};
@@ -108,8 +113,24 @@ module.exports = class StationGraph {
                 previousState = -1;
             }
         }
+        /**
+         * Questa condizione merita un po' di approfondimento. Se found è false, significa che, partendo dal centro
+         * dell'array non sono riuscito a determinare un valore ritenuto ottimo. Questo potrebbe succedere al verificarsi
+         * di due casi particolari:
+         * a) Partendo dal centro sono arrivato al primo elemento dell'array (i == 0), il quale aveva un departureTime
+         *    ancora maggiore rispetto al mio departureTime, quindi ho decrementato ancora i (i == -1) e sono uscito dal
+         *    ciclo. Questo caso lo distinguo perché i == -1 e previousState == 1 (ovvero l'ultimo elemento analizzato
+         *    aveva departureDate > della mia departureDate passata come parametro della funzione)
+         * b) Partendo dal centro sono arrivato alla fine dell'array, senza aver trovato una tratta possibile. In tal
+         *    caso dovrò prendere il bus il giorno dopo.
+         */
+        if(!found && i === availableSegments.length) {
+            return null;
+        }
+        else if(!found &&
+            (!(previousState != null && previousState == 1 && i<0))) {
 
-        if(!found && !(previousState != null && previousState === 1 && i<0)) {
+            console.log(i);
             i = 0;
             found = true;
         }
@@ -119,4 +140,69 @@ module.exports = class StationGraph {
         }
         return availableSegments.slice(i,availableSegments.length);
     }
+
+    /**
+     * Ritorna la lista delle adiacenze di un nodo
+     * @param {string} node il nodo di cui si vuole ottenere la lista delle adiacenze
+     * @returns {Array<Station>}
+     */
+    getNeighbours(node) {
+        return this.stationEdges[node];
+    }
+
+    /**
+     * Ritorna la tratta migliore per andare dalla stazione "from" alla stazione "to",
+     * tenendo conto del vincolo dell'orario
+     * @param {string} from la stazione di partenza
+     * @param {string} to la stazione di destinazione
+     * @param {numeric} departureTime il tempo di partenza, espresso come numero di minuti
+     * passati dalla mezzanotte del primo giorno (giorno 0) di viaggio
+     * @returns {{segment: Segment, weight: number}|null} la tratta migliore con il relativo peso,
+     * se esite, oppure null
+     */
+    getBestSegment(from,to,departureTime) {
+        const minutesInADay = 1440;
+
+
+        //Devo ricavarmi il tempo relativo alla mezzanotte del giorno in cui mi trovo
+        //Ovvero, per un viaggio di tre giorni, il mio "departureTime" (visto come stringa)
+        //potrebbe essere qualcosa come 20630 per indicare le 6 e mezza del mattino del
+        //terzo giorno di viaggio. Devo quindi ricavarmi i minuti dalla mezzanotte del terzo
+        //giorno equivalenti alle ore 06:30 (ovvero 390) e usare questo dato per la ricerca della tratta
+        let relativeTime = departureTime % minutesInADay;
+        let eligibleSegments = this.getEligibleSegments(from,to,relativeTime);
+
+        //Valore che serve per le tratte che necessitano di attraversare la mezzanotte in stazione
+        let penality = 0;
+
+        if(eligibleSegments == null && this.stationEdges[from][to] != null) {
+            //Sono nel caso in cui è troppo tardi per prendere anche l'ultima corsa da from a to
+            //devo quindi aspettare la prima del giorno dopo. Rifaccio la ricerca passando come
+            //departureTime la mezzanotte (ovvero il numero 0) e setto la penalità al numero di
+            //minuti che mancano per la mezzanotte del giorno successivo
+            penality = minutesInADay - relativeTime;
+            relativeTime = 0;
+            eligibleSegments = this.getEligibleSegments(from,to,relativeTime);
+        }
+
+        if(eligibleSegments == null && this.stationEdges[from][to] == null ||
+            eligibleSegments == null && penality > 0) {
+            //Se non ho tratte che collegano i due nodi, ritorno null
+            return null;
+        }
+
+        let fastestSegment = eligibleSegments[0];
+        for(let i=1;i<eligibleSegments.length;i++) {
+            //Semplice problema di ricerca del minimo
+            if(eligibleSegments[i].numericArrivalTime < fastestSegment.numericArrivalTime) {
+                fastestSegment = eligibleSegments[i];
+            }
+        }
+
+        return {
+            segment: fastestSegment,
+            weight: fastestSegment.numericArrivalTime - relativeTime + penality
+        };
+    }
+
 };
