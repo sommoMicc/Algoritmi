@@ -149,9 +149,9 @@ function printResults(d,p,startNode,startTime,destination) {
     let stationsInvolved = [];
 
     while(index != null) {
-        //console.log(p[index]);
-        stationsInvolved.push(index);
-        percorso.unshift(index);
+        percorso.push(p[index]);
+        stationsInvolved.unshift(index);
+
 
         index = p[index].node;
     }
@@ -160,19 +160,19 @@ function printResults(d,p,startNode,startTime,destination) {
 
     let lastEqualIndex = percorso.length - 2;
     for(let i=lastEqualIndex; i>=-1; i--) {
-        if(i < 0 || percorso[lastEqualIndex].segment.strokeId !==
+        if (i < 0 || percorso[lastEqualIndex].segment.strokeId !==
             percorso[i].segment.strokeId) {
 
             try {
                 console.log("Ore " + timePrettyFormat(percorso[lastEqualIndex].segment.departureTime) + " - Linea " +
-                    percorso[i+1].segment.strokeId + " da " + percorso[lastEqualIndex].segment.departureStation +
-                    " a " + percorso[i + 1].segment.arrivalStation+", arrivo ore "+
-                    timePrettyFormat(percorso[i+1].segment.arrivalTime));
-            }
-            catch(e) {
-                console.error("Eccezione su indice "+i);
+                    percorso[i + 1].segment.strokeId + " da " + percorso[lastEqualIndex].segment.departureStation +
+                    " a " + percorso[i + 1].segment.arrivalStation + ", arrivo ore " +
+                    timePrettyFormat(percorso[i + 1].segment.arrivalTime));
+            } catch (e) {
+                console.error("Eccezione su indice " + i);
             }
         }
+
 
         lastEqualIndex = i;
 

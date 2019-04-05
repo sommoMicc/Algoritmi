@@ -1,4 +1,3 @@
-const TinyQueue = require('tinyqueue');
 const BinaryHeap = require("../models/binaryHeap");
 const Segment = require("../models/segment");
 
