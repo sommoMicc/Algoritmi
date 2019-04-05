@@ -123,7 +123,7 @@ async function main() {
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
 
-
+const plotData = {};
 /*console.log(Segment.timeStringToInteger("02037"));
 console.log(Segment.timeStringToInteger("02034"));
 */
@@ -146,13 +146,17 @@ function printResults(d,p,startNode,startTime,destination) {
     let index = destination;
     let percorso = [];
 
+    let stationsInvolved = [];
+
     while(index != null) {
         //console.log(p[index]);
-
-        percorso.push(p[index]);
+        stationsInvolved.push(index);
+        percorso.unshift(index);
 
         index = p[index].node;
     }
+
+    plotData[startNode+"-"+startTime+"-"+destination] = stationsInvolved;
 
     let lastEqualIndex = percorso.length - 2;
     for(let i=lastEqualIndex; i>=-1; i--) {
