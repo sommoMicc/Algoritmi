@@ -1,6 +1,6 @@
 const TinyQueue = require('tinyqueue');
-const BinaryHeap = require("./binaryHeap");
-const Segment = require("./segment");
+const BinaryHeap = require("../models/binaryHeap");
+const Segment = require("../models/segment");
 
 module.exports = class GraphWalker {
     //Implementazione di Dijkstra

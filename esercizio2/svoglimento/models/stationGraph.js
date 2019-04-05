@@ -10,6 +10,7 @@ module.exports = class StationGraph {
     constructor() {
         this.stations = {};
         this.stationEdges = {};
+        this.coords = {};
     }
 
     /**
@@ -211,6 +212,19 @@ module.exports = class StationGraph {
             weight: fastestSegment.numericArrivalTime - relativeTime + penality
         };
         return results;
+    }
+
+    /**
+     * Imposta le coordinate geografiche di una stazione
+     * @param {string}station la stazione
+     * @param {number} lat latitudine di station
+     * @param {number} long longitudine di station
+     */
+    setCoords(station,lat,long) {
+        this.coords[station] = {
+            lat: lat,
+            lng: long
+        };
     }
 
 };

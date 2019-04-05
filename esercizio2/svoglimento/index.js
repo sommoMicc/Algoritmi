@@ -4,9 +4,11 @@ const FileUtils = require("./utils/fileUtils");
 const Station = require("./models/station");
 const StationGraph = require("./models/stationGraph");
 const Segment = require("./models/segment");
-const GraphWalker = require("./models/graphWalker");
+const GraphWalker = require("./utils/graphWalker");
 
 const STATION_NAMES_FILE = "bahnhof";
+const STATION_COORDS_FILE = "bfkoord";
+
 const STATIONS = new StationGraph();
 
 async function main() {
@@ -18,6 +20,14 @@ async function main() {
         }
     }
     console.log("Trovate "+STATIONS.getStationsNumber()+" STAZIONI");
+
+    const coords = (await FileUtils.readFile(STATION_COORDS_FILE)).split("\n");
+    for(let i=2; i<coords.length;i++) {
+        if(coords[i].trim().length > 0) {
+            const foundCoords = Station.parseCoords(coords[i]);
+            STATIONS.setCoords(foundCoords.station,foundCoords.lat,foundCoords.lng);
+        }
+    }
 
     let progressBar = null;
     let progress = 0;
