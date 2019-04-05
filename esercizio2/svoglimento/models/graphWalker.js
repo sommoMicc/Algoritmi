@@ -49,11 +49,13 @@ module.exports = class GraphWalker {
     static _relax(d,p,D,u,segment,v) {
         if(u === v)
             return;
+        /*
         console.log("Chiamato relax da "+u+" a "+v+" prendendo linea \n"+
             segment.strokeId + " alle "+segment.departureTime+
             ",\n prima :"+Segment.numberToTime(d[v])+", dopo: d[u] = "+
             Segment.numberToTime(d[u])+", D: "+Segment.numberToTime(D)+
             ",\n ovvero in tutto "+Segment.numberToTime(d[u]+D));
+         */
         d[v] = d[u] + D;
         p[v] = {
             node: u,
@@ -104,7 +106,7 @@ module.exports = class GraphWalker {
                     const bestSegment = graph.getBestSegment(u, v, currentArrivalTime + d[u]);
                     if(bestSegment != null) {
                         let alt = d[u] + bestSegment.weight;
-                        console.log("\nBest segment weight: "+Segment.numberToTime(bestSegment.weight));
+                        //console.log("\nBest segment weight: "+Segment.numberToTime(bestSegment.weight));
                         if (alt < d[v]) {
                             GraphWalker._relax(d, p, bestSegment.weight, u, bestSegment.segment, v);
                             Q.decreaseKey(v, d[v]);

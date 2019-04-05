@@ -71,7 +71,7 @@ module.exports = class StationGraph {
                 }
                 progressWatcher.update(i+1);
             }
-            console.log("Totale: "+this.stationEdges["200415016"]["200415009"].length);
+            //console.log("Totale: "+this.stationEdges["200415016"]["200415009"].length);
             resolve(true);
         });
     }
@@ -130,7 +130,7 @@ module.exports = class StationGraph {
         else if(!found &&
             (!(previousState != null && previousState == 1 && i<0))) {
 
-            console.log(i);
+            //console.log(i);
             i = 0;
             found = true;
         }

@@ -83,10 +83,10 @@ async function main() {
             });
             await progressBar.terminate();
 
-            const startNode = "500000079";
-            const startTime = "01300";
+            const startNode = "200417051";
+            const startTime = "02355";
 
-            const destination = "300000044";
+            const destination = "140701016";
 
             const results = GraphWalker.dijkstraSSSP(STATIONS,startNode,startTime);
             console.log("Tempo totale :"+Segment.numberToTime(results.d[destination]));
