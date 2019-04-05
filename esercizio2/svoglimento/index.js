@@ -83,13 +83,32 @@ async function main() {
             });
             await progressBar.terminate();
 
-            const startNode = "500000079";
-            const startTime = "01300";
+            const routesToFind = [{
+                startNode: "200415016",
+                startTime: "00930",
+                destination: "200405005"
+            },{
+                startNode: "300000032",
+                startTime: "00530",
+                destination: "400000122"
+            },{
+                startNode: "210602003",
+                startTime: "00630",
+                destination: "300000030"
+            },{
+                startNode: "200417051",
+                startTime: "01200",
+                destination: "140701016"
+            },{
+                startNode: "200417051",
+                startTime: "02355",
+                destination: "140701016"
+            }];
 
-            const destination = "300000044";
-
-            const results = GraphWalker.dijkstraSSSP(STATIONS,startNode,startTime);
-            printResults(results.d,results.p,startNode,startTime,destination);
+            routesToFind.forEach((route)=>{
+                const results = GraphWalker.dijkstraSSSP(STATIONS,route.startNode,route.startTime);
+                printResults(results.d,results.p,route.startNode,route.startTime,route.destination);
+            });
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
@@ -108,8 +127,9 @@ console.log(Segment.timeStringToInteger("02034"));
  * @param {string} destination nodo di destinazione
  */
 function printResults(d,p,startNode,startTime,destination) {
+    console.log("\n--------------------------------------------");
     console.log("Percorso da "+startNode+" a "+destination+" partendo non " +
-        "prima delle ore "+startTime);
+        "prima delle ore "+timePrettyFormat(startTime));
 
     console.log("Durata totale: "+Segment.numberToTime(d[destination]));
 
@@ -130,10 +150,10 @@ function printResults(d,p,startNode,startTime,destination) {
             percorso[i].segment.strokeId) {
 
             try {
-                console.log("Ore " + percorso[lastEqualIndex].segment.departureTime + " - Linea " +
+                console.log("Ore " + timePrettyFormat(percorso[lastEqualIndex].segment.departureTime) + " - Linea " +
                     percorso[i+1].segment.strokeId + " da " + percorso[lastEqualIndex].segment.departureStation +
                     " a " + percorso[i + 1].segment.arrivalStation+", arrivo ore "+
-                    percorso[i+1].segment.arrivalTime);
+                    timePrettyFormat(percorso[i+1].segment.arrivalTime));
             }
             catch(e) {
                 console.error("Eccezione su indice "+i);
@@ -145,8 +165,10 @@ function printResults(d,p,startNode,startTime,destination) {
 
         //console.log(percorso[i].segment.departureStation+" a "+percorso[i].segment.arrivalStation+" linea "+percorso[i].segment.strokeId);
     }
+}
 
-    //console.log("Percorso da "+startNode+" ore "+startTime+" fino a "+destination+": \n"+percorso);
 
+function timePrettyFormat(time) {
+    return Segment.numberToTime(Segment.timeStringToInteger(time),":");
 }
 main();

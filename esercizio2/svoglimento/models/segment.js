@@ -87,9 +87,10 @@ module.exports = class Segment {
      * Rende un numero (espresso come distanza di minuti dalla mezzanotte
      * del primo giorno di viaggio) una stringa leggibile
      * @param {number|Infinity}number il numero che si vuole convertire
+     * @param {string}hmSeparator separatore tra ore e minuti
      * @returns {string} il tempo espresso in un formato leggibile
      */
-    static numberToTime(number) {
+    static numberToTime(number,hmSeparator = "h ") {
         if(number === Infinity)
             return "Infinito";
 
@@ -98,10 +99,16 @@ module.exports = class Segment {
         const days = Math.floor(number / minutesInADay);
 
         const remainingTime = number - days * minutesInADay;
-        const hours = Math.floor(remainingTime / 60);
-        const minutes = remainingTime % 60;
+        const hours = Math.floor(remainingTime / 60).toString();
+        const minutes = (remainingTime % 60).toString();
 
-        return days+"g "+hours+"h "+minutes+"m";
+        let string = hours.padStart(2,"0")+
+            hmSeparator+minutes.padStart(2,"0");
+
+        if(days > 0)
+            string = days+"g "+string;
+
+        return string;
     }
 }
 ;
