@@ -83,48 +83,13 @@ async function main() {
             });
             await progressBar.terminate();
 
-            const startNode = "300000032";
-            const startTime = "00530";
+            const startNode = "500000079";
+            const startTime = "01300";
 
-            const destination = "400000122";
+            const destination = "300000044";
 
             const results = GraphWalker.dijkstraSSSP(STATIONS,startNode,startTime);
-            console.log("Tempo totale :"+Segment.numberToTime(results.d[destination]));
-
-            let index = destination;
-            let percorso = "";
-            console.log("Percorso trovato: ");
-
-            while(results.p[index].node != null) {
-                const segmentInfo = results.p[index];
-                /*
-                let stringToAdd = segmentInfo.segment.departureTime+" dalla stazione "
-                    +segmentInfo.segment.departureStation+" prendere linea "+segmentInfo.segment.strokeId
-                    +", arrivo "+segmentInfo.segment.arrivalTime+" a "+segmentInfo.segment.arrivalStation+", tempo: "+Segment.numberToTime(results.d[index])+"\n"+
-                "Risultato stessa tratta best segment: ";
-
-                const bestSegment = STATIONS.getBestSegment(
-                    segmentInfo.segment.departureStation,
-                    segmentInfo.segment.arrivalStation,
-                    segmentInfo.segment.departureTime);
-                if(bestSegment == null)
-                    stringToAdd += "bestSegment null";
-                else
-                    stringToAdd += Segment.numberToTime(bestSegment.weight);
-
-                percorso = stringToAdd +"\n\n"+ percorso;
-
-
-                index = results.p[index].node;
-                 */
-                let stringToAdd = segmentInfo.segment.departureTime+" dalla stazione "
-                    +segmentInfo.segment.departureStation+" prendere linea "+segmentInfo.segment.strokeId
-                    +", arrivo "+segmentInfo.segment.arrivalTime+" a "+segmentInfo.segment.arrivalStation+
-                    ", tempo: "+Segment.numberToTime(results.d[index])+"\n";
-                percorso = stringToAdd + percorso;
-                index = results.p[index].node;
-            }
-            console.log("Percorso da "+startNode+" ore "+startTime+" fino a "+destination+": \n"+percorso);
+            printResults(results.d,results.p,startNode,startTime,destination);
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
@@ -133,4 +98,55 @@ async function main() {
 /*console.log(Segment.timeStringToInteger("02037"));
 console.log(Segment.timeStringToInteger("02034"));
 */
+
+/**
+ * Stampa i risultati in console
+ * @param {Array<number>}d array delle distanze
+ * @param {Array<{node: string, segment: Segment}>} p array dei predecessori
+ * @param {string} startNode nodo di partenza
+ * @param {string} startTime tempo di partenza
+ * @param {string} destination nodo di destinazione
+ */
+function printResults(d,p,startNode,startTime,destination) {
+    console.log("Percorso da "+startNode+" a "+destination+" partendo non " +
+        "prima delle ore "+startTime);
+
+    console.log("Durata totale: "+Segment.numberToTime(d[destination]));
+
+    let index = destination;
+    let percorso = [];
+
+    while(index != null) {
+        //console.log(p[index]);
+
+        percorso.push(p[index]);
+
+        index = p[index].node;
+    }
+
+    let lastEqualIndex = percorso.length - 2;
+    for(let i=lastEqualIndex; i>=-1; i--) {
+        if(i < 0 || percorso[lastEqualIndex].segment.strokeId !==
+            percorso[i].segment.strokeId) {
+
+            try {
+                console.log("Ore " + percorso[lastEqualIndex].segment.departureTime + " - Linea " +
+                    percorso[i+1].segment.strokeId + " da " + percorso[lastEqualIndex].segment.departureStation +
+                    " a " + percorso[i + 1].segment.arrivalStation+", arrivo ore "+
+                    percorso[i+1].segment.arrivalTime);
+            }
+            catch(e) {
+                console.error("Eccezione su indice "+i);
+            }
+        }
+
+        lastEqualIndex = i;
+
+
+        //console.log(percorso[i].segment.departureStation+" a "+percorso[i].segment.arrivalStation+" linea "+percorso[i].segment.strokeId);
+    }
+
+    //console.log("Percorso da "+startNode+" ore "+startTime+" fino a "+destination+": \n"+percorso);
+
+}
 main();
