@@ -88,6 +88,9 @@ module.exports = class StationGraph {
     getEligibleSegments(from,to,departureTime) {
         const availableSegments = this.stationEdges[from][to];
 
+        //console.log("Eligible segments inizio: "+Segment.numberToTime(departureTime));
+        //console.log(availableSegments);
+
         let i = Math.floor(availableSegments.length / 2);
         let found = false;
         //Variabile che, se impostata a 1, indica che all'iterazione precedente
@@ -129,10 +132,13 @@ module.exports = class StationGraph {
         }
         else if(!found &&
             (!(previousState != null && previousState == 1 && i<0))) {
-
             //console.log(i);
             i = 0;
             found = true;
+        }
+        else if(!found && i < 0 && previousState == 1) {
+            found = true;
+            i++
         }
 
         if(!found) {
@@ -193,6 +199,7 @@ module.exports = class StationGraph {
 
         let fastestSegment = eligibleSegments[0];
         for(let i=1;i<eligibleSegments.length;i++) {
+            //console.log("Confronto "+eligibleSegments[i].arrivalTime+" con  il vecchio "+fastestSegment.arrivalTime);
             //Semplice problema di ricerca del minimo
             if(eligibleSegments[i].numericArrivalTime < fastestSegment.numericArrivalTime) {
                 fastestSegment = eligibleSegments[i];

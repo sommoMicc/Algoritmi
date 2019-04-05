@@ -49,13 +49,14 @@ module.exports = class GraphWalker {
     static _relax(d,p,D,u,segment,v) {
         if(u === v)
             return;
+
         /*
         console.log("Chiamato relax da "+u+" a "+v+" prendendo linea \n"+
             segment.strokeId + " alle "+segment.departureTime+
             ",\n prima :"+Segment.numberToTime(d[v])+", dopo: d[u] = "+
             Segment.numberToTime(d[u])+", D: "+Segment.numberToTime(D)+
             ",\n ovvero in tutto "+Segment.numberToTime(d[u]+D));
-         */
+        */
         d[v] = d[u] + D;
         p[v] = {
             node: u,
