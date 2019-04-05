@@ -60,7 +60,9 @@ async function main() {
                 STATIONS.addEdge(lastStation,rowInfo.station,new Segment(
                     lastStrokeId,
                     lastDepartureTime,
-                    rowInfo.arrivalTime
+                    rowInfo.arrivalTime,
+                    lastStation,
+                    rowInfo.station
                 ));
                 lastDepartureTime = rowInfo.departureTime;
                 lastStation = rowInfo.station;
@@ -81,11 +83,52 @@ async function main() {
             });
             await progressBar.terminate();
 
-            const routes = GraphWalker.dijkstraSSSP(STATIONS,"200417007","00600");
-            console.log(routes["200417019"]);
+            const startNode = "500000079";
+            const startTime = "01300";
+
+            const destination = "300000044";
+
+            const results = GraphWalker.dijkstraSSSP(STATIONS,startNode,startTime);
+            console.log("Tempo totale :"+Segment.numberToTime(results.d[destination]));
+
+            let index = destination;
+            let percorso = "";
+            console.log("Percorso trovato: ");
+
+            while(results.p[index].node != null) {
+                const segmentInfo = results.p[index];
+                /*
+                let stringToAdd = segmentInfo.segment.departureTime+" dalla stazione "
+                    +segmentInfo.segment.departureStation+" prendere linea "+segmentInfo.segment.strokeId
+                    +", arrivo "+segmentInfo.segment.arrivalTime+" a "+segmentInfo.segment.arrivalStation+", tempo: "+Segment.numberToTime(results.d[index])+"\n"+
+                "Risultato stessa tratta best segment: ";
+
+                const bestSegment = STATIONS.getBestSegment(
+                    segmentInfo.segment.departureStation,
+                    segmentInfo.segment.arrivalStation,
+                    segmentInfo.segment.departureTime);
+                if(bestSegment == null)
+                    stringToAdd += "bestSegment null";
+                else
+                    stringToAdd += Segment.numberToTime(bestSegment.weight);
+
+                percorso = stringToAdd +"\n\n"+ percorso;
+
+
+                index = results.p[index].node;
+                 */
+                let stringToAdd = segmentInfo.segment.departureTime+" dalla stazione "
+                    +segmentInfo.segment.departureStation+" prendere linea "+segmentInfo.segment.strokeId
+                    +", arrivo "+segmentInfo.segment.arrivalTime+" a "+segmentInfo.segment.arrivalStation+
+                    ", tempo: "+Segment.numberToTime(results.d[index])+"\n";
+                percorso = stringToAdd + percorso;
+                index = results.p[index].node;
+            }
+            console.log("Percorso da "+startNode+" ore "+startTime+" fino a "+destination+": \n"+percorso);
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
+
 
 /*console.log(Segment.timeStringToInteger("02037"));
 console.log(Segment.timeStringToInteger("02034"));

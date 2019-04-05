@@ -199,10 +199,11 @@ module.exports = class StationGraph {
             }
         }
 
-        return {
+        const results = {
             segment: fastestSegment,
             weight: fastestSegment.numericArrivalTime - relativeTime + penality
         };
+        return results;
     }
 
 };

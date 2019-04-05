@@ -22,7 +22,10 @@ module.exports = class GraphWalker {
         for(let i=0;i<s.length;i++) {
             let v = s[i];
             d[v] = Infinity;
-            p[v] = null;
+            p[v] = {
+                node: null,
+                segment: null
+            };
         }
 
         d[start] = 0;
@@ -39,12 +42,23 @@ module.exports = class GraphWalker {
      * @param {Array<String>} p vettore dei predecessori
      * @param {number} D distanza che si vuole sommare, ovvero w(u,v)
      * @param {String} u nodo del grafo
+     * @param {Segment} segment tratta da prendere per raggiungere v da u
      * @param {String} v nodo che si vuole aggiungere al cammino
      * @private
      */
-    static _relax(d,p,D,u,v) {
+    static _relax(d,p,D,u,segment,v) {
+        if(u === v)
+            return;
+        console.log("Chiamato relax da "+u+" a "+v+" prendendo linea \n"+
+            segment.strokeId + " alle "+segment.departureTime+
+            ",\n prima :"+Segment.numberToTime(d[v])+", dopo: d[u] = "+
+            Segment.numberToTime(d[u])+", D: "+Segment.numberToTime(D)+
+            ",\n ovvero in tutto "+Segment.numberToTime(d[u]+D));
         d[v] = d[u] + D;
-        p[v] = u;
+        p[v] = {
+            node: u,
+            segment: segment
+        };
     }
 
     /**
@@ -84,18 +98,24 @@ module.exports = class GraphWalker {
 
                 for (let i = 0; i < neighbours.length; i++) {
                     let v = neighbours[i];
+                    if(u === v)
+                        continue;
 
-                    const bestSegment = graph.getBestSegment(u, v, currentArrivalTime);
+                    const bestSegment = graph.getBestSegment(u, v, currentArrivalTime + d[u]);
                     if(bestSegment != null) {
                         let alt = d[u] + bestSegment.weight;
+                        console.log("\nBest segment weight: "+Segment.numberToTime(bestSegment.weight));
                         if (alt < d[v]) {
-                            GraphWalker._relax(d, p, alt, u, v);
+                            GraphWalker._relax(d, p, bestSegment.weight, u, bestSegment.segment, v);
                             Q.decreaseKey(v, d[v]);
                         }
                     }
                 }
             }
         }
-        return d;
+        return {
+            d: d,
+            p: p
+        };
     }
 };

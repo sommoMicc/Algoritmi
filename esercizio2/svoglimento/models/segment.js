@@ -1,8 +1,10 @@
 module.exports = class Segment {
-    constructor(strokeId,departureTime,arrivalTime) {
+    constructor(strokeId,departureTime,arrivalTime,departureStation,arrivalStation) {
         this.strokeId = strokeId;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+        this.departureStation = departureStation;
+        this.arrivalStation = arrivalStation;
     }
 
     /**
@@ -81,5 +83,25 @@ module.exports = class Segment {
         }
     }
 
+    /**
+     * Rende un numero (espresso come distanza di minuti dalla mezzanotte
+     * del primo giorno di viaggio) una stringa leggibile
+     * @param {number|Infinity}number il numero che si vuole convertire
+     * @returns {string} il tempo espresso in un formato leggibile
+     */
+    static numberToTime(number) {
+        if(number === Infinity)
+            return "Infinito";
+
+        const minutesInADay = 1440;
+
+        const days = Math.floor(number / minutesInADay);
+
+        const remainingTime = number - days * minutesInADay;
+        const hours = Math.floor(remainingTime / 60);
+        const minutes = remainingTime % 60;
+
+        return days+"g "+hours+"h "+minutes+"m";
+    }
 }
 ;
