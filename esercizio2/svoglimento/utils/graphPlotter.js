@@ -32,10 +32,12 @@ module.exports = class GraphPlotter {
             layout: {
                 title: graphTitle,
                 yaxis: {
-                    title: "Longitudine"
+                    title: "Longitudine",
+                    range: [46,51]
                 },
                 xaxis: {
-                    title: "Latitudine"
+                    title: "Latitudine",
+                    range: [4,8]
                 }
             },
             filename: fileName,
