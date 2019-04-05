@@ -5,6 +5,7 @@ const Station = require("./models/station");
 const StationGraph = require("./models/stationGraph");
 const Segment = require("./models/segment");
 const GraphWalker = require("./utils/graphWalker");
+const GraphPlotter = require("./utils/graphPlotter");
 
 const STATION_NAMES_FILE = "bahnhof";
 const STATION_COORDS_FILE = "bfkoord";
@@ -119,6 +120,8 @@ async function main() {
                 const results = GraphWalker.dijkstraSSSP(STATIONS,route.startNode,route.startTime);
                 printResults(results.d,results.p,route.startNode,route.startTime,route.destination);
             });
+
+            GraphPlotter.plotRoute(STATIONS,plotData);
         }
     }, [STATION_NAMES_FILE,"bfkoord"]);
 }
@@ -156,7 +159,7 @@ function printResults(d,p,startNode,startTime,destination) {
         index = p[index].node;
     }
 
-    plotData[startNode+"-"+startTime+"-"+destination] = stationsInvolved;
+    plotData[startNode+"-"+timePrettyFormat(startTime)+"-"+destination] = stationsInvolved;
 
     let lastEqualIndex = percorso.length - 2;
     for(let i=lastEqualIndex; i>=-1; i--) {
@@ -175,9 +178,6 @@ function printResults(d,p,startNode,startTime,destination) {
 
 
         lastEqualIndex = i;
-
-
-        //console.log(percorso[i].segment.departureStation+" a "+percorso[i].segment.arrivalStation+" linea "+percorso[i].segment.strokeId);
     }
 }
 

@@ -6,6 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "opn": "^6.0.0",
     "plotly": "^1.0.6",
     "progress": "^2.0.3"
   }

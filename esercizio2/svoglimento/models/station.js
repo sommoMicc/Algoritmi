@@ -28,7 +28,7 @@ module.exports = class Station {
      * @returns {{lng: number, station: string, lat: number}} le coordinate corrispondenti
      */
     static parseCoords(row) {
-        const rowPieces = row.split("   ");
+        const rowPieces = row.split(/\s+/);
 
         return {
             station: rowPieces[0],

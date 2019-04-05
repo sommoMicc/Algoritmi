@@ -2,63 +2,40 @@ const plotly = require("plotly")("sommoMicc","Zprek5QCqArZdXLYVFzX");
 const opn = require("opn");
 
 module.exports = class GraphPlotter {
-    static plotRoute(graphs,results,fileName="random-attack-result") {
-        var graphData = [];
-        for(let i=0;i<results.length;i++) {
-            if(results[i] != null) {
-                graphData.push({
-                        //Ottengo un array che va da 0 a results[i].length - 1, che indica cioè
-                        //il numero di nodi disattivati (asse x del grafico)
-                        x: Array.apply(null, {length: results[i].length}).map(Number.call, Number),
-                        y: results[i],
-                        type: "scatter",
-                        name: graphs[i].name
-                    }
-                );
-            }
-        }
-        const resilientBehaviour = [];
-        for(let i=0;i<results[0].length;i++) {
-            resilientBehaviour.push(Math.round(((results[0].length - i)*0.75)));
-        }
-        graphData.push({
-                //Ottengo un array che va da 0 a results[i].length - 1, che indica cioè
-                //il numero di nodi disattivati (asse x del grafico)
-                x: Array.apply(null, {length: resilientBehaviour.length}).map(Number.call, Number),
-                y: resilientBehaviour,
-                type: "scatter",
-                name: "Comportamento resiliente"
-            }
-        );
+    static plotRoute(graph,routes,fileName="routes") {
+        let graphData = [];
 
-        //Calcolo la linea verticale del 20%
-        const twentyPercentY = [];
-        const twentyPercentX = [];
-        const twentyPercentValue = results[0][0] * 0.2;
-        for(let i=0;i<=results[0][0];i++) {
-            twentyPercentY.push(i);
-            twentyPercentX.push(twentyPercentValue);
-        }
+        let series = Object.keys(routes);
+        series.forEach((route)=>{
+            const routePieces = route.split("-");
+            const routeName = "Da "+routePieces[0]+" a "+routePieces[2]+" alle "+routePieces[1];
 
-        graphData.push({
-            x: twentyPercentX,
-            y: twentyPercentY,
-            type: "scatter",
-            name: "20% dei nodi"
+            let x = [], y = [];
+
+            for(let i=0;i<routes[route].length;i++) {
+                x.push(graph.coords[routes[route][i]].lng);
+                y.push(graph.coords[routes[route][i]].lat);
+            }
+            graphData.push({
+                    x: x,
+                    y: y,
+                    type: "scatter",
+                    name: routeName
+                }
+            );
         });
-        const graphTitle = fileName == "random-attack-result" ? "Random attack" : "Clever attack"
-        console.log("Generazione del grafico "+graphTitle+" in corso. Verificare di essere "+
+
+        const graphTitle = "Percorsi trovati";
+        console.log("\nGenerazione del grafico "+graphTitle+" in corso. Verificare di essere "+
                     "connessi ad internet e attendere...")
         var graphOptions = {
             layout: {
                 title: graphTitle,
                 yaxis: {
-                    title: "Dimensione massima componente connessa",
-                    rangemode: "nonnegative" //nascondo valori negativi
+                    title: "Longitudine"
                 },
                 xaxis: {
-                    title: "Numero nodi disattivati",
-                    rangemode: "nonnegative" //nascondo valori negativi
+                    title: "Latitudine"
                 }
             },
             filename: fileName,
