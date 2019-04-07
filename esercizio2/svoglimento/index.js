@@ -127,9 +127,7 @@ async function main() {
 }
 
 const plotData = {};
-/*console.log(Segment.timeStringToInteger("02037"));
-console.log(Segment.timeStringToInteger("02034"));
-*/
+
 
 /**
  * Stampa i risultati in console
@@ -147,42 +145,59 @@ function printResults(d,p,startNode,startTime,destination) {
     console.log("Durata totale: "+Segment.numberToTime(d[destination]));
 
     let index = destination;
-    let percorso = [];
-
     let stationsInvolved = [];
 
+    let output = "";
+    let firstEqualIndex = index;
+    let predecessorIndex = null;
+
     while(index != null) {
-        percorso.push(p[index]);
-        stationsInvolved.unshift(index);
+        stationsInvolved.push(index);
 
+        if (p[index].node === null || firstEqualIndex !== index &&
+            p[firstEqualIndex].segment.strokeId !== p[index].segment.strokeId) {
+            output = formatSegmentData(
+                p[firstEqualIndex].segment.strokeId,
+                p[predecessorIndex].segment.departureStation,
+                p[predecessorIndex].segment.departureTime,
+                p[firstEqualIndex].segment.arrivalStation,
+                p[firstEqualIndex].segment.arrivalTime
+            ) + "\n" + output;
 
+            firstEqualIndex = index;
+        }
+
+        predecessorIndex = index;
         index = p[index].node;
     }
 
+    console.log(output);
     plotData[startNode+"-"+timePrettyFormat(startTime)+"-"+destination] = stationsInvolved;
-
-    let lastEqualIndex = percorso.length - 2;
-    for(let i=lastEqualIndex; i>=-1; i--) {
-        if (i < 0 || percorso[lastEqualIndex].segment.strokeId !==
-            percorso[i].segment.strokeId) {
-
-            try {
-                console.log("Ore " + timePrettyFormat(percorso[lastEqualIndex].segment.departureTime) + " - Linea " +
-                    percorso[i + 1].segment.strokeId + " da " + percorso[lastEqualIndex].segment.departureStation +
-                    " a " + percorso[i + 1].segment.arrivalStation + ", arrivo ore " +
-                    timePrettyFormat(percorso[i + 1].segment.arrivalTime));
-            } catch (e) {
-                console.error("Eccezione su indice " + i);
-            }
-        }
-
-
-        lastEqualIndex = i;
-    }
 }
 
+/**
+ * Formatta le informazioni per essere stampate in console
+ * @param {string}strokeId l'id della linea
+ * @param {string}departureStation la stazione di partenza
+ * @param {string}departureTime l'orario di partenza
+ * @param {string}arrivalStation la stazione di destinazione
+ * @param {string}arrivalTime l'orario di arrivo
+ * @returns {string} le informazioni formattatte
+ */
+function formatSegmentData(strokeId,departureStation,departureTime,arrivalStation,arrivalTime) {
+    return "Ore " + timePrettyFormat(departureTime) + " - Linea " +
+        strokeId + " da " + departureStation +
+        " a " + arrivalStation + ", arrivo ore " +
+        timePrettyFormat(arrivalTime);
+}
 
+/**
+ * Formatta una stringa oraria come 00530 in 05:30
+ * @param {string}time la stringa che si vuole formattare
+ * @returns {string} la stringa formattata
+ */
 function timePrettyFormat(time) {
     return Segment.numberToTime(Segment.timeStringToInteger(time),":");
 }
+
 main();
