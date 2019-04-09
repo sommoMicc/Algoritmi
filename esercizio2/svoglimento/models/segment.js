@@ -63,7 +63,7 @@ module.exports = class Segment {
      * @returns {string} l'equivalente in stringa del segmento
      */
     toString() {
-        return this.departureTime+" "+this.arrivalTime+" "+this.strokeId;
+        return this.departureTime+" "+this.arrivalTime+" "+this.strokeId+"; "+this.departureStation+" -> "+this.arrivalStation;
     }
 
     /**
