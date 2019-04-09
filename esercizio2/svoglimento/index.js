@@ -132,7 +132,7 @@ const plotData = {};
 /**
  * Stampa i risultati in console
  * @param {Array<number>}d array delle distanze
- * @param {Array<{node: string, segment: Segment}>} p array dei predecessori
+ * @param {Array<Segment | null>} p array dei predecessori
  * @param {string} startNode nodo di partenza
  * @param {string} startTime tempo di partenza
  * @param {string} destination nodo di destinazione
@@ -154,21 +154,25 @@ function printResults(d,p,startNode,startTime,destination) {
     while(index != null) {
         stationsInvolved.push(index);
 
-        if (p[index].node === null || firstEqualIndex !== index &&
-            p[firstEqualIndex].segment.strokeId !== p[index].segment.strokeId) {
+        if (p[index] == null || firstEqualIndex !== index &&
+            p[firstEqualIndex].strokeId !== p[index].strokeId) {
             output = formatSegmentData(
-                p[firstEqualIndex].segment.strokeId,
-                p[predecessorIndex].segment.departureStation,
-                p[predecessorIndex].segment.departureTime,
-                p[firstEqualIndex].segment.arrivalStation,
-                p[firstEqualIndex].segment.arrivalTime
+                p[firstEqualIndex].strokeId,
+                p[predecessorIndex].departureStation,
+                p[predecessorIndex].departureTime,
+                p[firstEqualIndex].arrivalStation,
+                p[firstEqualIndex].arrivalTime
             ) + "\n" + output;
 
             firstEqualIndex = index;
         }
 
         predecessorIndex = index;
-        index = p[index].node;
+
+        if(p[index] != null)
+            index = p[index].departureStation;
+        else
+            index = null;
     }
 
     console.log(output);
