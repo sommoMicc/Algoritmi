@@ -63,4 +63,18 @@ module.exports = class FileUtils {
     static getExtension(fileName) {
         return path.extname(fileName).substr(1).trim().toLowerCase();
     }
+
+
+    static getCoordsType(row) {
+        let rowParts = row.split(":");
+        if(rowParts.length < 2)
+            return false;
+        return rowParts[1].trim();
+    }
+
+    /**
+     * Ritorna il tipo di sistema di coordinate usato
+     * @param {String}row la riga delle coordinate (di solito quella di indice 5)
+     * @returns {String}
+     */
 };
