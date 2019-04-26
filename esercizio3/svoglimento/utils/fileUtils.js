@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = class FileUtils {
     static get ASSETS_DIRECTORY() {
-        return "./assets/"
+        return "./easy_assets/"
     };
 
     /**

@@ -1,110 +1,71 @@
-const BinaryHeap = require("../models/binaryHeap");
-const Segment = require("../models/segment");
-
+/**
+ * Classe che implementa i vari algoritmi di solzione del problema TSP
+ * @type {module.GraphWalker}
+ */
 module.exports = class GraphWalker {
-    //Implementazione di Dijkstra
-
     /**
-     * Inizializza tutti i parametri per poter poi applicare Dijistra
-     * @param {StationGraph} graph il grafo che si vuole analizzare
-     * @param {String} start chiave del nodo di partenza
-     * @returns {{p: Array, d: Array}} vettori delle distanze (d) e dei predecessori (p)
-     *          inizializzati a vuoto
-     * @private
+     * Implementa l'algoritmo di Held-Karp per la soluzione del TSP
+     * @param {GeoGraph} graph il grafo al quale applicare l'algoritmo
      */
-    static _initSSSP(graph,start) {
-        let p = [];
-        let d = [];
+    static HeldKarp(graph,progressWatcher) {
+        const distance = {};
+        const predecessor = {};
 
-        const s = graph.getStations();
+        const nodeList = graph.getNodesList();
+        return this.HK_Visit(nodeList[0],nodeList,distance,predecessor,graph,progressWatcher);
+    }
 
-        for(let i=0;i<s.length;i++) {
-            let v = s[i];
-            d[v] = Infinity;
-            p[v] = null;
+    static HK_Visit(v,S,distance,predecessor,graph,progressWatcher) {
+        progressWatcher.tick();
+        if(S.length === 1 && S[0] === v) {
+            // Caso base: la soluzione è il peso dell’arco {v, 0}
+            //console.log("ritorno distanza");
+            //console.log("CASO BASE");
+            return graph.distanceBetween(v, graph.getNodesList()[0]);
         }
+        else if(distance[v] != null && distance[v][S.join(",")] != null) {
+            // Distanza già calcolata, ritorna il valore memorizzato
+            return distance[v][S.join(",")];
+        }
+        else {
+            /*
+            console.log("Caso ricorsivo di "+v+" affanno");
+            if(distance[v] != null) {
+                console.log(distance[v]);
+            }*/
+            // Caso ricorsivo: trova il minimo tra tutti i sottocammini
+            let mindist = Infinity;
+            let minprec = null;
 
-        d[start] = 0;
+            let vk = S.indexOf(v);
+            //Copio S e tolgo il nodo v dalla copia di S (sReduced)
+            let sReduced = S.slice(0);
+            sReduced.splice(vk,1);
 
-        return {
-            p: p,
-            d: d
-        }; 
-    }
+            //console.log(S.join(","));
+            for(let i=0;i<S.length;i++) {
+                let u = S[i];
 
-    /**
-     * Salva un segmento trovato
-     * @param {Array<String>} d vettore delle distanze
-     * @param {Array<String>} p vettore dei predecessori
-     * @param {number} D distanza che si vuole sommare, ovvero w(u,v)
-     * @param {String} u nodo del grafo
-     * @param {Segment} segment tratta da prendere per raggiungere v da u
-     * @param {String} v nodo che si vuole aggiungere al cammino
-     * @private
-     */
-    static _relax(d,p,D,u,segment,v) {
-        if(u === v)
-            return;
-
-        d[v] = d[u] + D;
-        p[v] = segment;
-    }
-
-    /**
-     * Trova il cammino minimo dal nodo start al nodo di fine
-     * @param {StationGraph} graph il grafo da elaborare
-     * @param {String} startNode il nodo di partenza
-     * @param {String} startTime l'orario di partenza desiderato
-     * @returns {Array<number>} vettore delle distanze
-     */
-    static dijkstraSSSP(graph,startNode,startTime) {
-        const initializedValues = GraphWalker._initSSSP(graph,startNode);
-        let p = initializedValues.p;
-        let d = initializedValues.d;
-
-        /*let Q = new TinyQueue(graph.getStations(),(a,b)=>{
-            if(d[a] === d[b] && d[a] === Infinity)
-                return 0;
-            return d[a] - d[b];
-        });*/
-        let Q = new BinaryHeap((a)=>{
-            return d[a];
-        },(a)=> a, d);
-
-        graph.getStations().forEach((station) => {
-            Q.push(station);
-        });
-
-        let currentArrivalTime = Segment.timeStringToInteger(startTime);
-        while(Q.size() > 0) {
-            let u = Q.pop();
-            if(d[u] === Infinity)
-                break;
-
-            const neightboursList = graph.getNeighbours(u);
-            if(neightboursList != null) {
-                const neighbours = Object.keys(neightboursList);
-
-                for (let i = 0; i < neighbours.length; i++) {
-                    let v = neighbours[i];
-                    if(u === v)
-                        continue;
-
-                    const bestSegment = graph.getBestSegment(u, v, currentArrivalTime + d[u]);
-                    if(bestSegment != null) {
-                        let alt = d[u] + bestSegment.weight;
-                        //console.log("\nBest segment weight: "+Segment.numberToTime(bestSegment.weight));
-                        if (alt < d[v]) {
-                            GraphWalker._relax(d, p, bestSegment.weight, u, bestSegment.segment, v);
-                            Q.decreaseKey(v, d[v]);
-                        }
-                    }
+                //NOTA: con S.slice(0) copio l'array S, in modo da non modificare quello della funzione
+                //di invocazione
+                let dist = GraphWalker.HK_Visit(u,sReduced,distance,predecessor,graph,progressWatcher);
+                //console.log("Fine invocazione ricorsiva");
+                if((dist + graph.distanceBetween(u,v)) < mindist) {
+                    mindist = dist + graph.distanceBetween(u,v);
+                    minprec = u;
                 }
             }
+            if(distance[v] == null)
+                distance[v] = {};
+            if(predecessor[v] == null)
+                predecessor[v] = {};
+
+            distance[v][S.join(",")] = mindist;
+            predecessor[v][S.join(",")] = minprec;
+
+
+            //console.log(distance);
+            return mindist;
         }
-        return {
-            d: d,
-            p: p
-        };
     }
 };

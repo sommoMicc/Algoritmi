@@ -2,6 +2,7 @@ const ProgressBar = require("progress");
 
 const FileUtils = require("./utils/fileUtils");
 const GeoGraph = require("./models/geoGraph");
+const GraphWalker = require("./utils/graphWalker");
 
 async function main() {
     let progressBar = null;
@@ -34,7 +35,23 @@ async function main() {
         progress++;
         if(progress >= tot) {
             await progressBar.terminate();
+            const totalNodesToWalk = Math.pow(2,geoGraphs[0].getNodesList().length + 1) *
+                3 * geoGraphs[0].getNodesList().length;
 
+            console.log(totalNodesToWalk);
+
+            const hkProgressBar = new ProgressBar("Held Karp [:bar] :percent",{
+                total: totalNodesToWalk
+            });
+            let iterations = 0;
+            let result = GraphWalker.HeldKarp(geoGraphs[0],{
+                tick: function() {
+                    hkProgressBar.update(Math.min(iterations/totalNodesToWalk,1.0));
+                    iterations++;
+                }
+            });
+            await hkProgressBar.terminate();
+            console.log("Risultato: "+result+", iterazioni: "+iterations);
         }
     });
 }

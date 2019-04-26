@@ -50,6 +50,9 @@ module.exports = class Coord {
      */
     distance(otherNode) {
         let distance = 0;
+        if(this.lat === otherNode.lat && this.lng === otherNode.lng)
+            return distance;
+
         if(this._type === ENUM.COORD_TYPES.GEO) {
             //Radianti
             const RRR = 6378.388;
