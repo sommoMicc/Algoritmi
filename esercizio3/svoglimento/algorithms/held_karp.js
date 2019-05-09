@@ -7,7 +7,7 @@ module.exports = class HeldKarp {
      * @constructor
      */
     static get MAX_EXECUTION_TIME() {
-        return 60;
+        return 60*5; //5 minuti
     }
     /**
      * Implementa l'algoritmo di Held-Karp per la soluzione del TSP
@@ -33,7 +33,7 @@ module.exports = class HeldKarp {
         this.routes = new Routes();
         this.timeout = null;
 
-
+        this.running = false;
     }
 
     /**
@@ -41,11 +41,17 @@ module.exports = class HeldKarp {
      */
     start() {
         this.timeout = Math.floor(Date.now() / 1000) + HeldKarp.MAX_EXECUTION_TIME;
-
-
+        this.running = true;
         return this._HK_Visit(0,this._listToString(this.nodeList));
     }
 
+    /**
+     * Applica l'algoritmo di Held Karp ricorsivamente
+     * @param {number} v il nodo di partenza
+     * @param {string} S una stringa che rappresenta il cammino da seguire.
+     * @returns {number}
+     * @private
+     */
     _HK_Visit(v,S) {
         //console.log("v: "+v+", S: "+S);
         if(S === ""+v) {
@@ -61,8 +67,11 @@ module.exports = class HeldKarp {
             let nodes = [];
             let token = "";
             //Faccio lo split di S: S.split(",") mi fa stack overflow
+            /* Il codice sottostante è l'equivalente di S.split(",").
+            *  Ho dovuto far così per evitare/ridurre la probabilità di stack overflow
+             */
             let j=0;
-
+            //Itero sulla lunghezza dei caratteri della stringa
             for (let i = 0; i < S.length; i++) {
                 if (S.charAt(i) === ",") {
                     j++;
@@ -87,7 +96,7 @@ module.exports = class HeldKarp {
                 }
             }
 
-            for(let i=0;i<reducedNodes.length;i++) {
+            for(let i=0;i<reducedNodes.length && !this._isTimeExpired();i++) {
                 const u = reducedNodes[i];
                 const dist = this._HK_Visit(u,reducedNodesString);
                 if((dist + this.w[u][v]) < mindist) {
@@ -102,7 +111,12 @@ module.exports = class HeldKarp {
     }
 
     _isTimeExpired() {
-        return (this.timeout - Math.floor(Date.now() / 1000)) < 0;
+        const timeoutExpired = ((this.timeout - Math.floor(Date.now() / 1000)) < 0);
+        if(timeoutExpired && this.running) {
+            console.log("Timeout!");
+            this.running = false;
+        }
+        return timeoutExpired;
     }
 
     _listToString(list) {

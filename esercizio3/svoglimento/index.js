@@ -4,13 +4,14 @@ const FileUtils = require("./utils/fileUtils");
 const GeoGraph = require("./models/geoGraph");
 const GraphWalker = require("./utils/graphWalker");
 
+const geoGraphs = [];
+
 async function main() {
     let progressBar = null;
     let progress = 0;
 
-    const geoGraphs = [];
 
-    FileUtils.readAllFiles(async (tot,extension,content)=>{
+    FileUtils.readAllFiles(async (tot,name,extension,content)=>{
         if(progressBar == null) {
             progressBar = new ProgressBar("Lettura file [:bar] :percent",{total: tot});
         }
@@ -30,24 +31,28 @@ async function main() {
             }
             geoGraph.parseRow(rows[i]);
         }
-        geoGraphs.push(geoGraph);
+        geoGraphs.push({
+            name: name,
+            graph: geoGraph
+        });
         progress++;
         if(progress >= tot) {
             await progressBar.terminate();
 
-            const totalNodesToWalk = Math.pow(2,geoGraphs[0].getNodesList().length + 1) *
-                3 * geoGraphs[0].getNodesList().length;
-
-            const hkProgressBar = new ProgressBar("Held Karp [:bar] :percent",{
-                total: totalNodesToWalk
-            });
-            let iterations = 0;
-            let result = GraphWalker.HeldKarp(geoGraphs[0]);
-            await hkProgressBar.terminate();
-            console.log("Risultato: "+result+", iterazioni: "+iterations);
-
+            beginAlgorithm();
         }
     });
+}
+
+async function beginAlgorithm() {
+    for(let i=0;i<geoGraphs.length;i++) {
+        const timeLabel = "Tempo " + geoGraphs[i].name;
+        console.time(timeLabel);
+        let result = GraphWalker.HeldKarp(geoGraphs[i].graph);
+
+        console.timeEnd(timeLabel);
+        console.log("Risultato " + geoGraphs[i].name + ": " + result);
+    }
 }
 
 main();

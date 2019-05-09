@@ -30,7 +30,7 @@ module.exports = class FileUtils {
                         const extension = FileUtils.getExtension(filename);
                         onFileRead(
                             filenames.length - ignore.length,
-                            //filename.substr(0,filename.length - extension.length - 1),
+                            filename.substr(0,filename.length - extension.length - 1),
                             extension,
                             content
                         );
