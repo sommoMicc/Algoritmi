@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="index" type="NodeJSConfigurationType" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
+  <configuration default="false" name="index" type="NodeJSConfigurationType" application-parameters="--stack-size=999999999999999999" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="DEBUG" value="svoglimento:*" />
     </envs>

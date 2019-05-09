@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node --stack-size=9999999999999999999999999 index.js"
   },
   "dependencies": {
     "opn": "^6.0.0",

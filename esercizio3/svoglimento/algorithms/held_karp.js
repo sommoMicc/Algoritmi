@@ -58,13 +58,27 @@ module.exports = class HeldKarp {
             let minprec = null;
 
             const nodes = S.split(",");
-            const reducedNodes = [];
-            for(let i=0;i<nodes.length;i++) {
-                if (nodes[i] !== "" + v) {
-                    reducedNodes.push(v);
+            let j=0;
+            for (let i = 0; i < S.length; i++) {
+                if (S.charAt(i) === ",") {
+                    j++;
+                    nodes.push('');
+                } else {
+                    stringArray[j] += sampleInput.charAt(i);
                 }
             }
-            const reducedNodesString = reducedNodes.join(",");
+            const reducedNodes = [];
+
+            let reducedNodesString = "";
+            let sep = "";
+            for(let i=0;i<nodes.length;i++) {
+                if (nodes[i] !== "" + v) {
+                    reducedNodesString+=sep+nodes[i];
+                    reducedNodes.push(nodes[i]);
+                    sep = ",";
+                }
+            }
+
             for(let u=0;u<reducedNodes.length;u++) {
                 const dist = this._HK_Visit(u,reducedNodesString);
                 if((dist + this.w[u][v]) < mindist) {
