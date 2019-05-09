@@ -47,6 +47,7 @@ module.exports = class HeldKarp {
     }
 
     _HK_Visit(v,S) {
+        //console.log("v: "+v+", S: "+S);
         if(S === ""+v) {
             return this.w[v][0];
         }
@@ -57,32 +58,40 @@ module.exports = class HeldKarp {
             let mindist = Infinity;
             let minprec = null;
 
-            const nodes = S.split(",");
+            let nodes = [];
+            let token = "";
+            //Faccio lo split di S: S.split(",") mi fa stack overflow
             let j=0;
+
             for (let i = 0; i < S.length; i++) {
                 if (S.charAt(i) === ",") {
                     j++;
-                    nodes.push('');
+                    nodes.push(token);
+                    token = "";
                 } else {
-                    stringArray[j] += sampleInput.charAt(i);
+                    token += S.charAt(i);
                 }
             }
+            if(token !== "")
+                nodes.push(token);
+
             const reducedNodes = [];
 
             let reducedNodesString = "";
             let sep = "";
             for(let i=0;i<nodes.length;i++) {
-                if (nodes[i] !== "" + v) {
+                if (nodes[i] !== v.toString()) {
                     reducedNodesString+=sep+nodes[i];
                     reducedNodes.push(nodes[i]);
                     sep = ",";
                 }
             }
 
-            for(let u=0;u<reducedNodes.length;u++) {
+            for(let i=0;i<reducedNodes.length;i++) {
+                const u = reducedNodes[i];
                 const dist = this._HK_Visit(u,reducedNodesString);
                 if((dist + this.w[u][v]) < mindist) {
-                    mindist = dist + w[u][v];
+                    mindist = dist + this.w[u][v];
                     minprec = u;
                 }
             }

@@ -1,0 +1,458 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20190509.193137.2643.0.001.json",
+    "dumpEventTime": "2019-05-09T19:31:37Z",
+    "dumpEventTimeStamp": "1557423097726",
+    "processId": 2643,
+    "cwd": "/home/michele/Documenti/GIT/Algoritmi/esercizio3/svoglimento",
+    "commandLine": [
+      "node",
+      "--stack-size=99999",
+      "index.js"
+    ],
+    "nodejsVersion": "v11.14.0",
+    "glibcVersionRuntime": "2.29",
+    "glibcVersionCompiler": "2.28",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "11.14.0",
+      "v8": "7.0.276.38-node.18",
+      "uv": "1.28.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "67",
+      "nghttp2": "1.36.0",
+      "napi": "4",
+      "llhttp": "1.1.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1b",
+      "cldr": "35.1",
+      "icu": "64.1",
+      "tz": "2019a",
+      "unicode": "12.0"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v11.14.0/node-v11.14.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v11.14.0/node-v11.14.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "4.19.36-1-MANJARO",
+    "osVersion": "#1 SMP PREEMPT Sat Apr 20 22:05:46 UTC 2019",
+    "osMachine": "x86_64",
+    "host": "Michele-Fisso-MJ"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00005579368d2211",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, v8::Local<v8::String>) [node]"
+    },
+    {
+      "pc": "0x00005579367c374f",
+      "symbol": "node::OnFatalError(char const*, char const*) [node]"
+    },
+    {
+      "pc": "0x000055793695d7b2",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x000055793695da0b",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000557936cf57d3",
+      "symbol": " [node]"
+    },
+    {
+      "pc": "0x0000557936cf5914",
+      "symbol": " [node]"
+    },
+    {
+      "pc": "0x0000557936d054c6",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000557936d05e6e",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000557936d0806d",
+      "symbol": "v8::internal::Heap::AllocateRawWithLightRetry(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [node]"
+    },
+    {
+      "pc": "0x0000557936d080c2",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [node]"
+    },
+    {
+      "pc": "0x0000557936cd6a05",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [node]"
+    },
+    {
+      "pc": "0x0000557936f452af",
+      "symbol": "v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [node]"
+    },
+    {
+      "pc": "0x000037246414fc5d",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 1500971008,
+    "totalCommittedMemory": 1495845456,
+    "usedMemory": 1468572808,
+    "availableMemory": 28983064,
+    "memoryLimit": 1526909922,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 42224,
+        "capacity": 515584,
+        "used": 33520,
+        "available": 482064
+      },
+      "new_space": {
+        "memorySize": 6291456,
+        "committedMemory": 2219368,
+        "capacity": 3093504,
+        "used": 616344,
+        "available": 2477160
+      },
+      "old_space": {
+        "memorySize": 1434128384,
+        "committedMemory": 1433933704,
+        "capacity": 1410311752,
+        "used": 1410034856,
+        "available": 276896
+      },
+      "code_space": {
+        "memorySize": 1048576,
+        "committedMemory": 867424,
+        "capacity": 585536,
+        "used": 585536,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 536576,
+        "committedMemory": 341008,
+        "capacity": 250480,
+        "used": 250480,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 58441728,
+        "committedMemory": 58441728,
+        "capacity": 82799016,
+        "used": 57052072,
+        "available": 25746944
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 17.3539,
+    "kernelCpuSeconds": 0.383764,
+    "cpuConsumptionPercent": 147.814,
+    "maxRss": 1555955712,
+    "pageFaults": {
+      "IORequired": 1,
+      "IONotRequired": 415777
+    },
+    "fsActivity": {
+      "reads": 352,
+      "writes": 0
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 6.47473,
+    "kernelCpuSeconds": 0.335879,
+    "cpuConsumptionPercent": 56.7551,
+    "fsActivity": {
+      "reads": 344,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "SHELL": "/bin/bash",
+    "npm_config_timing": "",
+    "npm_config_access": "",
+    "npm_config_save_dev": "",
+    "SESSION_MANAGER": "local/Michele-Fisso-MJ:@/tmp/.ICE-unix/1194,unix/Michele-Fisso-MJ:/tmp/.ICE-unix/1194",
+    "npm_config_sign_git_tag": "",
+    "npm_config_before": "",
+    "npm_config_userconfig": "/home/michele/.npmrc",
+    "QT_SCREEN_SCALE_FACTORS": "DisplayPort-0=1.4;DisplayPort-1=1.4;HDMI-0=1.4;DVI-0=1.4;DVI-1=1.4;",
+    "npm_config_global": "",
+    "npm_config_unsafe_perm": "true",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_cache": "/home/michele/.npm",
+    "npm_config_loglevel": "notice",
+    "npm_config_init_author_name": "",
+    "npm_config_send_metrics": "",
+    "XDG_SESSION_PATH": "/org/freedesktop/DisplayManager/Session1",
+    "npm_config_optional": "true",
+    "npm_config_user": "",
+    "npm_config_git_tag_version": "true",
+    "TERMINAL_EMULATOR": "JetBrains-JediTerm",
+    "npm_config_rebuild_bundle": "true",
+    "npm_config_always_auth": "",
+    "LANGUAGE": "",
+    "npm_config_cache_max": "Infinity",
+    "NODE": "/usr/bin/node",
+    "npm_config_searchstaleness": "900",
+    "npm_config_ignore_scripts": "",
+    "npm_config_save_optional": "",
+    "LC_ADDRESS": "it_IT.UTF-8",
+    "LC_NAME": "it_IT.UTF-8",
+    "npm_config_dev": "",
+    "npm_config_browser": "",
+    "npm_config_maxsockets": "50",
+    "npm_package_private": "true",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"start\"],\"original\":[\"start\"]}",
+    "npm_config_ham_it_up": "",
+    "npm_config_bin_links": "true",
+    "DESKTOP_SESSION": "/usr/share/xsessions/plasma",
+    "LC_MONETARY": "it_IT.UTF-8",
+    "npm_package_dependencies_progress": "^2.0.3",
+    "npm_config_allow_same_version": "",
+    "npm_config_globalconfig": "/usr/etc/npmrc",
+    "FLUTTER_HOME": "/opt/flutter",
+    "npm_config_cache_min": "10",
+    "npm_config_tag_version_prefix": "v",
+    "npm_config_shell": "/bin/bash",
+    "npm_config_preid": "",
+    "npm_config_usage": "",
+    "GTK_MODULES": "canberra-gtk-module",
+    "XDG_SEAT": "seat0",
+    "PWD": "/home/michele/Documenti/GIT/Algoritmi/esercizio3/svoglimento",
+    "npm_config_save_prefix": "^",
+    "npm_config_only": "",
+    "XDG_SESSION_DESKTOP": "KDE",
+    "LOGNAME": "michele",
+    "XDG_SESSION_TYPE": "x11",
+    "npm_config_sign_git_commit": "",
+    "npm_config_commit_hooks": "true",
+    "npm_config_init_module": "/home/michele/.npm-init.js",
+    "npm_config_otp": "",
+    "npm_config_editor": "vi",
+    "npm_config_tmp": "/tmp",
+    "npm_config_audit_level": "low",
+    "_": "/usr/bin/node",
+    "npm_config_color": "true",
+    "XAUTHORITY": "/home/michele/.Xauthority",
+    "DESKTOP_STARTUP_ID": "Michele-Fisso-MJ;1557422818;171670;1218_TIME449278",
+    "npm_package_dependencies_opn": "^6.0.0",
+    "npm_config_package_lock_only": "",
+    "npm_config_save_prod": "",
+    "npm_config_also": "",
+    "npm_config_cidr": "",
+    "HOME": "/home/michele",
+    "npm_config_node_version": "11.14.0",
+    "LANG": "it_IT.UTF-8",
+    "LC_PAPER": "it_IT.UTF-8",
+    "npm_config_init_author_url": "",
+    "LS_COLORS": "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:",
+    "XDG_CURRENT_DESKTOP": "KDE",
+    "npm_config_globalignorefile": "/usr/etc/npmignore",
+    "npm_config_init_license": "ISC",
+    "npm_package_version": "0.0.0",
+    "npm_config_cache_lock_stale": "60000",
+    "npm_config_versions": "",
+    "npm_config_proxy": "",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_fetch_retries": "2",
+    "npm_config_git": "git",
+    "npm_config_read_only": "",
+    "npm_config_group": "1000",
+    "XDG_SEAT_PATH": "/org/freedesktop/DisplayManager/Seat0",
+    "npm_config_unicode": "true",
+    "npm_config_sso_type": "oauth",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_local_address": "",
+    "YAOURT_COLORS": "nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35",
+    "npm_config_description": "true",
+    "INIT_CWD": "/home/michele/Documenti/GIT/Algoritmi/esercizio3/svoglimento",
+    "npm_config_dry_run": "",
+    "npm_config_viewer": "man",
+    "npm_config_offline": "",
+    "npm_config_message": "%s",
+    "KDE_SESSION_UID": "1000",
+    "npm_config_production": "",
+    "npm_config_prefer_online": "",
+    "npm_config_link": "",
+    "npm_lifecycle_script": "node --stack-size=99999 index.js",
+    "npm_config_shrinkwrap": "true",
+    "npm_config_force": "",
+    "npm_config_rollback": "true",
+    "XDG_SESSION_CLASS": "user",
+    "npm_config_save_bundle": "",
+    "npm_config_onload_script": "",
+    "LC_IDENTIFICATION": "it_IT.UTF-8",
+    "TERM": "xterm-256color",
+    "npm_package_name": "svoglimento",
+    "npm_config_prefix": "/usr",
+    "npm_config_cert": "",
+    "USER": "michele",
+    "npm_config_heading": "npm",
+    "KDE_SESSION_VERSION": "5",
+    "PAM_KWALLET5_LOGIN": "/run/user/1000/kwallet5.socket",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_node_options": "",
+    "npm_config_key": "",
+    "npm_config_json": "",
+    "npm_config_depth": "Infinity",
+    "DISPLAY": ":0",
+    "npm_lifecycle_event": "start",
+    "SHLVL": "3",
+    "LC_TELEPHONE": "it_IT.UTF-8",
+    "npm_config_ca": "",
+    "npm_config_prefer_offline": "",
+    "LC_MEASUREMENT": "it_IT.UTF-8",
+    "XDG_VTNR": "1",
+    "npm_config_if_present": "",
+    "XDG_SESSION_ID": "2",
+    "QT_LINUX_ACCESSIBILITY_ALWAYS_ON": "1",
+    "npm_config_user_agent": "npm/6.9.0 node/v11.14.0 linux x64",
+    "GS_LIB": "/home/michele/.fonts",
+    "npm_config_save_exact": "",
+    "npm_execpath": "/usr/lib/node_modules/npm/bin/npm-cli.js",
+    "npm_config_progress": "true",
+    "npm_config_global_style": "",
+    "MOZ_PLUGIN_PATH": "/usr/lib/mozilla/plugins",
+    "npm_config_init_author_email": "",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "npm_config_script_shell": "",
+    "npm_config_long": "",
+    "npm_config_save": "true",
+    "npm_config_strict_ssl": "true",
+    "npm_config_auth_type": "legacy",
+    "npm_config_version": "",
+    "npm_config_logs_max": "10",
+    "LC_TIME": "it_IT.UTF-8",
+    "npm_config_umask": "0022",
+    "npm_config_sso_poll_frequency": "500",
+    "npm_config_searchopts": "",
+    "npm_config_legacy_bundling": "",
+    "npm_package_dependencies_plotly": "^1.0.6",
+    "QT_AUTO_SCREEN_SCALE_FACTOR": "0",
+    "XCURSOR_THEME": "breeze_cursors",
+    "XDG_DATA_DIRS": "/home/michele/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
+    "KDE_FULL_SESSION": "true",
+    "npm_config_searchlimit": "20",
+    "npm_package_scripts_start": "node --stack-size=99999 index.js",
+    "npm_config_noproxy": "",
+    "PATH": "/usr/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/michele/Documenti/GIT/Algoritmi/esercizio3/svoglimento/node_modules/.bin:/home/michele/Documenti/GIT/Algoritmi/esercizio3/svoglimento/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/opt/flutter/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "npm_config_node_gyp": "/usr/lib/node_modules/node-gyp/bin/node-gyp.js",
+    "npm_config_searchexclude": "",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "npm_config_update_notifier": "true",
+    "MAIL": "/var/spool/mail/michele",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_audit": "true",
+    "npm_config_tag": "latest",
+    "npm_config_scripts_prepend_node_path": "warn-only",
+    "npm_config_cafile": "",
+    "npm_config_fetch_retry_factor": "10",
+    "npm_node_execpath": "/usr/bin/node",
+    "npm_config_engine_strict": "",
+    "npm_config_https_proxy": "",
+    "LC_NUMERIC": "it_IT.UTF-8",
+    "OLDPWD": "/home/michele/Documenti/GIT/Algoritmi/esercizio3",
+    "npm_config_scope": "",
+    "npm_config_package_lock": "true",
+    "npm_config_parseable": "",
+    "npm_config_init_version": "1.0.0"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 65536,
+      "hard": 65536
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 62951,
+      "hard": 62951
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/usr/lib/libz.so.1",
+    "/usr/lib/libuv.so.1",
+    "/usr/lib/libcares.so.2",
+    "/usr/lib/libnghttp2.so.14",
+    "/usr/lib/libcrypto.so.1.1",
+    "/usr/lib/libssl.so.1.1",
+    "/usr/lib/libicui18n.so.64",
+    "/usr/lib/libicuuc.so.64",
+    "/usr/lib/libdl.so.2",
+    "/usr/lib/librt.so.1",
+    "/usr/lib/libstdc++.so.6",
+    "/usr/lib/libm.so.6",
+    "/usr/lib/libgcc_s.so.1",
+    "/usr/lib/libpthread.so.0",
+    "/usr/lib/libc.so.6",
+    "/usr/lib/libnsl.so.2",
+    "/usr/lib/libicudata.so.64",
+    "/lib64/ld-linux-x86-64.so.2",
+    "/usr/lib/libtirpc.so.3",
+    "/usr/lib/libgssapi_krb5.so.2",
+    "/usr/lib/libkrb5.so.3",
+    "/usr/lib/libk5crypto.so.3",
+    "/usr/lib/libcom_err.so.2",
+    "/usr/lib/libkrb5support.so.0",
+    "/usr/lib/libkeyutils.so.1",
+    "/usr/lib/libresolv.so.2"
+  ]
+}
