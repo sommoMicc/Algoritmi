@@ -38,7 +38,7 @@ module.exports = class Coord {
      * @returns {number} la coordinata convertita in radianti
      */
     _toRadiants(value) {
-        let deg = parseInt(value); 
+        let deg = Math.floor(value);
         let min = value - deg; 
         return Math.PI * (deg + 5.0 * min/ 3.0) / 180.0; 
     }
@@ -63,28 +63,6 @@ module.exports = class Coord {
             let q2 = Math.cos(this.lat - otherNode.lat); 
             let q3 = Math.cos(this.lat + otherNode.lat); 
             distance = parseInt(RRR * Math.acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
-
-
-            const R = 6378.388;
-            const pigreco = Math.PI;
-            let lat_alfa, lat_beta;
-            let lon_alfa, lon_beta;
-            let fi;
-            let p;
-
-            lat_alfa = pigreco * this.lat / 180;
-            lat_beta = pigreco * otherNode.lat / 180;
-            lon_alfa = pigreco * this.lng / 180;
-            lon_beta = pigreco * otherNode.lng / 180;
-
-            fi = Math.abs(lon_alfa - lon_beta);
-
-            p = Math.acos(Math.sin(lat_beta) * Math.sin(lat_alfa) +
-                Math.cos(lat_beta) * Math.cos(lat_alfa) * Math.cos(fi));
-
-
-            //distance = p * R;
-            //return(d);
         }
         else {
             //Distanza euclidea

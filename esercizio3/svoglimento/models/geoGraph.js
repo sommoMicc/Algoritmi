@@ -66,7 +66,7 @@ module.exports = class GeoGraph {    /**
             rowPiecesNumber[i] = i === 0 ? parseInt(rowPieces[i].trim()) :
                 parseFloat(rowPieces[i].trim());
         }
-        this.addNode(rowPiecesNumber[0],rowPiecesNumber[1],rowPiecesNumber[2]);
+        this.addNode(rowPiecesNumber[0]-1,rowPiecesNumber[1],rowPiecesNumber[2]);
         return true;
     }
 
@@ -78,10 +78,6 @@ module.exports = class GeoGraph {    /**
      */
     distanceBetween(first,second) {
         return this._nodes[first].distance(this._nodes[second]);
-    }
-
-    testDistance() {
-        console.log(this._nodes[1].distance(this._nodes[2]));
     }
 
     /**

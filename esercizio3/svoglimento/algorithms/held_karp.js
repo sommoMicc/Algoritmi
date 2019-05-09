@@ -1,3 +1,5 @@
+const Routes = require("../models/routes");
+
 module.exports = class HeldKarp {
     /**
      * Tempo di esecuzione massimo dell'algoritmo IN SECONDI
@@ -13,78 +15,75 @@ module.exports = class HeldKarp {
      */
     constructor(graph) {
         this.graph = graph;
-        this.distance = {};
-        this.predecessor = {};
 
-        this.run = false;
+        this.nodeList = this.graph.getNodesList();
+        this.w = {};
+        this.d = {};
+        this.p = {};
+
+        for(let i=0;i<this.nodeList.length;i++) {
+            this.w[this.nodeList[i]] = {};
+            for(let j=0;j<this.nodeList.length;j++) {
+                this.w[i][j] = this.graph.distanceBetween(i,j);
+            }
+            this.d[i] = {};
+            this.p[i] = {};
+        }
+
+        this.routes = new Routes();
         this.timeout = null;
+
+
     }
 
     /**
      * Avvia l'algoritmo
      */
     start() {
-        const nodeList = this.graph.getNodesList();
-        this.run = true;
-
         this.timeout = Math.floor(Date.now() / 1000) + HeldKarp.MAX_EXECUTION_TIME;
-        return this._HK_Visit(nodeList[0],nodeList);
+
+
+        return this._HK_Visit(0,this._listToString(this.nodeList));
+    }
+
+    _HK_Visit(v,S) {
+        if(S === ""+v) {
+            return this.w[v][0];
+        }
+        else if(this.d[v][S] != null) {
+            return this.d[v][S];
+        }
+        else {
+            let mindist = Infinity;
+            let minprec = null;
+
+            const nodes = S.split(",");
+            const reducedNodes = [];
+            for(let i=0;i<nodes.length;i++) {
+                if (nodes[i] !== "" + v) {
+                    reducedNodes.push(v);
+                }
+            }
+            const reducedNodesString = reducedNodes.join(",");
+            for(let u=0;u<reducedNodes.length;u++) {
+                const dist = this._HK_Visit(u,reducedNodesString);
+                if((dist + this.w[u][v]) < mindist) {
+                    mindist = dist + w[u][v];
+                    minprec = u;
+                }
+            }
+            this.d[v][S] = mindist;
+            this.p[v][S] = minprec;
+            return mindist;
+        }
     }
 
     _isTimeExpired() {
         return (this.timeout - Math.floor(Date.now() / 1000)) < 0;
     }
 
-    _HK_Visit(v,S) {
-        if(S.length === 1 && S[0] === v) {
-            // Caso base: la soluzione è il peso dell’arco {v, 0}
-            //console.log("ritorno distanza");
-            //console.log("CASO BASE");
-            return this.graph.distanceBetween(v, this.graph.getNodesList()[0]);
-        }
-        else if(this.distance[v] != null && this.distance[v][S.join(",")] != null) {
-            // Distanza già calcolata, ritorna il valore memorizzato
-            return this.distance[v][S.join(",")];
-        }
-        else {
-            /*
-            console.log("Caso ricorsivo di "+v+" affanno");
-            if(distance[v] != null) {
-                console.log(distance[v]);
-            }*/
-            // Caso ricorsivo: trova il minimo tra tutti i sottocammini
-            let mindist = Infinity;
-            let minprec = null;
-
-            let vk = S.indexOf(v);
-            //Copio S e tolgo il nodo v dalla copia di S (sReduced)
-            let sReduced = S.slice(0);
-            sReduced.splice(vk,1);
-
-            //console.log(S.join(","));
-            for(let i=0;i<S.length && !this._isTimeExpired();i++) {
-                let u = S[i];
-
-                //NOTA: con S.slice(0) copio l'array S, in modo da non modificare quello della funzione
-                //di invocazione
-                let dist = this._HK_Visit(u,sReduced);
-                //console.log("Fine invocazione ricorsiva");
-                if((dist + this.graph.distanceBetween(u,v)) < mindist) {
-                    mindist = dist + this.graph.distanceBetween(u,v);
-                    minprec = u;
-                }
-            }
-            if(this.distance[v] == null)
-                this.distance[v] = {};
-            if(this.predecessor[v] == null)
-                this.predecessor[v] = {};
-
-            this.distance[v][S.join(",")] = mindist;
-            this.predecessor[v][S.join(",")] = minprec;
-
-
-            //console.log(distance);
-            return mindist;
-        }
+    _listToString(list) {
+        return list.join(",");
     }
+
 };
