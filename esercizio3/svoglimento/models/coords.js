@@ -62,14 +62,14 @@ module.exports = class Coord {
             let q1 = Math.cos(this.lng - otherNode.lng); 
             let q2 = Math.cos(this.lat - otherNode.lat); 
             let q3 = Math.cos(this.lat + otherNode.lat); 
-            distance = parseInt(RRR * Math.acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
+            distance = Math.floor(RRR * Math.acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
         }
         else {
             //Distanza euclidea
-            distance = Math.sqrt(
+            distance = Math.round(Math.sqrt(
                 Math.pow(this.lat - otherNode.lat,2) +
-                Math.pow(this.lng - otherNode.lng,2)
-            )
+                Math.pow(this.lng - otherNode.lng,2)));
+
         }
         return distance;
     }

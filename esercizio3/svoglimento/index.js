@@ -46,12 +46,8 @@ async function main() {
 
 async function beginAlgorithm() {
     for(let i=0;i<geoGraphs.length;i++) {
-        const timeLabel = "Tempo " + geoGraphs[i].name;
-        console.time(timeLabel);
-        let result = GraphWalker.HeldKarp(geoGraphs[i].graph);
-
-        console.timeEnd(timeLabel);
-        console.log("Risultato " + geoGraphs[i].name + ": " + result);
+        //GraphWalker.HeldKarp(geoGraphs[i]);
+        GraphWalker.NearestNeighbour(geoGraphs[i]);
     }
 }
 
