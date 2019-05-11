@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cb52036-7d89-44ad-b058-bf6299d88916" name="Default Changelist" comment="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
-      <change afterPath="$PROJECT_DIR$/algorithms/nearest_neighbour.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/union_depth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_assets/burma14.tsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_assets/ulysses22.tsp" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ulysses16.tsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/binaryHeap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/coords.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/coords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fileUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/graphWalker.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/graphWalker.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,8 +38,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1200">
-                  <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+                <state relative-caret-position="1171">
+                  <caret line="49" column="51" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
                 </state>
               </provider>
             </entry>
@@ -53,8 +47,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1071">
-                  <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+                <state relative-caret-position="1221">
+                  <caret line="112" column="12" selection-start-line="112" selection-end-line="113" />
                 </state>
               </provider>
             </entry>
@@ -66,17 +60,35 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/algorithms/held_karp.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
+                <state relative-caret-position="225">
                   <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/algorithms/nearest_neighbour.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+                <state relative-caret-position="96">
+                  <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-550">
+                  <caret column="14" selection-start-column="14" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/union_depth.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="700">
+                  <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -84,7 +96,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/routes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
+                <state relative-caret-position="25">
                   <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
                 </state>
               </provider>
@@ -93,7 +105,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/coords.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="687">
+                <state relative-caret-position="1300">
                   <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
                 </state>
               </provider>
@@ -157,12 +169,14 @@
         <option value="$PROJECT_DIR$/models/route.js" />
         <option value="$PROJECT_DIR$/models/routes.js" />
         <option value="$PROJECT_DIR$/algorithms/held_karp.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/models/coords.js" />
         <option value="$PROJECT_DIR$/utils/fileUtils.js" />
+        <option value="$PROJECT_DIR$/algorithms/nearest_neighbour.js" />
+        <option value="$PROJECT_DIR$/algorithms/kruskal_mst.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/models/union_depth.js" />
         <option value="$PROJECT_DIR$/utils/graphWalker.js" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/algorithms/nearest_neighbour.js" />
       </list>
     </option>
   </component>
@@ -200,17 +214,7 @@
             <path>
               <item name="esercizio 3" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="esercizio 3" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="models" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="esercizio 3" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -333,7 +337,8 @@
       <workItem from="1557405602584" duration="4680000" />
       <workItem from="1557422836998" duration="3597000" />
       <workItem from="1557490013281" duration="2950000" />
-      <workItem from="1557493043677" duration="4636000" />
+      <workItem from="1557493043677" duration="5520000" />
+      <workItem from="1557579822088" duration="3961000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <created>1554276066846</created>
@@ -346,13 +351,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88868000" />
+    <option name="totallyTimeSpent" value="93713000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="3852" height="2110" extended-state="6" />
+    <frame x="-6" y="0" width="3852" height="2104" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.109018564" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10981432" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497349" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -362,7 +367,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21162912" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21162912" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -370,7 +375,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2781561" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.27867994" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32927758" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -507,9 +512,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/easy_assets/eil51.tsp" />
-    <entry file="file://$PROJECT_DIR$/easy_assets/ulysses16.tsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/easy_assets/ulysses16.tsp" />
     <entry file="file://$PROJECT_DIR$/assets/ulysses22.tsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -517,41 +520,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/coords.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/easy_assets/burma14.tsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/easy_assets/burma14.tsp" />
     <entry file="file://$PROJECT_DIR$/assets/ulysses16.tsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -564,29 +533,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithms/held_karp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="225">
           <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
+    <entry file="file://$PROJECT_DIR$/models/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+        <state relative-caret-position="25">
+          <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/models/coords.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        <state relative-caret-position="1300">
+          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/kruskal_mst.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/union_depth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithms/nearest_neighbour.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state relative-caret-position="96">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-550">
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1221">
+          <caret line="112" column="12" selection-start-line="112" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1171">
+          <caret line="49" column="51" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
         </state>
       </provider>
     </entry>

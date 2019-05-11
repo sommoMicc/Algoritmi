@@ -5,6 +5,8 @@
 const HeldKarp = require("../algorithms/held_karp");
 const NearestNeighbour = require("../algorithms/nearest_neighbour");
 
+const UnionByDepth = require("../models/union_depth");
+
 module.exports = class GraphWalker {
     static _logSeparator() {
         console.log("\n-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+");
@@ -60,5 +62,54 @@ module.exports = class GraphWalker {
                 reject(e);
             }
         });
+    }
+
+    /**
+     *
+     * @param {GeoGraph}graph il grafo
+     */
+    static Kruskal(graph) {
+        const set = new UnionByDepth();
+
+        const nodesList = graph.getNodesList();
+        const edges = [];
+
+        let A = [];
+
+        for(let i=0;i<nodesList.length;i++) {
+            set.makeSet(nodesList[i]);
+
+            for(let j=0; j<nodesList.length; j++) {
+                if(nodesList[i] === nodesList[j]) {
+                    continue;
+                }
+                edges.push({
+                    from: nodesList[i],
+                    to: nodesList[j],
+                    w: graph.distanceBetween(nodesList[i],nodesList[j])
+                });
+            }
+        }
+
+        edges.sort( (a, b) => {
+            return a.w- b.w;
+        });
+
+        for(let i=0;i<nodesList.length;i++) {
+            for (let j = 0; j < nodesList.length; j++) {
+                const u = nodesList[i];
+                const v = nodesList[j];
+
+                if (u === v) {
+                    continue;
+                }
+
+                if(set.findSet(u) !== set.findSet(v)) {
+                    A.push([u,v]);
+                    set.union(u,v);
+                }
+            }
+        }
+        return A;
     }
 };
