@@ -4,8 +4,8 @@
  */
 const HeldKarp = require("../algorithms/held_karp");
 const NearestNeighbour = require("../algorithms/nearest_neighbour");
+const TwoApprox = require("../algorithms/2_approx");
 
-const UnionByDepth = require("../models/union_depth");
 
 module.exports = class GraphWalker {
     static _logSeparator() {
@@ -64,52 +64,29 @@ module.exports = class GraphWalker {
         });
     }
 
-    /**
-     *
-     * @param {GeoGraph}graph il grafo
-     */
-    static Kruskal(graph) {
-        const set = new UnionByDepth();
+    static async TwoApprox(graph) {
+        return new Promise((resolve,reject) => {
+            try {
+                const label = graph.name+" 2-approssimato";
 
-        const nodesList = graph.getNodesList();
-        const edges = [];
+                const timeLabel = "Tempo "+label;
+                console.time(timeLabel);
+                const algorithm = new TwoApprox(graph.graph);
 
-        let A = [];
+                const results = {
+                    value: algorithm.start(),
+                    //path: algorithm.path
+                };
 
-        for(let i=0;i<nodesList.length;i++) {
-            set.makeSet(nodesList[i]);
+                GraphWalker._logSeparator();
+                console.timeEnd(timeLabel);
+                console.log("Risultato "+ label + ": " + results.value);
 
-            for(let j=0; j<nodesList.length; j++) {
-                if(nodesList[i] === nodesList[j]) {
-                    continue;
-                }
-                edges.push({
-                    from: nodesList[i],
-                    to: nodesList[j],
-                    w: graph.distanceBetween(nodesList[i],nodesList[j])
-                });
+                resolve(results);
             }
-        }
-
-        edges.sort( (a, b) => {
-            return a.w- b.w;
+            catch (e) {
+                reject(e);
+            }
         });
-
-        for(let i=0;i<nodesList.length;i++) {
-            for (let j = 0; j < nodesList.length; j++) {
-                const u = nodesList[i];
-                const v = nodesList[j];
-
-                if (u === v) {
-                    continue;
-                }
-
-                if(set.findSet(u) !== set.findSet(v)) {
-                    A.push([u,v]);
-                    set.union(u,v);
-                }
-            }
-        }
-        return A;
     }
 };

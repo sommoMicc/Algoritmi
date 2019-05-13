@@ -48,6 +48,7 @@ async function beginAlgorithm() {
     for(let i=0;i<geoGraphs.length;i++) {
         //GraphWalker.HeldKarp(geoGraphs[i]);
         GraphWalker.NearestNeighbour(geoGraphs[i]);
+        GraphWalker.TwoApprox(geoGraphs[i]);
     }
 }
 
