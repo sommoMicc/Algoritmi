@@ -84,7 +84,19 @@ module.exports = class GeoGraph {    /**
      * Converte un oggetto in un'istanza di GeoGraph
      * @param {GeoGraph} other l'altro grafo da convertire in oggetto
      */
-    castToGraph(other)  {
-        return Object.assign( Object.create( Object.getPrototypeOf(this)), other);
+    static castToGraph(other)  {
+        const geo = new GeoGraph(other._type);
+        const nodes = Object.keys(other._nodes);
+
+        for(let i=0;i<nodes.length;i++) {
+            const n = nodes[i];
+
+            const nodeToAdd = new Coord(other._nodes[n]._type,false);
+            nodeToAdd.lat = other._nodes[n]._lat;
+            nodeToAdd.lng = other._nodes[n]._lng;
+
+            geo._nodes[n] = nodeToAdd;
+        }
+        return geo;
     }
 };

@@ -8,27 +8,17 @@ const TwoApprox = require("../algorithms/2_approx");
 
 
 module.exports = class GraphWalker {
-    static _logSeparator() {
-        console.log("\n-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+");
-    }
     static async HeldKarp(graph) {
         return new Promise((resolve,reject) => {
             try {
-                const label = graph.name+" Held Karp";
-
-                const timeLabel = "Tempo "+label;
-                console.time(timeLabel);
+                const startTime = (new Date());
                 const algorithm = new HeldKarp(graph.graph);
                 const results = {
                     value: algorithm.start(),
+                    time: (new Date()).getTime() - startTime.getTime(),
                     d: algorithm.d,
                     p: algorithm.p
                 };
-
-                GraphWalker._logSeparator();
-                console.timeEnd(timeLabel);
-                console.log("Risultato "+ label + ": " + results.value);
-
                 resolve(results);
             }
             catch(e) {
@@ -40,20 +30,14 @@ module.exports = class GraphWalker {
     static async NearestNeighbour(graph) {
         return new Promise((resolve,reject) => {
             try {
-                const label = graph.name+" Nearest Neighbour";
+                const startTime = (new Date());
 
-                const timeLabel = "Tempo "+label;
-                console.time(timeLabel);
                 const algorithm = new NearestNeighbour(graph.graph);
                 const results = {
                     value: algorithm.start(),
+                    time: (new Date()).getTime() - startTime.getTime(),
                     path: algorithm.path
                 };
-
-                GraphWalker._logSeparator();
-                console.timeEnd(timeLabel);
-                console.log("Risultato "+ label + ": " + results.value);
-                //console.log("Path: "+results.path.join(","));
 
                 resolve(results);
 
@@ -67,20 +51,14 @@ module.exports = class GraphWalker {
     static async TwoApprox(graph) {
         return new Promise((resolve,reject) => {
             try {
-                const label = graph.name+" 2-approssimato";
+                const startTime = (new Date());
 
-                const timeLabel = "Tempo "+label;
-                console.time(timeLabel);
                 const algorithm = new TwoApprox(graph.graph);
 
                 const results = {
                     value: algorithm.start(),
-                    //path: algorithm.path
+                    time: (new Date()).getTime() - startTime.getTime(),
                 };
-
-                GraphWalker._logSeparator();
-                console.timeEnd(timeLabel);
-                console.log("Risultato "+ label + ": " + results.value);
 
                 resolve(results);
             }

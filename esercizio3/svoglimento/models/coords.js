@@ -5,21 +5,22 @@ module.exports = class Coord {
      * Costruttore per la classe coords
      * @param {Enum.Coords} type il tipo di sistema di coordinate da usare
      */
-    constructor(type) {
+    constructor(type,conversion=true) {
         this._lat = 0;
         this._lng = 0;
         this._type = type;
+        this.conversion = conversion;
     }
 
     set lat(lat) {
         this._lat = lat;
-        if(this._type === ENUM.COORD_TYPES.GEO) {
+        if(this._type === ENUM.COORD_TYPES.GEO && this.conversion) {
             this._lat = this._toRadiants(this._lat);
         }
     }
     set lng(lng) {
         this._lng = lng;
-        if(this._type === ENUM.COORD_TYPES.GEO) {
+        if(this._type === ENUM.COORD_TYPES.GEO && this.conversion) {
             this._lng = this._toRadiants(this._lng);
         }
     }
@@ -73,5 +74,7 @@ module.exports = class Coord {
         }
         return distance;
     }
+
+
 
 };

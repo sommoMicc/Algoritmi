@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cb52036-7d89-44ad-b058-bf6299d88916" name="Default Changelist" comment="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
-      <change afterPath="$PROJECT_DIR$/algorithms/2_approx.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/binaryHeap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../esercizio1/svolgimento/.idea/svolgimento.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/processes/easy_task.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ulysses16.tsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/coords.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/coords.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/geoGraph.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/geoGraph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processes/held_karp.js" beforeDir="false" afterPath="$PROJECT_DIR$/processes/held_karp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/graphWalker.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/graphWalker.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,8 +43,26 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1225">
-                  <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+                <state relative-caret-position="1188">
+                  <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/processes/easy_task.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="35" selection-start-column="35" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/processes/held_karp.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="350">
+                  <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -48,7 +70,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/algorithms/2_approx.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1050">
+                <state relative-caret-position="1350">
                   <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
                 </state>
               </provider>
@@ -79,8 +101,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="14" selection-start-column="14" selection-end-column="14" />
+                <state relative-caret-position="889">
+                  <caret line="87" selection-start-line="87" selection-end-line="87" />
                 </state>
               </provider>
             </entry>
@@ -106,25 +128,25 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/coords.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1300">
-                  <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="46" column="68" lean-forward="true" selection-start-line="46" selection-start-column="68" selection-end-line="46" selection-end-column="68" />
+                <state relative-caret-position="550">
+                  <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="250">
+                  <caret line="10" selection-start-line="10" selection-end-line="10" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/binaryHeap.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1107">
+                <state relative-caret-position="1275">
                   <caret line="63" selection-start-line="63" selection-end-line="63" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -162,9 +184,13 @@
       <find>esercizio 2</find>
       <find>distance</find>
       <find>content</find>
+      <find>Ucciso</find>
+      <find>_nodes</find>
+      <find>.nodes</find>
     </findStrings>
     <replaceStrings>
       <replace>esercizio 3</replace>
+      <replace>._nodes</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -182,24 +208,25 @@
         <option value="$PROJECT_DIR$/models/segment.js" />
         <option value="$PROJECT_DIR$/models/stationGraph.js" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/processes/held_karp.js" />
         <option value="$PROJECT_DIR$/assets/burma14.tsp" />
         <option value="$PROJECT_DIR$/easy_assets/burma14.tsp" />
         <option value="$USER_HOME$/.local/share/JetBrains/Toolbox/apps/IDEA-JDK11/ch-0/191.6707.61.vmoptions" />
         <option value="$PROJECT_DIR$/algorithms/heldKarp.js" />
-        <option value="$PROJECT_DIR$/models/geoGraph.js" />
         <option value="$PROJECT_DIR$/models/route.js" />
         <option value="$PROJECT_DIR$/models/routes.js" />
         <option value="$PROJECT_DIR$/algorithms/held_karp.js" />
-        <option value="$PROJECT_DIR$/models/coords.js" />
         <option value="$PROJECT_DIR$/utils/fileUtils.js" />
         <option value="$PROJECT_DIR$/algorithms/nearest_neighbour.js" />
         <option value="$PROJECT_DIR$/algorithms/kruskal_mst.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/models/union_depth.js" />
-        <option value="$PROJECT_DIR$/utils/graphWalker.js" />
         <option value="$PROJECT_DIR$/models/binaryHeap.js" />
         <option value="$PROJECT_DIR$/algorithms/2_approx.js" />
+        <option value="$PROJECT_DIR$/utils/graphWalker.js" />
+        <option value="$PROJECT_DIR$/models/coords.js" />
+        <option value="$PROJECT_DIR$/models/geoGraph.js" />
+        <option value="$PROJECT_DIR$/processes/easy_task.js" />
+        <option value="$PROJECT_DIR$/processes/held_karp.js" />
         <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
@@ -214,14 +241,16 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="2338" />
-    <option name="height" value="2160" />
+    <option name="x" value="-737" />
+    <option name="width" value="3852" />
+    <option name="height" value="2104" />
   </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -232,18 +261,12 @@
             <path>
               <item name="esercizio 3" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="algorithms" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="esercizio 3" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="models" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="processes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -253,7 +276,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="11.14.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../esercizio1/svolgimento" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -365,7 +388,10 @@
       <workItem from="1557493043677" duration="5520000" />
       <workItem from="1557579822088" duration="4624000" />
       <workItem from="1557680419344" duration="94000" />
-      <workItem from="1557731591025" duration="2340000" />
+      <workItem from="1557731591025" duration="2728000" />
+      <workItem from="1557836423227" duration="58000" />
+      <workItem from="1557850998575" duration="2900000" />
+      <workItem from="1557854684444" duration="1990000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <created>1554276066846</created>
@@ -378,13 +404,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96810000" />
+    <option name="totallyTimeSpent" value="102146000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="3852" height="2104" extended-state="6" />
+    <frame x="-6" y="0" width="3852" height="2110" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111405835" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.113793105" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497349" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -394,7 +420,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21162912" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21162912" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -402,7 +428,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2797276" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2812991" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32927758" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -510,13 +536,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithms/heldKarp.js" />
-    <entry file="file://$PROJECT_DIR$/processes/held_karp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="3" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/burma14.tsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -547,9 +566,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/easy_assets/burma14.tsp" />
-    <entry file="file://$PROJECT_DIR$/assets/ulysses16.tsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/ulysses16.tsp" />
     <entry file="file://$PROJECT_DIR$/algorithms/kruskal_mst.js" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -562,6 +579,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/2_approx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -595,28 +619,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/coords.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="46" column="68" lean-forward="true" selection-start-line="46" selection-start-column="68" selection-end-line="46" selection-end-column="68" />
+        <state relative-caret-position="550">
+          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/binaryHeap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
+        <state relative-caret-position="1275">
           <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -624,17 +634,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithms/2_approx.js">
+    <entry file="file://$PROJECT_DIR$/models/geoGraph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+        <state relative-caret-position="889">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processes/easy_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/graphWalker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processes/held_karp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1225">
-          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+        <state relative-caret-position="1188">
+          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
         </state>
       </provider>
     </entry>
