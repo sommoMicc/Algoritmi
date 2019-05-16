@@ -63,7 +63,7 @@ module.exports = class Coord {
             let q1 = Math.cos(this.lng - otherNode.lng); 
             let q2 = Math.cos(this.lat - otherNode.lat); 
             let q3 = Math.cos(this.lat + otherNode.lat); 
-            distance = Math.floor(RRR * Math.acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
+            distance = Math.trunc(RRR * Math.acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
         }
         else {
             //Distanza euclidea
