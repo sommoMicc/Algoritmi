@@ -42,7 +42,12 @@ module.exports = class HeldKarp {
     start() {
         this.timeout = Math.floor(Date.now() / 1000) + HeldKarp.MAX_EXECUTION_TIME;
         this.running = true;
-        return this._HK_Visit(0,this._listToString(this.nodeList));
+        const result = this._HK_Visit(0,this._listToString(this.nodeList));
+
+        delete this.d;
+        delete this.p;
+
+        return result;
     }
 
     /**

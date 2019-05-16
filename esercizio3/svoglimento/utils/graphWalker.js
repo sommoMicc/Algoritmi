@@ -15,9 +15,7 @@ module.exports = class GraphWalker {
                 const algorithm = new HeldKarp(graph.graph);
                 const results = {
                     value: algorithm.start(),
-                    time: (new Date()).getTime() - startTime.getTime(),
-                    d: algorithm.d,
-                    p: algorithm.p
+                    time: (new Date()).getTime() - startTime.getTime()
                 };
                 resolve(results);
             }

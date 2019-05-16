@@ -51,11 +51,12 @@ async function beginAlgorithm() {
         return a.graph.getNodesList().length - b.graph.getNodesList().length;
     });
 
+    let easyResults = 0;
     for(let i=0;i<geoGraphs.length;i++) {
         const easyTaskProcess = fork('./processes/easy_task.js');
         easyTaskProcess.send(geoGraphs[i]);
 
-        easyTaskProcess.on("message",(message) => {
+        easyTaskProcess.on("message",async (message) => {
             if(message.twoApprox != null) {
                 logSeparator();
                 console.log(geoGraphs[i].name+" 2-approssimato: "+message.twoApprox.value+"\n" +
@@ -63,28 +64,20 @@ async function beginAlgorithm() {
                     "----------------------\n"+
                     geoGraphs[i].name+" Nearest Neighbour: "+message.nearestNeighbour.value+"\n" +
                     "Tempo: "+message.nearestNeighbour.time+" ms \n");
+                easyResults++;
+                if(easyResults === geoGraphs.length) {
+                    for(let i=0;i<geoGraphs.length;i++) {
+                        logSeparator();
+                        global.gc();
+                        const heldKarp = await GraphWalker.HeldKarp(geoGraphs[i]);
+                        console.log(geoGraphs[i].name + " Held Karp: " + heldKarp.value + "\n" +
+                            "Tempo: " + heldKarp.time + " ms");
+
+                    }
+                }
             }
-
         });
-
     }
-
-    const heldKarpProcess = fork('./processes/held_karp.js');
-    heldKarpProcess.send(geoGraphs);
-
-    heldKarpProcess.on("message",(message) => {
-        logSeparator();
-        try {
-            console.log(geoGraphs[message.index].name + " Held Karp: " + message.value + "\n" +
-                "Tempo: " + message.time + " ms");
-        }
-        catch(e) {
-            console.log(e);
-        }
-
-
-    });
-
 }
 
 function logSeparator() {
