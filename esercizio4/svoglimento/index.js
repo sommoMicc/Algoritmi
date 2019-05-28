@@ -3,6 +3,7 @@ const FileUtils = require("./utils/fileUtils");
 const Dataset = require("./models/dataset");
 
 const datasets = [];
+let pngMap = "";
 
 async function main() {
     let progressBar = null;
@@ -14,8 +15,13 @@ async function main() {
             progressBar = new ProgressBar("Lettura file [:bar] :percent",{total: tot});
         }
         progressBar.tick();
-        datasets.push(new Dataset(content));
-
+        if(extension === "csv") {
+            datasets.push(new Dataset(content));
+        }
+        else if(extension === "png") {
+            pngMap = content;
+            console.log("Letto png");
+        }
         progress++;
         if(progress >= tot) {
             await progressBar.terminate();
