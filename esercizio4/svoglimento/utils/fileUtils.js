@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = require('path');
+const path = require("path");
 
 module.exports = class FileUtils {
     static get ASSETS_DIRECTORY() {

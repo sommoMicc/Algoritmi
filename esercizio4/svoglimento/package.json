@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --stack-size=999999 --max-old-space-size=14320 --expose-gc index.js"
+    "start": "node --experimental-modules index.js"
   },
   "dependencies": {
     "opn": "^6.0.0",

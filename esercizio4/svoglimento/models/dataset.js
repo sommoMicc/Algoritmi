@@ -1,4 +1,5 @@
 const Contea = require("./contea");
+
 module.exports = class Dataset {
     constructor(fileContent = null) {
         this.contee = [];
@@ -30,4 +31,8 @@ module.exports = class Dataset {
     size() {
         return this.contee.length;
     }
-};
+
+    distance(a,b) {
+        return Math.sqrt((Math.pow((a.x - b.x),2)) + (Math.pow((a.y - b.y),2)))
+    }
+}

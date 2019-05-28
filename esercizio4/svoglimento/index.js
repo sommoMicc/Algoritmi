@@ -1,8 +1,8 @@
-const ProgressBar = require("progress");
 const FileUtils = require("./utils/fileUtils");
 const Dataset = require("./models/dataset");
+const KMeans = require("./algorithms/kmeans");
 
-const datasets = [];
+const datasets = {};
 let pngMap = "";
 
 async function main() {
@@ -11,12 +11,9 @@ async function main() {
 
 
     FileUtils.readAllFiles(async (tot,name,extension,content)=>{
-        if(progressBar == null) {
-            progressBar = new ProgressBar("Lettura file [:bar] :percent",{total: tot});
-        }
-        progressBar.tick();
         if(extension === "csv") {
-            datasets.push(new Dataset(content));
+            const d = new Dataset(content);
+            datasets[d.size()] = d;
         }
         else if(extension === "png") {
             pngMap = content;
@@ -24,15 +21,13 @@ async function main() {
         }
         progress++;
         if(progress >= tot) {
-            await progressBar.terminate();
-
-            beginAlgorithm();
+            await beginAlgorithm();
         }
     });
 }
 
 async function beginAlgorithm() {
-
+    console.log((new KMeans(datasets[3107],15,5)).clustering());
 }
 
 function logSeparator() {

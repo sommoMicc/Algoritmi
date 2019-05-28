@@ -1,8 +1,9 @@
-module.exports = class Contea {
+const Punto = require("./point");
+
+module.exports = class Contea extends Punto{
     constructor(codice,x,y,rischio,popolazione) {
+        super(x,y);
         this.codice = codice;
-        this.x = parseFloat(x);
-        this.y = parseFloat(y);
         this.rischio = parseFloat(rischio);
         this.popolazione = parseFloat(popolazione);
     }
@@ -17,4 +18,5 @@ module.exports = class Contea {
             rowData[4]
         )
     }
-};
+
+}
