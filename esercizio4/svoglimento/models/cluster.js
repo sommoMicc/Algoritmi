@@ -32,4 +32,21 @@ module.exports = class Cluster {
     distance(other) {
         return other.center().distance(this.center());
     }
-}
+
+    /**
+     * Raggruppa due cluster in uno nuovo
+     * @param {module.Cluster}a
+     * @param {module.Cluster}b
+     * @returns {module.Cluster}
+     */
+    static union(a,b) {
+        const newCluster = new Cluster();
+        for(let i=0;i<a.points.length;i++) {
+            newCluster.add(a.points[i]);
+        }
+        for(let i=0;i<b.points.length;i++) {
+            newCluster.add(b.points[i]);
+        }
+        return newCluster;
+    }
+};
