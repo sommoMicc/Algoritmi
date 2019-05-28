@@ -1,0 +1,13 @@
+{
+  "name": "esercizio4",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node --stack-size=999999 --max-old-space-size=14320 --expose-gc index.js"
+  },
+  "dependencies": {
+    "opn": "^6.0.0",
+    "plotly": "^1.0.6",
+    "progress": "^2.0.3"
+  }
+}
