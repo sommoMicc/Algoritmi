@@ -26,7 +26,7 @@ module.exports = class Plotter {
         ]
     }
 
-    static disegnaKMeans(clusters) {
+    static disegnaCluster(clusters,fileName) {
         return new Promise(async (resolve,reject) => {
            try {
                 const backgroundImage = await this._loadImage();
@@ -43,7 +43,7 @@ module.exports = class Plotter {
                     });
                 });
 
-                await Plotter._save(canvas,"test.png");
+                await Plotter._save(canvas,fileName+".png");
            }
            catch(e) {
                console.log(e);

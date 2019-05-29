@@ -3,6 +3,7 @@ const Plotter = require("./utils/plotter");
 
 const Dataset = require("./models/dataset");
 const KMeans = require("./algorithms/kmeans");
+const Hierarchical = require("./algorithms/hierarchical");
 
 const datasets = {};
 
@@ -23,8 +24,12 @@ async function main() {
 }
 
 async function beginAlgorithm() {
-    const clusters = (new KMeans(datasets[3107],15,5)).clustering();
-    Plotter.disegnaKMeans(clusters);
+    const firstAnswer = (new Hierarchical(datasets[3107],15,5)).clustering();
+    Plotter.disegnaCluster(firstAnswer,"risposta_1");
+
+    //Risposta 2
+    const secondAnswer = (new KMeans(datasets[3107],15,5)).clustering();
+    Plotter.disegnaCluster(secondAnswer,"risposta_2");
 }
 
 function logSeparator() {
