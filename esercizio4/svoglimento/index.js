@@ -24,7 +24,7 @@ async function main() {
 }
 
 async function beginAlgorithm() {
-    const firstAnswer = (new Hierarchical(datasets[3107],15,5)).clustering();
+    const firstAnswer = (new Hierarchical(datasets[212],15,5)).clustering();
     Plotter.disegnaCluster(firstAnswer,"risposta_1");
 
     //Risposta 2

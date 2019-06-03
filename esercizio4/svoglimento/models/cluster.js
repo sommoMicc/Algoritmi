@@ -1,8 +1,17 @@
 const Punto = require("./point");
 
 module.exports = class Cluster {
-    constructor() {
+    /**
+     * Costruttore
+     * @param {Array<Punto> | null}points
+     * @constructor
+     */
+    constructor(...points) {
         this.points = [];
+        if(points != null)
+            this.points.concat(points);
+
+        this._center = null;
     }
 
     /**
@@ -11,9 +20,13 @@ module.exports = class Cluster {
      */
     add(point) {
         this.points.push(point);
+        this._center = null;
     }
 
     center() {
+        if(this._center != null)
+            return this._center;
+
         const size = this.points.length;
         if(size < 1)
             return new Punto(Infinity,Infinity);
@@ -26,14 +39,17 @@ module.exports = class Cluster {
             sumY+=this.points[i].y;
         }
 
-        return new Punto(sumX/size, sumY/size);
+        const center = new Punto(sumX/size, sumY/size);
+        this._center = center;
+
+        return center;
     }
 
     distance(other) {
         return other.center().distance(this.center());
     }
 
-    /**
+   /**
      * Raggruppa due cluster in uno nuovo
      * @param {module.Cluster}a
      * @param {module.Cluster}b
@@ -49,4 +65,10 @@ module.exports = class Cluster {
         }
         return newCluster;
     }
+
+    toString() {
+        return "{ x: "+this.center().x+", y: "+this.center().y+" }";
+    }
+
+
 };

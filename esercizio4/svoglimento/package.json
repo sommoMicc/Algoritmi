@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "canvas": "^2.5.0",
