@@ -24,12 +24,30 @@ async function main() {
 }
 
 async function beginAlgorithm() {
-    const firstAnswer = (new Hierarchical(datasets[212],15,5)).clustering();
-    Plotter.disegnaCluster(firstAnswer,"risposta_1");
-
+    //Primo blocco di risposte
+    logSeparator();
+    //Risposta 1
+    console.time("Risposta 1");
+    const risposta1 = (new Hierarchical(datasets[3107],15)).clustering();
+    console.timeEnd("Risposta 1");
+    Plotter.disegnaCluster(risposta1,"risposta_1");
     //Risposta 2
-    const secondAnswer = (new KMeans(datasets[3107],15,5)).clustering();
-    Plotter.disegnaCluster(secondAnswer,"risposta_2");
+    console.time("Risposta 2");
+    const risposta2 = (new KMeans(datasets[3107],15,5)).clustering();
+    console.timeEnd("Risposta 2");
+    Plotter.disegnaCluster(risposta2,"risposta_2");
+    //Secondo blocco di risposte
+    logSeparator();
+    //Risposta 4
+    console.time("Risposta 4");
+    const risposta4 = (new Hierarchical(datasets[212],9)).clustering();
+    console.timeEnd("Risposta 4");
+    Plotter.disegnaCluster(risposta4,"risposta_4");
+    //Risposta 5
+    console.time("Risposta 5");
+    const risposta5 = (new KMeans(datasets[212],9,5)).clustering();
+    console.timeEnd("Risposta 5");
+    Plotter.disegnaCluster(risposta5,"risposta_5");
 }
 
 function logSeparator() {

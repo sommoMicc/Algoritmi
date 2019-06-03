@@ -1,6 +1,13 @@
 const Cluster = require("../models/cluster");
 
 module.exports = class Hierarchical {
+    static get _DEBUG () { return false}
+
+    /**
+     *
+     * @param {Array<Contea>}dataset il dataset in cui si vuole operare
+     * @param {number}k il numero di cluster in cui raggruppare i dati del dataset
+     */
     constructor(dataset,k) {
         this.dataset = dataset;
         this.k = k;
@@ -17,13 +24,7 @@ module.exports = class Hierarchical {
             this.clusters[i] = new Cluster();
             this.clusters[i].add(contee[i]);
         }
-        const label = "100 cluster";
-        console.time(label);
         while(this.clusters.length > this.k) {
-            if(this.clusters.length % 100 === 0) {
-                console.timeEnd(label);
-                console.time(label);
-            }
             const ij = this._argmin();
 
             if(ij[0] === -1 || ij[1] === -1) {
@@ -63,20 +64,21 @@ module.exports = class Hierarchical {
             return this.clusters[a].center().y - this.clusters[b].center().y;
         });
 
-        const dijS = this._slowClosestPair(this.clusters);
         const dijF = this._fastClosestPair(this.clusters,S);
-        if((dijS[1] !== dijF[1] || dijS[2] !== dijF[2]) &&
-            (dijS[2] !== dijF[1] || dijS[1] !== dijF[2])) {
-            console.log("ERRORE!!!");
-            console.log("slow: " + dijS + " reale " + this.clusters[dijS[1]].distance(this.clusters[dijS[2]]));
-            console.log(this.clusters[dijS[1]].toString());
-            console.log(this.clusters[dijS[2]].toString());
-            console.log("fast: " + dijF + " reale " + this.clusters[dijF[1]].distance(this.clusters[dijF[2]]));
-            console.log(this.clusters[dijF[1]].toString());
-            console.log(this.clusters[dijF[2]].toString());
-            process.exit();
+        if(Hierarchical._DEBUG) {
+            const dijS = this._slowClosestPair(this.clusters);
+            if ((dijS[1] !== dijF[1] || dijS[2] !== dijF[2]) &&
+                (dijS[2] !== dijF[1] || dijS[1] !== dijF[2])) {
+                console.log("ERRORE!!!");
+                console.log("slow: " + dijS + " reale " + this.clusters[dijS[1]].distance(this.clusters[dijS[2]]));
+                console.log(this.clusters[dijS[1]].toString());
+                console.log(this.clusters[dijS[2]].toString());
+                console.log("fast: " + dijF + " reale " + this.clusters[dijF[1]].distance(this.clusters[dijF[2]]));
+                console.log(this.clusters[dijF[1]].toString());
+                console.log(this.clusters[dijF[2]].toString());
+                process.exit();
+            }
         }
-
         return [
             dijF[1],
             dijF[2]

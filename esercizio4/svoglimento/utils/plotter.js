@@ -5,24 +5,26 @@ module.exports = class Plotter {
     static get OUTPUT_DIR() { return "./outputs/" };
     static get MAP_IMAGE_PATH() { return "./assets/map.png" };
 
+    static get _COLORS_OPACITY () {return 1;}
+
     static get COLORS() {
         return [
-            "rgba(0,0,0,1)",
-            "rgba(255,0,0,1)",
-            "rgba(0,255,0,1)",
-            "rgba(0,0,255,1)",
-            "rgba(255,255,0,1)",
-            "rgba(255,0,255,1)",
-            "rgba(0,255,255,1)",
-            "rgba(255,255,255,1)",
-            "rgba(130,0,130,1)",
-            "rgba(255,0,130,1)",
-            "rgba(130,0,255,1)",
-            "rgba(0,130,130,1)",
-            "rgba(0,130,255,1)",
-            "rgba(0,255,130,1)",
-            "rgba(75,75,130,1)",
-            "rgba(255,75,75,1)",
+            "rgba(0,0,0,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,0,0,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,255,0,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,0,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,255,0,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,0,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,255,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,255,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(130,0,130,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,0,130,"+Plotter._COLORS_OPACITY+")",
+            "rgba(130,0,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,130,130,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,130,255,"+Plotter._COLORS_OPACITY+")",
+            "rgba(0,255,130,"+Plotter._COLORS_OPACITY+")",
+            "rgba(75,75,130,"+Plotter._COLORS_OPACITY+")",
+            "rgba(255,75,75,"+Plotter._COLORS_OPACITY+")",
         ]
     }
 
@@ -40,10 +42,12 @@ module.exports = class Plotter {
                     const center = cluster.center();
                     cluster.points.forEach((point) => {
                         Plotter._disegnaLinea(ctx,center,point,Plotter.COLORS[i]);
+                        Plotter._disegnaCentro(ctx,center,Plotter.COLORS[i]);
                     });
                 });
 
                 await Plotter._save(canvas,fileName+".png");
+                resolve();
            }
            catch(e) {
                console.log(e);
@@ -58,6 +62,12 @@ module.exports = class Plotter {
         ctx.moveTo(da.x,da.y);
         ctx.lineTo(a.x,a.y);
         ctx.stroke();
+    }
+    static _disegnaCentro(ctx,punto,colore) {
+        ctx.fillStyle = colore;
+        ctx.beginPath();
+        ctx.arc(punto.x, punto.y, 2, 0, 2 * Math.PI, true);
+        ctx.fill();
     }
 
     static async _loadImage() {
