@@ -14,9 +14,8 @@ module.exports = class Contea extends Punto{
             rowData[0],
             rowData[1],
             rowData[2],
-            rowData[3],
-            rowData[4]
+            rowData[4],
+            rowData[3]
         )
     }
-
-}
+};

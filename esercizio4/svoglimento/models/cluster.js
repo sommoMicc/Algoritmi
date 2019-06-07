@@ -79,7 +79,6 @@ module.exports = class Cluster {
         for(let i=0;i<this.points.length;i++) {
             const contea = this.points[i];
             const delta = contea.distance(this.center());
-
             totalError += (contea.popolazione * Math.pow(delta,2));
         }
 

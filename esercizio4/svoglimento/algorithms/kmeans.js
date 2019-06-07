@@ -1,4 +1,5 @@
 const Cluster = require("../models/cluster");
+const Punto = require("../models/point");
 
 module.exports = class KMeans {
     /**
@@ -18,24 +19,22 @@ module.exports = class KMeans {
     clustering() {
         // Secondo la consegna dell'esercizio, devo avere k centroidi rappresentanti le
         // 15 contee con popolazione maggiore
-        const contee = this.dataset.getAll().sort((a,b)=>a.popolazione - b.popolazione);
+        const contee = this.dataset.getAll().sort((a,b)=>b.popolazione - a.popolazione);
         let n = contee.length;
 
         for(let i=0;i<this.k;i++) {
             // Creo i 15 centroidi richiesti
-            this.centroidi.push({
-                x:contee[i].x,
-                y:contee[i].y
-            });
+            this.centroidi.push(new Punto(contee[i].x,contee[i].y));
         }
         let cluster = null;
         for(let i=0;i<this.q;i++) {
             cluster = KMeans.emptyCluster(this.k);
-            for(let j=0;j<(n-1);j++) {
+
+            for(let j=0;j<n-1;j++) {
                 let l = this.trovaCentroidePiuVicino(contee[j]);
                 cluster[l].add(contee[j]);
             }
-            for(let f=1;f<this.k;f++) {
+            for(let f=0;f<this.k;f++) {
                 this.centroidi[f] = cluster[f].center();
             }
         }
@@ -65,7 +64,7 @@ module.exports = class KMeans {
         let minDist = Infinity;
         let l = null;
 
-        for(let i=0;i<this.k;i++) {
+        for(let i=0;i<this.centroidi.length;i++) {
             const actualDistance = contea.distance(this.centroidi[i]);
             if(actualDistance < minDist) {
                 minDist = actualDistance;
@@ -75,4 +74,4 @@ module.exports = class KMeans {
 
         return l;
     }
-}
+};
