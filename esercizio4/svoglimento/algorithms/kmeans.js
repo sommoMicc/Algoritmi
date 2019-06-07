@@ -1,7 +1,9 @@
+const Algorithm = require("./algorithm");
+
 const Cluster = require("../models/cluster");
 const Punto = require("../models/point");
 
-module.exports = class KMeans {
+module.exports = class KMeans extends Algorithm {
     /**
      * @param {Dataset}dataset il dataset di riferimento
      * @param {number}k numero di cluster richiesti
@@ -9,6 +11,7 @@ module.exports = class KMeans {
      * @constructor
      */
     constructor(dataset,k,q) {
+        super();
         this.dataset = dataset;
         this.k = k;
         this.q = q;

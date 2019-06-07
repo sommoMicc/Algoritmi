@@ -1,6 +1,7 @@
+const Algorithm = require("./algorithm");
 const Cluster = require("../models/cluster");
 
-module.exports = class Hierarchical {
+module.exports = class Hierarchical extends Algorithm {
     static get _DEBUG () { return false}
 
     /**
@@ -9,6 +10,7 @@ module.exports = class Hierarchical {
      * @param {number}k il numero di cluster in cui raggruppare i dati del dataset
      */
     constructor(dataset,k) {
+        super();
         this.dataset = dataset;
         this.k = k;
 
@@ -215,5 +217,27 @@ module.exports = class Hierarchical {
         dij = (dij[0] < cps[0]) ? dij : cps;
 
         return dij;
+    }
+
+    /**
+     * Cluster a "cascata" (ovvero sempre con lo stesso dataset)
+     * @param {string}desc la descrizione del dataset
+     * @param {Array<Contea>}dataset il dataset che si sta considerando
+     * @param {number}minK il numero minimo di cluster che si vogliono generare
+     * @param {number}maxK il numero massimo di cluster che si vogliono generare
+     * @returns{Array<number>} i risultati
+     */
+    static cascadeClustering(desc,dataset,minK,maxK) {
+        const results = {};
+        for(let i=maxK; i>=minK; i--) {
+            const algorithm = new Hierarchical(dataset,i);
+            if(results[i+1] != null) {
+                algorithm.clusters = results[i + 1];
+            }
+            results[i] = algorithm.clustering();
+            console.log("Distorsione dataset "+desc+" con "+i+" cluster: "+Cluster.getDistortion(results[i]));
+        }
+
+        return results;
     }
 };
