@@ -2,6 +2,7 @@ const FileUtils = require("./utils/fileUtils");
 const Plotter = require("./utils/plotter");
 
 const Dataset = require("./models/dataset");
+const Cluster = require("./models/cluster");
 const KMeans = require("./algorithms/kmeans");
 const Hierarchical = require("./algorithms/hierarchical");
 
@@ -42,11 +43,13 @@ async function beginAlgorithm() {
     console.time("Risposta 4");
     const risposta4 = (new Hierarchical(datasets[212],9)).clustering();
     console.timeEnd("Risposta 4");
+    console.log("Distorsione Hierarchical: "+Cluster.getDistortion(risposta4));
     Plotter.disegnaCluster(risposta4,"risposta_4");
     //Risposta 5
     console.time("Risposta 5");
     const risposta5 = (new KMeans(datasets[212],9,5)).clustering();
     console.timeEnd("Risposta 5");
+    console.log("Distorsione KMeans: "+Cluster.getDistortion(risposta5));
     Plotter.disegnaCluster(risposta5,"risposta_5");
 }
 

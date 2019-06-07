@@ -70,5 +70,33 @@ module.exports = class Cluster {
         return "{ x: "+this.center().x+", y: "+this.center().y+" }";
     }
 
+    /**
+     * Ritorna l'errore del clusters
+     * @returns {number}
+     */
+    get error() {
+        let totalError = 0;
+        for(let i=0;i<this.points.length;i++) {
+            const contea = this.points[i];
+            const delta = contea.distance(this.center());
+
+            totalError += (contea.popolazione * Math.pow(delta,2));
+        }
+
+        return totalError;
+    }
+
+    /**
+     * Ritorna la distorsione di un array di cluster
+     * @param {Array<Cluster>}clusters il soggetto
+     * @returns {number}
+     */
+    static getDistortion(clusters) {
+        let totalDistortion = 0;
+        for(let i=0;i<clusters.length;i++) {
+            totalDistortion += clusters[i].error;
+        }
+        return totalDistortion;
+    }
 
 };
