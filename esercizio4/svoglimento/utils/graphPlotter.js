@@ -32,11 +32,9 @@ module.exports = class GraphPlotter {
                 title: plotTitle,
                 yaxis: {
                     title: "Distorsione",
-                    range: [46,51]
                 },
                 xaxis: {
                     title: "Numero di cluster",
-                    range: [4,8]
                 }
             },
             filename: plotTitle.toLocaleLowerCase().replace(/ /g,"_"),

@@ -77,4 +77,14 @@ module.exports = class KMeans extends Algorithm {
 
         return l;
     }
+
+    static cascadeClustering(desc,dataset,minK,maxK) {
+        const results = {};
+        for(let i=maxK; i>=minK; i--) {
+            const algorithm = new KMeans(dataset,i,5);
+            results[i] = algorithm.clustering();
+        }
+
+        return results;
+    }
 };

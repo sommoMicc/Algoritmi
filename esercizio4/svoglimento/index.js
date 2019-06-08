@@ -45,11 +45,14 @@ async function beginAlgorithm() {
             dataset: key,
             data: {}
         };
-        logSeparator();
-
         const hierarchicalData = Hierarchical
             .cascadeClustering(key,datasets[key],6,20);
         plotData.data["Hierarchical"] = Cluster.cascadeDistortion(hierarchicalData);
+
+        const kmeansData = KMeans
+            .cascadeClustering(key,datasets[key],6,20);
+        plotData.data["KMeans"] = Cluster.cascadeDistortion(kmeansData);
+
         GraphPlotter.distortion(plotData);
     });
 }
