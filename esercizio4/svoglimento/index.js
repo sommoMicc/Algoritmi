@@ -26,7 +26,8 @@ async function main() {
 }
 
 async function beginAlgorithm() {
-    const skipHeavy = true;
+    console.log("Letti "+Object.keys(datasets).length+" file. Inizio calcolo..");
+    const skipHeavy = false;
     if(!skipHeavy) {
         compute("Risposta 1", new Hierarchical(datasets[3107], 15));
         compute("Risposta 2", new KMeans(datasets[3107], 15, 5));

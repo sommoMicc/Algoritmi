@@ -25,7 +25,7 @@ module.exports = class Dataset {
             this.add(Contea.fromCSV(rows[i]));
         }
 
-        console.log("Aggiunte "+this.size()+" contee");
+        //console.log("Aggiunte "+this.size()+" contee");
     }
 
     size() {

@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cb52036-7d89-44ad-b058-bf6299d88916" name="Default Changelist" comment="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
-      <change beforePath="$PROJECT_DIR$/algorithms/kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/kmeans.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/graphPlotter.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/graphPlotter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/dataset.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/dataset.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +27,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/utils/graphPlotter.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="246">
+                <state relative-caret-position="-8">
                   <caret line="16" selection-start-line="16" selection-end-line="16" />
                 </state>
               </provider>
@@ -38,7 +37,7 @@
             <entry file="file://$PROJECT_DIR$/algorithms/kmeans.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1445">
-                  <caret line="85" column="9" lean-forward="true" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+                  <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -59,8 +58,17 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
-                  <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+                <state relative-caret-position="372">
+                  <caret line="29" selection-start-line="29" selection-end-line="29" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/dataset.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="459">
+                  <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
@@ -157,7 +165,6 @@
         <option value="$PROJECT_DIR$/utils/fileUtils.js" />
         <option value="$PROJECT_DIR$/models/point.js" />
         <option value="$PROJECT_DIR$/utils/plotter.js" />
-        <option value="$PROJECT_DIR$/models/dataset.js" />
         <option value="$PROJECT_DIR$/models/contea.js" />
         <option value="$PROJECT_DIR$/algorithms/algorithm.js" />
         <option value="$PROJECT_DIR$/utils/graphPlotterù.js" />
@@ -166,6 +173,7 @@
         <option value="$PROJECT_DIR$/models/cluster.js" />
         <option value="$PROJECT_DIR$/algorithms/kmeans.js" />
         <option value="$PROJECT_DIR$/utils/graphPlotter.js" />
+        <option value="$PROJECT_DIR$/models/dataset.js" />
         <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
@@ -370,7 +378,7 @@
       <workItem from="1559893526634" duration="329000" />
       <workItem from="1559916949746" duration="1486000" />
       <workItem from="1559927054031" duration="4561000" />
-      <workItem from="1559978831854" duration="2899000" />
+      <workItem from="1559978831854" duration="3202000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <created>1554276066846</created>
@@ -383,7 +391,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152023000" />
+    <option name="totallyTimeSpent" value="152326000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,7 +416,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22139038" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22139038" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989305" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -416,7 +424,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2737968" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2737968" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32927758" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -493,13 +501,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/10.13.0/core-modules/events.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/canvas/types/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/outputs/test.png" />
-    <entry file="file://$PROJECT_DIR$/models/dataset.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/point.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -587,21 +588,28 @@
     <entry file="file://$PROJECT_DIR$/algorithms/kmeans.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1445">
-          <caret line="85" column="9" lean-forward="true" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+          <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/graphPlotter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="-8">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/dataset.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+        <state relative-caret-position="372">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
