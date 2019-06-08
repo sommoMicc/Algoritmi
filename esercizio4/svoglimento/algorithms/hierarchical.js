@@ -221,7 +221,7 @@ module.exports = class Hierarchical extends Algorithm {
 
     /**
      * Cluster a "cascata" (ovvero sempre con lo stesso dataset)
-     * @param {string}desc la descrizione del dataset
+     * @param {number}desc la descrizione del dataset
      * @param {Array<Contea>}dataset il dataset che si sta considerando
      * @param {number}minK il numero minimo di cluster che si vogliono generare
      * @param {number}maxK il numero massimo di cluster che si vogliono generare
@@ -232,10 +232,11 @@ module.exports = class Hierarchical extends Algorithm {
         for(let i=maxK; i>=minK; i--) {
             const algorithm = new Hierarchical(dataset,i);
             if(results[i+1] != null) {
-                algorithm.clusters = results[i + 1];
+                //Copia profonda altrimenti si modificano anche gli altri
+                //risultati
+                algorithm.clusters = results[i + 1].splice();
             }
             results[i] = algorithm.clustering();
-            console.log("Distorsione dataset "+desc+" con "+i+" cluster: "+Cluster.getDistortion(results[i]));
         }
 
         return results;

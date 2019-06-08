@@ -1,5 +1,6 @@
 const FileUtils = require("./utils/fileUtils");
 const Plotter = require("./utils/plotter");
+const GraphPlotter = require("./utils/graphPlotter");
 
 const Dataset = require("./models/dataset");
 const Cluster = require("./models/cluster");
@@ -39,7 +40,18 @@ async function beginAlgorithm() {
         compute("Benchmark hierarchical" ,new Hierarchical(datasets[562],16));
     }
 
-    Hierarchical.cascadeClustering(562,datasets[562],6,20);
+    [212,562,1041].forEach((key)=>{
+        const plotData = {
+            dataset: key,
+            data: {}
+        };
+        logSeparator();
+
+        const hierarchicalData = Hierarchical
+            .cascadeClustering(key,datasets[key],6,20);
+        plotData.data["Hierarchical"] = Cluster.cascadeDistortion(hierarchicalData);
+        GraphPlotter.distortion(plotData);
+    });
 }
 
 /**

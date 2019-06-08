@@ -98,4 +98,13 @@ module.exports = class Cluster {
         return totalDistortion;
     }
 
+    static cascadeDistortion(cascadeData) {
+        const keys = Object.keys(cascadeData);
+        const results = {};
+        for(let i=0;i<keys.length;i++) {
+            results[keys[i]] = Cluster.getDistortion(cascadeData[keys[i]]);
+        }
+
+        return results;
+    }
 };
