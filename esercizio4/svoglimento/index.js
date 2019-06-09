@@ -27,7 +27,7 @@ async function main() {
 
 async function beginAlgorithm() {
     console.log("Letti "+Object.keys(datasets).length+" file. Inizio calcolo..");
-    const skipHeavy = true;
+    const skipHeavy = false;
     if(!skipHeavy) {
         compute("Risposta 1 - (Hierarchical)", new Hierarchical(datasets[3107], 15));
         compute("Risposta 2 - (KMeans)", new KMeans(datasets[3107], 15, 5));
@@ -42,7 +42,7 @@ async function beginAlgorithm() {
         compute("Benchmark hierarchical" ,new Hierarchical(datasets[562],16));
     }
 
-    const skipPlot = true;
+    const skipPlot = false;
     if(!skipPlot) {
         [212,562,1041].forEach((key)=>{
             const plotData = {

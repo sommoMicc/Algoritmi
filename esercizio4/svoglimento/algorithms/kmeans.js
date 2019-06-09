@@ -30,7 +30,7 @@ module.exports = class KMeans extends Algorithm {
     clustering() {
         // Secondo la consegna dell'esercizio, devo avere k centroidi rappresentanti le
         // 15 contee con popolazione maggiore
-        const contee = KMeans.shuffle(this.dataset.getAll().sort((a,b)=>b.popolazione - a.popolazione));
+        const contee = this.dataset.getAll().sort((a,b)=>b.popolazione - a.popolazione);
         //Se costruisco i k centroidi prendendo a caso 15 contee, ottengo una distorsione mediamente peggiore
         //const contee = KMeans.shuffle(this.dataset.getAll().sort((a,b)=>b.popolazione - a.popolazione));
         let n = contee.length;
