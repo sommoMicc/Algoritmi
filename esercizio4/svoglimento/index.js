@@ -29,11 +29,11 @@ async function beginAlgorithm() {
     console.log("Letti "+Object.keys(datasets).length+" file. Inizio calcolo..");
     const skipHeavy = false;
     if(!skipHeavy) {
-        compute("Risposta 1", new Hierarchical(datasets[3107], 15));
-        compute("Risposta 2", new KMeans(datasets[3107], 15, 5));
+        compute("Risposta 1 - (Hierarchical)", new Hierarchical(datasets[3107], 15));
+        compute("Risposta 2 - (KMeans)", new KMeans(datasets[3107], 15, 5));
 
-        compute("Risposta 4", new Hierarchical(datasets[212], 9));
-        compute("Risposta 5", new KMeans(datasets[212], 9, 5));
+        compute("Risposta 4 - (Hierarchical)", new Hierarchical(datasets[212], 9));
+        compute("Risposta 5 - (KMeans)", new KMeans(datasets[212], 9, 5));
     }
     const skipBenchmark = true;
     if(!skipBenchmark) {
@@ -69,7 +69,7 @@ function compute(desc,algorithm) {
     const results = algorithm.clustering();
     logSeparator();
     console.timeEnd(desc);
-    console.log("Distorsione "+desc.toLocaleLowerCase()+": "+Cluster.getDistortion(results));
+    console.log("Distorsione "+desc.toLocaleLowerCase()+": "+Cluster.getDistortion(results).toExponential(6));
     Plotter.disegnaCluster(results,desc.toLocaleLowerCase().replace(/ /g,"_"));
 }
 
