@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7cb52036-7d89-44ad-b058-bf6299d88916" name="Default Changelist" comment="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/kmeans.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/risposta_5_-_(kmeans).png" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/risposta_5_-_(kmeans).png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,20 +33,30 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+            <state relative-caret-position="57">
+              <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/outputs/risposta_4_-_(hierarchical).png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/outputs/risposta_5_-_(kmeans).png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithms/kmeans.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+            <state relative-caret-position="561">
+              <caret line="33" column="109" selection-start-line="33" selection-start-column="109" selection-end-line="33" selection-end-column="109" />
             </state>
           </provider>
         </entry>
@@ -136,10 +148,10 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/algorithms/hierarchical.js" />
         <option value="$PROJECT_DIR$/models/cluster.js" />
-        <option value="$PROJECT_DIR$/algorithms/kmeans.js" />
         <option value="$PROJECT_DIR$/utils/graphPlotter.js" />
         <option value="$PROJECT_DIR$/models/dataset.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/algorithms/kmeans.js" />
       </list>
     </option>
   </component>
@@ -171,6 +183,11 @@
             <path>
               <item name="svoglimento" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="svoglimento" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="svoglimento" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="outputs" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -331,7 +348,7 @@
       <workItem from="1559978831854" duration="3648000" />
       <workItem from="1560021248642" duration="20000" />
       <workItem from="1560021305782" duration="359000" />
-      <workItem from="1560074610346" duration="291000" />
+      <workItem from="1560074610346" duration="1656000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca">
       <created>1554276066846</created>
@@ -344,7 +361,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153442000" />
+    <option name="totallyTimeSpent" value="154807000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,7 +420,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Aggiunti commenti + avanzamento su ottimizzazione grafo per ricerca" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/ulysses22.tsp" />
     <entry file="file://$PROJECT_DIR$/easy_assets/burma14.tsp" />
     <entry file="file://$PROJECT_DIR$/assets/ulysses16.tsp" />
     <entry file="file://$PROJECT_DIR$/algorithms/kruskal_mst.js" />
@@ -551,17 +567,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithms/kmeans.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/outputs/risposta_4_-_(hierarchical).png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outputs/risposta_5_-_(kmeans).png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        <state relative-caret-position="57">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/kmeans.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="109" selection-start-line="33" selection-start-column="109" selection-end-line="33" selection-end-column="109" />
         </state>
       </provider>
     </entry>

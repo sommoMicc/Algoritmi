@@ -27,35 +27,39 @@ async function main() {
 
 async function beginAlgorithm() {
     console.log("Letti "+Object.keys(datasets).length+" file. Inizio calcolo..");
-    const skipHeavy = false;
+    const skipHeavy = true;
     if(!skipHeavy) {
         compute("Risposta 1 - (Hierarchical)", new Hierarchical(datasets[3107], 15));
         compute("Risposta 2 - (KMeans)", new KMeans(datasets[3107], 15, 5));
-
-        compute("Risposta 4 - (Hierarchical)", new Hierarchical(datasets[212], 9));
-        compute("Risposta 5 - (KMeans)", new KMeans(datasets[212], 9, 5));
     }
+
+    compute("Risposta 4 - (Hierarchical)", new Hierarchical(datasets[212], 9));
+    compute("Risposta 5 - (KMeans)", new KMeans(datasets[212], 9, 5));
+
     const skipBenchmark = true;
     if(!skipBenchmark) {
         compute("Benchmark kmeans", new KMeans(datasets[562],16,5));
         compute("Benchmark hierarchical" ,new Hierarchical(datasets[562],16));
     }
 
-    [212,562,1041].forEach((key)=>{
-        const plotData = {
-            dataset: key,
-            data: {}
-        };
-        const hierarchicalData = Hierarchical
-            .cascadeClustering(key,datasets[key],6,20);
-        plotData.data["Hierarchical"] = Cluster.cascadeDistortion(hierarchicalData);
+    const skipPlot = true;
+    if(!skipPlot) {
+        [212,562,1041].forEach((key)=>{
+            const plotData = {
+                dataset: key,
+                data: {}
+            };
+            const hierarchicalData = Hierarchical
+                .cascadeClustering(key,datasets[key],6,20);
+            plotData.data["Hierarchical"] = Cluster.cascadeDistortion(hierarchicalData);
 
-        const kmeansData = KMeans
-            .cascadeClustering(key,datasets[key],6,20);
-        plotData.data["KMeans"] = Cluster.cascadeDistortion(kmeansData);
+            const kmeansData = KMeans
+                .cascadeClustering(key,datasets[key],6,20);
+            plotData.data["KMeans"] = Cluster.cascadeDistortion(kmeansData);
 
-        GraphPlotter.distortion(plotData);
-    });
+            GraphPlotter.distortion(plotData);
+        });
+    }
 }
 
 /**
