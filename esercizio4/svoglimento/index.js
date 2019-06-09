@@ -44,6 +44,7 @@ async function beginAlgorithm() {
 
     const skipPlot = false;
     if(!skipPlot) {
+        console.log("Generazione dei grafici in corso. Attendere...");
         [212,562,1041].forEach((key)=>{
             const plotData = {
                 dataset: key,
