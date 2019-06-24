@@ -4,6 +4,7 @@ import it.homepc.tagliabuemichele.controller.CityController;
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
 import it.homepc.tagliabuemichele.model.algorithms.KMeans;
+import it.homepc.tagliabuemichele.model.algorithms.ParallelKMeans;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Main {
         List<City> cities = CityController
             .getInstance().readCities();
 
+        /*
         KMeans kmeans = new KMeans(cities,50,100);
         List<Cluster> kmeansResult = kmeans.start();
 
@@ -21,5 +23,9 @@ public class Main {
         for(int i=0;i<kmeansResult.size();i++) {
             System.out.println(kmeansResult.get(i));
         }
+         */
+
+        ParallelKMeans parallelKMeans = new ParallelKMeans(cities,50,100);
+        parallelKMeans.start();
     }
 }

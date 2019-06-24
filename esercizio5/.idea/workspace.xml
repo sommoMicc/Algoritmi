@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2d75dea-bc59-4a69-b600-7cc3974b3e4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/Algorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/Algorithm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/KMeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/KMeans.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,138 +22,93 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/FileHelper.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/City.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Point.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
-                  <folding>
-                    <element signature="e#1061#1062#0" expanded="true" />
-                    <element signature="e#1119#1120#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="9" selection-start-line="9" selection-end-line="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="645">
-                  <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/cities-and-towns-of-usa.csv">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/City.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Cluster.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="22" selection-start-line="22" selection-end-line="22" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1008#1009#0" expanded="true" />
-                    <element signature="e#1087#1088#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="993">
-                  <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/City.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Cluster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="702">
+              <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#1087#1088#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="771">
+              <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#848#849#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -168,19 +129,20 @@
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/FileHelper.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/City.java" />
-        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" />
-        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Cluster.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Point.java" />
-        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/PKMeans.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -188,7 +150,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,28 +178,14 @@
               <item name="esercizio5" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="tagliabuemichele" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="esercizio5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="esercizio5" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tagliabuemichele" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="esercizio5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="esercizio5" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tagliabuemichele" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -250,7 +197,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -301,16 +248,19 @@
       <workItem from="1561276916572" duration="397000" />
       <workItem from="1561277480716" duration="651000" />
       <workItem from="1561278157307" duration="59000" />
+      <workItem from="1561361622514" duration="35000" />
+      <workItem from="1561361693944" duration="1460000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6302000" />
+    <option name="totallyTimeSpent" value="9323000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1731533" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32234433" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -319,7 +269,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32959184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,19 +295,9 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/FileHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="399">
           <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -367,7 +307,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="406">
           <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
           <folding>
             <element signature="e#1061#1062#0" expanded="true" />
@@ -376,19 +316,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="301">
           <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -397,19 +327,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/cities-and-towns-of-usa.csv">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="21">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/City.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        <state relative-caret-position="504">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="702">
+          <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1008#1009#0" expanded="true" />
@@ -420,8 +358,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="993">
-          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        <state relative-caret-position="90">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -430,10 +378,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+        <state relative-caret-position="771">
+          <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
           </folding>
         </state>
       </provider>

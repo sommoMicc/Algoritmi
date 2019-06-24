@@ -9,10 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class KMeans implements Algorithm {
+public class KMeans extends Algorithm {
     private List<City> cities;
-    private List<Point> centroids;
-
     private int k, q;
 
     /**
@@ -23,11 +21,10 @@ public class KMeans implements Algorithm {
      * @param q numero di iterazioni
      */
     public KMeans(List<City> cities, int k, int q) {
+        super(new ArrayList<>());
         this.cities = new ArrayList<>(cities);
         this.k = k;
         this.q = q;
-
-        this.centroids = new ArrayList<>();
     }
 
     @Override
