@@ -13,19 +13,21 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         List<City> cities = CityController
-            .getInstance().readCities();
+            .getInstance().readCitiesWithFilter(100000);
 
-        /*
+
         KMeans kmeans = new KMeans(cities,50,100);
         List<Cluster> kmeansResult = kmeans.start();
 
         System.out.println("KMeans ha ritornato "+kmeansResult.size()+" cluster");
         for(int i=0;i<kmeansResult.size();i++) {
-            System.out.println(kmeansResult.get(i));
+            System.out.println("Numero "+(i+1)+": "+kmeansResult.get(i));
         }
-         */
 
+        /*
         ParallelKMeans parallelKMeans = new ParallelKMeans(cities,50,100);
         parallelKMeans.start();
+
+         */
     }
 }

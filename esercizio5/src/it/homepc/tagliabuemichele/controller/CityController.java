@@ -19,18 +19,25 @@ public class CityController {
         fileHelper = FileHelper.getInstance();
     }
 
-    public List<City> readCities() {
+    public List<City> readCitiesWithFilter(int filter) {
         List<City> cities = new ArrayList<>();
         FileHelper.getInstance().load((String row) -> {
             String[] cells = row.split(",");
-            cities.add(new City(
+            City cityRead = new City(
                 Integer.parseInt(cells[0]),
                 Integer.parseInt(cells[2]),
                 cells[1],
                 Double.parseDouble(cells[3]),
                 Double.parseDouble(cells[4])
-            ));
+            );
+            if(cityRead.getPopulation() > filter)
+                cities.add(cityRead);
         });
         return cities;
     }
+
+    public List<City> readCities() {
+        return readCitiesWithFilter(0);
+    }
+
 }
