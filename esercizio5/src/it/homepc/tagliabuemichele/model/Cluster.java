@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cluster {
-    private List<Point> points;
+    private List<City> points;
     private Point center;
 
     public Cluster() {
@@ -33,16 +33,36 @@ public class Cluster {
         return center;
     }
 
+    public double error() {
+        double totalError = 0;
+
+        for(int i=0;i<points.size();i++) {
+            City city = points.get(i);
+            double delta = city.distance(center());
+            totalError += city.getPopulation() * Math.pow(delta,2);
+        }
+
+        return totalError;
+    }
+
     public double distance(Cluster other) {
         return other.center().distance(this.center());
     }
 
-    public void add(Point point) {
+    public void add(City point) {
         points.add(point);
     }
 
     @Override
     public String toString() {
         return "Cluster(centro: "+center()+", size: "+points.size()+")";
+    }
+
+    public static double distortion(List<Cluster> clusters) {
+        double totalDistortion = 0;
+        for(int i=0;i<clusters.size();i++) {
+            totalDistortion += clusters.get(i).error();
+        }
+        return totalDistortion;
     }
 }

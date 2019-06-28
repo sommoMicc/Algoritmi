@@ -2,11 +2,9 @@ package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
-import it.homepc.tagliabuemichele.model.Point;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class KMeans extends Algorithm {
@@ -29,6 +27,7 @@ public class KMeans extends Algorithm {
 
     @Override
     public List<Cluster> start() {
+        this.startTime = System.currentTimeMillis();
         // Ordino l'array in modo decrescente rispetto
         // la popolazione
         Collections.sort(cities, (a, b)->
@@ -51,23 +50,8 @@ public class KMeans extends Algorithm {
             }
         }
 
+        endTime = System.currentTimeMillis();
         return clusters;
-    }
-
-    private int findNearestCentroid(Point point) {
-        double minDist = Double.POSITIVE_INFINITY;
-        int l = -1;
-
-        for(int i=0;i<centroids.size();i++) {
-            double actualDistance =
-                point.distance(centroids.get(i));
-            if(actualDistance < minDist) {
-                minDist = actualDistance;
-                l = i;
-            }
-        }
-
-        return l;
     }
 
     private static List<Cluster> emptyCluster(int number) {

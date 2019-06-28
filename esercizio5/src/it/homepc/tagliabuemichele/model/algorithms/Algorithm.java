@@ -7,14 +7,14 @@ import java.util.List;
 
 public abstract class Algorithm {
     protected List<Point> centroids;
+    protected long startTime, endTime;
 
     protected Algorithm(List<Point> centroids) {
         this.centroids = centroids;
     }
-
     public abstract List<Cluster> start();
 
-    private int findNearestCentroid(Point point) {
+    protected int findNearestCentroid(Point point) {
         double minDist = Double.POSITIVE_INFINITY;
         int l = -1;
 
@@ -28,5 +28,9 @@ public abstract class Algorithm {
         }
 
         return l;
+    }
+
+    public double getElapsedTime() {
+        return Math.round((endTime-startTime)/ 10.0) / 100.0;
     }
 }
