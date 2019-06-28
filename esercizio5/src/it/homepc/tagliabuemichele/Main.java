@@ -30,7 +30,7 @@ public class Main {
             List<Cluster> kmeansResult = kmeans.start();
 
             System.out.println("Distorsione con filtro "+filters[i]+": "+
-                    decimalFormat.format(Cluster.distortion(kmeansResult))+ "in "+
+                    decimalFormat.format(Cluster.distortion(kmeansResult))+ " in "+
                     kmeans.getElapsedTime()+" secondi");
 
         }
