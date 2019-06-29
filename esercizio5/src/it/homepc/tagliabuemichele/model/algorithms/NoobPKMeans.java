@@ -2,12 +2,13 @@ package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
+import it.homepc.tagliabuemichele.utils.ParallelFor;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class KMeans extends Algorithm {
+public class NoobPKMeans extends Algorithm {
     private List<City> cities;
     private int k, q;
 
@@ -18,7 +19,7 @@ public class KMeans extends Algorithm {
      * @param k numero di cluster richiesti
      * @param q numero di iterazioni
      */
-    public KMeans(List<City> cities, int k, int q) {
+    public NoobPKMeans(List<City> cities, int k, int q) {
         super(new ArrayList<>());
         this.cities = new ArrayList<>(cities);
         this.k = k;
@@ -37,20 +38,34 @@ public class KMeans extends Algorithm {
             centroids.add(cities.get(i));
         }
 
-        List<Cluster> clusters = null;
+        List<Cluster> clusters = NoobPKMeans.emptyCluster(k);
         for(int i=0;i<q;i++) {
-            clusters = KMeans.emptyCluster(k);
+            List<Cluster> privateClusters = NoobPKMeans.emptyCluster(k);
 
-            for(int j=0;j<cities.size()-1;j++) {
+            ParallelFor pf = new ParallelFor(0,cities.size()-1,(j)->{
                 int l = findNearestCentroid(cities.get(j));
-                clusters.get(l).add(cities.get(j));
-            }
-            for(int f=0;f<k;f++) {
-                this.centroids.set(f,clusters.get(f).center());
-            }
+                //privateClusters.get(l).add(cities.get(j));
+                updateCluster(privateClusters,l,j);
+            });
+            pf.fork();
+            pf.join();
+
+            pf = new ParallelFor(0,k,(f)->{
+                this.centroids.set(f,privateClusters.get(f).center());
+            });
+
+            pf.fork();
+            pf.join();
+
+            clusters = privateClusters;
         }
 
         endTime = System.currentTimeMillis();
         return clusters;
     }
+
+    private synchronized void updateCluster(List<Cluster> listToUpdate,int l, int j) {
+        listToUpdate.get(l).add(cities.get(j));
+    }
+
 }

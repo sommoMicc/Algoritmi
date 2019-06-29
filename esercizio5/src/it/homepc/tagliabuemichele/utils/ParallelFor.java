@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.function.Consumer;
 
-public class ParallelFor {
+public class ParallelFor extends RecursiveTask<Void> {
     private final int initialization;
     private int counter;
     private final int ceiling;
@@ -18,7 +18,7 @@ public class ParallelFor {
 
     }
 
-    public void start(Runnable then) {
+    protected Void compute() {
         List<ParallelForTask> tasksList = new ArrayList<>();
 
         for(counter = initialization;counter<ceiling;counter++) {
@@ -30,7 +30,7 @@ public class ParallelFor {
         for(counter = initialization;counter<ceiling;counter++) {
             tasksList.get(counter).join();
         }
-        then.run();
+        return null;
     }
 
 
