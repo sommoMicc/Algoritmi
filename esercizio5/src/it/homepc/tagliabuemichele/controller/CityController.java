@@ -30,7 +30,7 @@ public class CityController {
                 Double.parseDouble(cells[3]),
                 Double.parseDouble(cells[4])
             );
-            if(cityRead.getPopulation() > filter)
+            if(filter == 0 || cityRead.getPopulation() > filter)
                 cities.add(cityRead);
         });
         return cities;

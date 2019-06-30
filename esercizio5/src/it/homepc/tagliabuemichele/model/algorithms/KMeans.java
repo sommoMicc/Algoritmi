@@ -2,6 +2,7 @@ package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
+import it.homepc.tagliabuemichele.model.Point;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +43,7 @@ public class KMeans extends Algorithm {
             clusters = KMeans.emptyCluster(k);
 
             for(int j=0;j<cities.size()-1;j++) {
-                int l = findNearestCentroid(cities.get(j));
+                int l = findNearestCentroidSerial(cities.get(j),0,centroids.size()-1);
                 clusters.get(l).add(cities.get(j));
             }
             for(int f=0;f<k;f++) {
@@ -53,4 +54,15 @@ public class KMeans extends Algorithm {
         endTime = System.currentTimeMillis();
         return clusters;
     }
+
+    protected static List<Cluster> emptyCluster(int number) {
+        List<Cluster> clusters = new ArrayList<>();
+        for(int i=0;i<number;i++) {
+            clusters.add(new Cluster());
+        }
+
+        return clusters;
+    }
+
+
 }

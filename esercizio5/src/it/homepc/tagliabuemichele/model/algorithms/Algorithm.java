@@ -15,11 +15,15 @@ public abstract class Algorithm {
     }
     public abstract List<Cluster> start();
 
-    protected int findNearestCentroid(Point point) {
+    public double getElapsedTime() {
+        return Math.round((endTime-startTime)/ 10.0) / 100.0;
+    }
+
+    protected int findNearestCentroidSerial(Point point, int start, int end) {
         double minDist = Double.POSITIVE_INFINITY;
         int l = -1;
 
-        for(int i=0;i<centroids.size();i++) {
+        for(int i=start;i<=end;i++) {
             double actualDistance =
                     point.distance(centroids.get(i));
             if(actualDistance < minDist) {
@@ -29,19 +33,6 @@ public abstract class Algorithm {
         }
 
         return l;
-    }
-
-    public double getElapsedTime() {
-        return Math.round((endTime-startTime)/ 10.0) / 100.0;
-    }
-
-    protected static List<Cluster> emptyCluster(int number) {
-        List<Cluster> clusters = new ArrayList<>();
-        for(int i=0;i<number;i++) {
-            clusters.add(new Cluster());
-        }
-
-        return clusters;
     }
 
 }
