@@ -25,7 +25,7 @@ public class Main {
     };
 
     private static boolean DOMANDA_1 = false;
-    private static boolean DOMANDA_2 = false;
+    private static boolean DOMANDA_2 = true;
     private static boolean DOMANDA_3 = false;
     private static boolean DOMANDA_4 = true;
 
@@ -89,9 +89,10 @@ public class Main {
             for (int i = 10; i <= 100; i++) {
                 double[] executionResults = runClustering(0, i, 100);
 
-                x[i] = i;
-                serialY[i] = executionResults[0];
-                parallelY[i] = executionResults[1];
+                int index  = i-10;
+                x[index] = i;
+                serialY[index] = executionResults[0];
+                parallelY[index] = executionResults[1];
             }
 
             chart.addSeries("Seriale", x, serialY);
@@ -118,7 +119,9 @@ public class Main {
 
             int clusters = 50;
 
-            for (int cutoff = 2; cutoff <= clusters; cutoff += 2) {
+            //int coreNumbers = Runtime.getRuntime().availableProcessors();
+
+            for (int cutoff = 1; cutoff <= clusters; cutoff++) {
                 NoobPKMeans.CUTOFF = cutoff;
 
                 ESECUZIONE_SERIALE = false;
@@ -143,6 +146,7 @@ public class Main {
 
         KMeans kmeans = null;
         NoobPKMeans pkmeans = null;
+
 
         List<Cluster> kmeansResult = null;
         List<Cluster> pKmeansResult = null;

@@ -6,6 +6,7 @@ import it.homepc.tagliabuemichele.model.Point;
 import it.homepc.tagliabuemichele.utils.ParallelFor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
@@ -74,22 +75,15 @@ public class NoobPKMeans extends Algorithm {
         listToUpdate.get(l).add(cities.get(j));
     }
 
-    /*
+
+
     protected static List<Cluster> emptyCluster(int number) {
-        List<Cluster> clusters = new ArrayList<>();
-        ParallelFor pf = new ParallelFor(0,number,(i)->clusters.add(new Cluster()));
+        Cluster[] clusters = new Cluster[number];
+        ParallelFor pf = new ParallelFor(0,number,(i)->clusters[i]=new Cluster());
         pf.fork();
         pf.join();
-        System.out.println("Generati "+clusters.size()+" cluster vuoti");
-        return clusters;
-    }*/
-    protected static List<Cluster> emptyCluster(int number) {
-        List<Cluster> clusters = new ArrayList<>();
-        for(int i=0;i<number;i++) {
-            clusters.add(new Cluster());
-        }
 
-        return clusters;
+        return Arrays.asList(clusters);
     }
 
 
@@ -114,21 +108,30 @@ public class NoobPKMeans extends Algorithm {
         if(end-start == 0)
             return start;
 
+
+        //Caso base: due elementi
+        if(end == start + 1) {
+            if(point.distance(centroids.get(start)) < point.distance(centroids.get(end))) {
+                return start;
+            }
+            return end;
+        }
+
         //Caso base: elementi minori della soglia di cutoff
-        if(end-start <= CUTOFF) {
+        if(end-start < CUTOFF) {
             return findNearestCentroidSerial(point,start,end);
         }
 
         //Caso ricorsivo: più di due elementi
         int m = Math.floorDiv(start+end,2);
 
-        NearestCentroidTask multithreadTask = new NearestCentroidTask(point,start,m);
-        NearestCentroidTask recursiveTask = new NearestCentroidTask(point,m+1,end);
+        //NearestCentroidTask multithreadTask = new NearestCentroidTask(point,start,m);
+        //multithreadTask.fork();
 
-        multithreadTask.fork();
 
-        int recursiveResult = recursiveTask.compute();
-        int multithreadResult = multithreadTask.join();
+        int recursiveResult = findNearestCentroidParallel(point,m+1,end);
+        //int multithreadResult = multithreadTask.join();
+        int multithreadResult = findNearestCentroidParallel(point,start,m);
 
         if(point.distance(centroids.get(recursiveResult)) < point.distance(centroids.get(multithreadResult)))
             return recursiveResult;

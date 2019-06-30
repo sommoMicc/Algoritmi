@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2d75dea-bc59-4a69-b600-7cc3974b3e4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/xchart_3_5_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esercizio5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/esercizio5.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/Algorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/Algorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/KMeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/KMeans.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/esercizio5/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risposte/risposta_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/risposte/risposta_4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,13 +79,22 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+                <state relative-caret-position="17">
+                  <caret line="87" selection-start-line="87" selection-end-line="87" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#3265#3266#0" expanded="true" />
-                    <element signature="e#3333#3334#0" expanded="true" />
+                    <element signature="e#3676#3677#0" expanded="true" />
+                    <element signature="e#3751#3752#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jrt:///home/michele/.local/share/JetBrains/Toolbox/apps/IDEA-JDK11/ch-0/191.7479.19/jre64!/java.base/java/lang/Object.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="645">
+                  <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -129,8 +130,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="572">
-                  <caret line="49" selection-start-line="36" selection-end-line="49" />
+                <state relative-caret-position="452">
+                  <caret line="36" selection-start-line="36" selection-end-line="36" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -141,8 +142,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+                <state relative-caret-position="345">
+                  <caret line="27" column="52" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -150,11 +151,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="126" column="69" selection-start-line="126" selection-start-column="69" selection-end-line="126" selection-end-column="69" />
+                <state relative-caret-position="310">
+                  <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -171,10 +172,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="446">
+                <state relative-caret-position="675">
                   <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -214,19 +215,20 @@
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Cluster.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/ParallelKMeans.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/Point.java" />
-        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/controller/CityController.java" />
-        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java" />
         <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java" />
+        <option value="$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="26" />
-    <option name="width" value="1280" />
-    <option name="height" value="1414" />
+    <option name="x" value="286" />
+    <option name="y" value="27" />
+    <option name="width" value="1680" />
+    <option name="height" value="1081" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -369,18 +371,18 @@
       <workItem from="1561575263942" duration="185000" />
       <workItem from="1561800691826" duration="1866000" />
       <workItem from="1561900164928" duration="826000" />
-      <workItem from="1561901449387" duration="11300000" />
+      <workItem from="1561901449387" duration="14662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32325000" />
+    <option name="totallyTimeSpent" value="35687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1414" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21723591" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21723591" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -390,7 +392,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34034267" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995327" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -464,16 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/risposta_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -487,29 +479,9 @@
     <entry file="file://$PROJECT_DIR$/risposte/risposta_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="126" column="69" selection-start-line="126" selection-start-column="69" selection-end-line="126" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/KMeans.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
+        <state relative-caret-position="675">
           <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -527,14 +499,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java">
+    <entry file="jrt:///home/michele/.local/share/JetBrains/Toolbox/apps/IDEA-JDK11/ch-0/191.7479.19/jre64!/java.base/java/lang/Object.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        <state relative-caret-position="645">
+          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
-            <element signature="e#3333#3334#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jrt:///home/michele/.local/share/JetBrains/Toolbox/apps/IDEA-JDK11/ch-0/191.7479.19/jre64!/java.base/java/util/List.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/utils/ParallelFor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/model/algorithms/NoobPKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3676#3677#0" expanded="true" />
+            <element signature="e#3751#3752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/homepc/tagliabuemichele/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
