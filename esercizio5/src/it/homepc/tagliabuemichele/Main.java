@@ -155,6 +155,9 @@ public class Main {
         }
 
         if(DOMANDA_3) {
+            ESECUZIONE_SERIALE = true;
+            ESECUZIONE_PARALLELA = true;
+
             final XYChart chart = new XYChartBuilder()
                     .width(CHART_WIDTH).height(CHART_HEIGHT)
                     .title("Variazione del tempo - numero di iterazioni")
