@@ -3,9 +3,7 @@ package it.homepc.tagliabuemichele;
 import it.homepc.tagliabuemichele.controller.CityController;
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
-import it.homepc.tagliabuemichele.model.algorithms.IterationData;
-import it.homepc.tagliabuemichele.model.algorithms.KMeans;
-import it.homepc.tagliabuemichele.model.algorithms.NoobPKMeans;
+import it.homepc.tagliabuemichele.model.algorithms.*;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
 
@@ -27,8 +25,8 @@ public class Main {
 
     private static boolean DOMANDA_1 = false;
     private static boolean DOMANDA_2 = false;
-    private static boolean DOMANDA_3 = true;
-    private static boolean DOMANDA_4 = false;
+    private static boolean DOMANDA_3 = false;
+    private static boolean DOMANDA_4 = true;
 
     private static boolean ESECUZIONE_SERIALE = true;
     private static boolean ESECUZIONE_PARALLELA = true;
@@ -63,7 +61,7 @@ public class Main {
             //int coreNumbers = Runtime.getRuntime().availableProcessors();
 
             for (int cutoff = 1; cutoff <= clusters; cutoff++) {
-                NoobPKMeans.CUTOFF = cutoff;
+                DIvideEtImperaPKMeans.cutoff = cutoff;
 
                 double[] executionResults = runClustering(0, clusters, 100, null);
                 x.add(cutoff);
@@ -74,7 +72,7 @@ public class Main {
                     optimalCutoffIndex = cutoff;
                 }
             }
-            NoobPKMeans.CUTOFF = optimalCutoffIndex;
+            NoobPKMeans.cutoff = optimalCutoffIndex;
 
             chart.addSeries("Parallelo", x, y);
 
@@ -203,7 +201,7 @@ public class Main {
         double[] results = new double[3];
 
         KMeans kmeans = null;
-        NoobPKMeans pkmeans = null;
+        ParallelAlgorithm pkmeans = null;
 
 
         List<Cluster> kmeansResult = null;
@@ -225,15 +223,19 @@ public class Main {
 
         }
         if(ESECUZIONE_PARALLELA) {
-            pkmeans = new NoobPKMeans(cities, k, q);
+            pkmeans = new DIvideEtImperaPKMeans(cities, k, q);
             pKmeansResult = pkmeans.start(callback);
 
             System.out.println("P-KMeans k="+k+", q="+q+", filtro="+filter+", " +
-                    "cutoff="+NoobPKMeans.CUTOFF+" ha concluso in " +
+                    "cutoff="+DIvideEtImperaPKMeans.cutoff+" ha concluso in " +
                     pkmeans.getElapsedTime() + " secondi");
 
             results[1] = pkmeans.getElapsedTime();
-        }
+
+            double parallelDistortion = Cluster.distortion(pKmeansResult);
+                System.out.println("Distorsione parallela: "+parallelDistortion);
+
+            }
         if(ESECUZIONE_PARALLELA && ESECUZIONE_SERIALE) {
             /*
             double serialDistortion = Cluster.distortion(kmeansResult);

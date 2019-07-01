@@ -12,11 +12,9 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.function.Consumer;
 
-public class NoobPKMeans extends Algorithm {
+public class NoobPKMeans extends ParallelAlgorithm {
     private List<City> cities;
     private int k, q;
-
-    public static int CUTOFF = 26;
     /**
      *
      * @param cities lista di città di cui computare
@@ -94,58 +92,4 @@ public class NoobPKMeans extends Algorithm {
 
         return Arrays.asList(clusters);
     }
-
-
-    private class NearestCentroidTask extends RecursiveTask<Integer> {
-        private final Point point;
-        private final int start, end;
-
-        public NearestCentroidTask(Point point, int start, int end) {
-            this.point = point;
-            this.start = start;
-            this.end = Math.min(end,centroids.size() - 1);
-        }
-
-        @Override
-        public Integer compute() {
-            return findNearestCentroidParallel(point,start,end);
-        }
-    }
-
-    private int findNearestCentroidParallel(Point point, int start, int end) {
-        //Caso base: unico elemento
-        if(end-start == 0)
-            return start;
-
-
-        //Caso base: due elementi
-        if(end == start + 1) {
-            if(point.distance(centroids.get(start)) < point.distance(centroids.get(end))) {
-                return start;
-            }
-            return end;
-        }
-
-        //Caso base: elementi minori della soglia di cutoff
-        if(end-start < CUTOFF) {
-            return findNearestCentroidSerial(point,start,end);
-        }
-
-        //Caso ricorsivo: più di due elementi
-        int m = Math.floorDiv(start+end,2);
-
-        NearestCentroidTask multithreadTask = new NearestCentroidTask(point,start,m);
-        multithreadTask.fork();
-
-
-        int recursiveResult = findNearestCentroidParallel(point,m+1,end);
-        int multithreadResult = multithreadTask.join();
-        //int multithreadResult = findNearestCentroidParallel(point,start,m);
-
-        if(point.distance(centroids.get(recursiveResult)) < point.distance(centroids.get(multithreadResult)))
-            return recursiveResult;
-        return multithreadResult;
-    }
-
-
 }
