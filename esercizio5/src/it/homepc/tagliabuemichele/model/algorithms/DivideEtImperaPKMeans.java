@@ -2,7 +2,6 @@ package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
-import it.homepc.tagliabuemichele.model.Point;
 import it.homepc.tagliabuemichele.utils.ParallelFor;
 
 import java.util.ArrayList;
@@ -12,11 +11,9 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.function.Consumer;
 
-public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
+public class DivideEtImperaPKMeans extends ParallelAlgorithm {
     private List<City> cities;
     private int k, q;
-
-    public static int CUTOFF = 26;
     /**
      *
      * @param cities lista di città di cui computare
@@ -24,7 +21,7 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
      * @param k numero di cluster richiesti
      * @param q numero di iterazioni
      */
-    public DIvideEtImperaPKMeans(List<City> cities, int k, int q) {
+    public DivideEtImperaPKMeans(List<City> cities, int k, int q) {
         super(new ArrayList<>());
         this.cities = new ArrayList<>(cities);
         this.k = k;
@@ -43,8 +40,10 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
             centroids.add(cities.get(i));
         }
 
-        List<Cluster> clusters = DIvideEtImperaPKMeans.emptyCluster(k);
+        List<Cluster> clusters = null;
         for(int i=0;i<q;i++) {
+            clusters = DivideEtImperaPKMeans.emptyCluster(k);
+
             int start = 0;
             int end = cities.size() -1;
 
@@ -52,7 +51,7 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
             kMeansTask.fork();
             kMeansTask.join();
 
-            UpdateCentroidsTask updateCentroids = new UpdateCentroidsTask(clusters,0,k);
+            UpdateCentroidsTask updateCentroids = new UpdateCentroidsTask(clusters,0,k-1);
 
             updateCentroids.fork();
             updateCentroids.join();
@@ -82,7 +81,7 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
 
         @Override
         public Void compute() {
-            if(end-start+1 <= CUTOFF) {
+            if(end-start+1 <= cutoff) {
                 kMeansBody(privateClusters, start, end);
             }
             else {
@@ -135,7 +134,7 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
 
         @Override
         public Void compute() {
-            if(end-start+1 <= CUTOFF) {
+            if(end-start+1 <= cutoff) {
                 updateCentroidsBody(privateClusters, start, end);
             }
             else {
@@ -155,7 +154,7 @@ public class DIvideEtImperaPKMeans extends ParallelAlgorithm {
     }
 
     private void updateCentroidsBody(List<Cluster> clusters, int start, int end) {
-        for(int i=start;i<end; i++) {
+        for(int i=start;i<=end; i++) {
             this.centroids.set(i,clusters.get(i).center());
         }
     }

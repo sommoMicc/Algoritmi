@@ -21,18 +21,14 @@ public class ParallelFor extends RecursiveTask<Void> {
     protected Void compute() {
         List<ParallelForTask> tasksList = new ArrayList<>();
 
-        int iterazioni = 0;
         for(counter = initialization;counter<ceiling;counter++) {
             ParallelForTask t = new ParallelForTask(counter);
             tasksList.add(t);
             t.fork();
-            iterazioni++;
         }
 
-        iterazioni = 0;
         for(int i=0;i<tasksList.size();i++) {
             tasksList.get(i).join();
-            iterazioni++;
         }
 
         return null;

@@ -2,14 +2,12 @@ package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
 import it.homepc.tagliabuemichele.model.Cluster;
-import it.homepc.tagliabuemichele.model.Point;
 import it.homepc.tagliabuemichele.utils.ParallelFor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.RecursiveTask;
 import java.util.function.Consumer;
 
 public class NoobPKMeans extends ParallelAlgorithm {

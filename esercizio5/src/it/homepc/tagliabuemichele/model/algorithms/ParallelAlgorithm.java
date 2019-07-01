@@ -8,7 +8,7 @@ import java.util.concurrent.RecursiveTask;
 import java.util.function.Consumer;
 
 public abstract class ParallelAlgorithm extends Algorithm {
-    public static int cutoff;
+    public static int cutoff = 149;
 
     protected ParallelAlgorithm(List<Point> centroids) {
         super(centroids);

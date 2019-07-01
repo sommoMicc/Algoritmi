@@ -23,9 +23,9 @@ public class Main {
         0, 250, 2000, 5000, 15000, 50000, 100000
     };
 
-    private static boolean DOMANDA_1 = false;
-    private static boolean DOMANDA_2 = false;
-    private static boolean DOMANDA_3 = false;
+    private static boolean DOMANDA_1 = true;
+    private static boolean DOMANDA_2 = true;
+    private static boolean DOMANDA_3 = true;
     private static boolean DOMANDA_4 = true;
 
     private static boolean ESECUZIONE_SERIALE = true;
@@ -46,22 +46,23 @@ public class Main {
             final XYChart chart = new XYChartBuilder()
                     .width(CHART_WIDTH).height(CHART_HEIGHT)
                     .title("Variazione del tempo - soglia di cutoff")
-                    .xAxisTitle("Soglia di cutoff")
+                    .xAxisTitle("Dimensione minima del sottoproblema")
                     .yAxisTitle("Tempo di esecuzione (in secondi)")
                     .build();
 
             chart.getStyler().setLegendPosition(Styler.LegendPosition.OutsideE);
             chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
+            chart.getStyler().setXAxisLogarithmic(true);
 
             List<Integer> x = new ArrayList<>();
             List<Double> y = new ArrayList<>();
 
             int clusters = 50;
 
-            //int coreNumbers = Runtime.getRuntime().availableProcessors();
+            int cities = CityController.getInstance().readCities().size();
 
-            for (int cutoff = 1; cutoff <= clusters; cutoff++) {
-                DIvideEtImperaPKMeans.cutoff = cutoff;
+            for (int cutoff = cities; cutoff >= 1; cutoff/=2) {
+                DivideEtImperaPKMeans.cutoff = cutoff;
 
                 double[] executionResults = runClustering(0, clusters, 100, null);
                 x.add(cutoff);
@@ -72,13 +73,11 @@ public class Main {
                     optimalCutoffIndex = cutoff;
                 }
             }
-            NoobPKMeans.cutoff = optimalCutoffIndex;
+            ParallelAlgorithm.cutoff = optimalCutoffIndex;
 
             chart.addSeries("Parallelo", x, y);
 
-            new SwingWrapper(chart).displayChart();
             BitmapEncoder.saveBitmapWithDPI(chart, OUTPUT_DIR+"risposta_4", BitmapEncoder.BitmapFormat.PNG, 300);
-
         }
 
         if(DOMANDA_1) {
@@ -110,7 +109,6 @@ public class Main {
             chart.addSeries("Seriale", x, serialY);
             chart.addSeries("Parallelo", x, parallelY);
 
-            new SwingWrapper(chart).displayChart();
             BitmapEncoder.saveBitmapWithDPI(chart, OUTPUT_DIR+"risposta_1", BitmapEncoder.BitmapFormat.PNG, 300);
         }
 
@@ -125,14 +123,19 @@ public class Main {
             chart.getStyler().setLegendPosition(Styler.LegendPosition.OutsideE);
             chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
-            double[] x = new double[91];
+            int minClusters = 10;
+            int maxClusters = 100;
+
+            int granularity = 5;
+
+            double[] x = new double[((maxClusters-minClusters)/granularity)+1];
             double[] serialY = new double[x.length];
             double[] parallelY = new double[x.length];
 
-            for (int i = 10; i <= 100; i++) {
+            for (int i = minClusters; i <= maxClusters; i+=granularity) {
                 double[] executionResults = runClustering(0, i, 100, null);
 
-                int index  = i-10;
+                int index  = (i-minClusters)/granularity;
                 x[index] = i;
                 serialY[index] = executionResults[0];
                 parallelY[index] = executionResults[1];
@@ -141,7 +144,6 @@ public class Main {
             chart.addSeries("Seriale", x, serialY);
             chart.addSeries("Parallelo", x, parallelY);
 
-            new SwingWrapper(chart).displayChart();
             BitmapEncoder.saveBitmapWithDPI(chart, OUTPUT_DIR+"risposta_2", BitmapEncoder.BitmapFormat.PNG, 300);
 
         }
@@ -157,7 +159,7 @@ public class Main {
             chart.getStyler().setLegendPosition(Styler.LegendPosition.OutsideE);
             chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
-            int iterationNumber = 50;
+            int iterationNumber = 1000;
             int controlFloor = 10;
 
             int totalIterations = iterationNumber - controlFloor + 1;
@@ -182,15 +184,9 @@ public class Main {
                 }
             });
 
-            for(int i=0;i<x.length;i++) {
-                System.out.println("X: "+x[i]+", seriale: "+
-                    serialY[i]+": parallelo: "+parallelY[i]);
-            }
-
             chart.addSeries("Seriale", x, serialY);
             chart.addSeries("Parallelo", x, parallelY);
 
-            new SwingWrapper(chart).displayChart();
             BitmapEncoder.saveBitmapWithDPI(chart, OUTPUT_DIR+"risposta_3", BitmapEncoder.BitmapFormat.PNG, 300);
         }
     }
@@ -223,11 +219,11 @@ public class Main {
 
         }
         if(ESECUZIONE_PARALLELA) {
-            pkmeans = new DIvideEtImperaPKMeans(cities, k, q);
+            pkmeans = new DivideEtImperaPKMeans(cities, k, q);
             pKmeansResult = pkmeans.start(callback);
 
             System.out.println("P-KMeans k="+k+", q="+q+", filtro="+filter+", " +
-                    "cutoff="+DIvideEtImperaPKMeans.cutoff+" ha concluso in " +
+                    "cutoff="+ DivideEtImperaPKMeans.cutoff+" ha concluso in " +
                     pkmeans.getElapsedTime() + " secondi");
 
             results[1] = pkmeans.getElapsedTime();
