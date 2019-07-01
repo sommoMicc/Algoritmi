@@ -63,10 +63,11 @@ public class KMeans extends Algorithm {
                 iterationCallback.accept(new IterationData(
                         i,
                         0,
-                        System.currentTimeMillis() - startTime
+                        Math.round((System.currentTimeMillis() - startTime)/ 10.0) / 100.0
                 ));
             }
         }
+
         endTime = System.currentTimeMillis();
         return clusters;
     }

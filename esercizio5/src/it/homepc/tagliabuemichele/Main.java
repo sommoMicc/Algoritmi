@@ -190,6 +190,10 @@ public class Main {
                 }
             });
 
+            for(int i=0;i<x.length;i++) {
+                System.out.println("Speedup dopo "+x[i]+" iterazioni: "+(serialY[i]*1.0/parallelY[i]));
+            }
+
             chart.addSeries("Seriale", x, serialY);
             chart.addSeries("Parallelo", x, parallelY);
 

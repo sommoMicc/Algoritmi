@@ -77,7 +77,7 @@ public class DivideEtImperaPKMeans extends ParallelAlgorithm {
                 iterationCallback.accept(new IterationData(
                     i,
                     1,
-                    System.currentTimeMillis() - startTime
+                    Math.round((System.currentTimeMillis() - startTime)/ 10.0) / 100.0
                 ));
             }
         }
