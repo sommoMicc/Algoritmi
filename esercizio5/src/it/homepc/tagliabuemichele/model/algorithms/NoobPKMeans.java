@@ -10,12 +10,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
+import java.util.function.Consumer;
 
 public class NoobPKMeans extends Algorithm {
     private List<City> cities;
     private int k, q;
 
-    public static int CUTOFF = 2;
+    public static int CUTOFF = 26;
     /**
      *
      * @param cities lista di città di cui computare
@@ -31,7 +32,7 @@ public class NoobPKMeans extends Algorithm {
     }
 
     @Override
-    public List<Cluster> start() {
+    public List<Cluster> start(Consumer<IterationData> iterationCallback) {
         this.startTime = System.currentTimeMillis();
         // Ordino l'array in modo decrescente rispetto
         // la popolazione
@@ -44,6 +45,7 @@ public class NoobPKMeans extends Algorithm {
 
         List<Cluster> clusters = NoobPKMeans.emptyCluster(k);
         for(int i=0;i<q;i++) {
+
             List<Cluster> privateClusters = NoobPKMeans.emptyCluster(k);
 
             ParallelFor pf = new ParallelFor(0,cities.size()-1,(j)->{
@@ -65,6 +67,13 @@ public class NoobPKMeans extends Algorithm {
             pf.join();
 
             clusters = privateClusters;
+            if(iterationCallback != null) {
+                iterationCallback.accept(new IterationData(
+                    i,
+                    1,
+                    System.currentTimeMillis() - startTime
+                ));
+            }
         }
 
         endTime = System.currentTimeMillis();
@@ -125,13 +134,13 @@ public class NoobPKMeans extends Algorithm {
         //Caso ricorsivo: più di due elementi
         int m = Math.floorDiv(start+end,2);
 
-        //NearestCentroidTask multithreadTask = new NearestCentroidTask(point,start,m);
-        //multithreadTask.fork();
+        NearestCentroidTask multithreadTask = new NearestCentroidTask(point,start,m);
+        multithreadTask.fork();
 
 
         int recursiveResult = findNearestCentroidParallel(point,m+1,end);
-        //int multithreadResult = multithreadTask.join();
-        int multithreadResult = findNearestCentroidParallel(point,start,m);
+        int multithreadResult = multithreadTask.join();
+        //int multithreadResult = findNearestCentroidParallel(point,start,m);
 
         if(point.distance(centroids.get(recursiveResult)) < point.distance(centroids.get(multithreadResult)))
             return recursiveResult;

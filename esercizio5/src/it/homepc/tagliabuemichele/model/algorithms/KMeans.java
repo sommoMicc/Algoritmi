@@ -7,6 +7,7 @@ import it.homepc.tagliabuemichele.model.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class KMeans extends Algorithm {
     private List<City> cities;
@@ -27,7 +28,7 @@ public class KMeans extends Algorithm {
     }
 
     @Override
-    public List<Cluster> start() {
+    public List<Cluster> start(Consumer<IterationData> iterationCallback) {
         this.startTime = System.currentTimeMillis();
         // Ordino l'array in modo decrescente rispetto
         // la popolazione
@@ -49,8 +50,14 @@ public class KMeans extends Algorithm {
             for(int f=0;f<k;f++) {
                 this.centroids.set(f,clusters.get(f).center());
             }
+            if(iterationCallback != null) {
+                iterationCallback.accept(new IterationData(
+                        i,
+                        0,
+                        System.currentTimeMillis() - startTime
+                ));
+            }
         }
-
         endTime = System.currentTimeMillis();
         return clusters;
     }

@@ -3,8 +3,8 @@ package it.homepc.tagliabuemichele.model.algorithms;
 import it.homepc.tagliabuemichele.model.Cluster;
 import it.homepc.tagliabuemichele.model.Point;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class Algorithm {
     protected List<Point> centroids;
@@ -13,7 +13,7 @@ public abstract class Algorithm {
     protected Algorithm(List<Point> centroids) {
         this.centroids = centroids;
     }
-    public abstract List<Cluster> start();
+    public abstract List<Cluster> start(Consumer<IterationData> iterationCallback);
 
     public double getElapsedTime() {
         return Math.round((endTime-startTime)/ 10.0) / 100.0;
