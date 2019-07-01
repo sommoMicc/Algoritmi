@@ -39,6 +39,11 @@ public class Main {
         int optimalCutoffIndex = -1;
         double optimalCutoffTime = Double.POSITIVE_INFINITY;
 
+        /**
+         * Eseguo prima la domanda 4 in modo da trovare la soglia
+         * di cutoff ideale e quindi avere la massima efficienza possbile
+         * per l'implementazione parallela
+         */
         if(DOMANDA_4) {
             ESECUZIONE_SERIALE = false;
             ESECUZIONE_PARALLELA = true;
@@ -73,6 +78,7 @@ public class Main {
                     optimalCutoffIndex = cutoff;
                 }
             }
+            //Assegno all'algoritmo parallelo la soglia di cutoff ottimale
             ParallelAlgorithm.cutoff = optimalCutoffIndex;
 
             chart.addSeries("Parallelo", x, y);
@@ -191,9 +197,19 @@ public class Main {
         }
     }
 
+    /**
+     * Avvia il calcolo del problema in modo seriale, parallelo o entrambi (dipende
+     * dal valore delle variabili statiche ESECUZIONE_SERIALE e ESECUZIONE_PARALLELA)
+     * @param filter il filtro minimo da apporre alle città
+     * @param k il numero di cluster richiesti
+     * @param q il numero di iterazioni richieste
+     * @param callback il callback da eseguire ad ogni iterazione
+     * @return
+     */
     private static double[] runClustering(
             int filter,int k, int q,
             Consumer<IterationData> callback) {
+
         double[] results = new double[3];
 
         KMeans kmeans = null;
@@ -228,20 +244,9 @@ public class Main {
 
             results[1] = pkmeans.getElapsedTime();
 
-            double parallelDistortion = Cluster.distortion(pKmeansResult);
-                System.out.println("Distorsione parallela: "+parallelDistortion);
-
-            }
+        }
         if(ESECUZIONE_PARALLELA && ESECUZIONE_SERIALE) {
-            /*
-            double serialDistortion = Cluster.distortion(kmeansResult);
-            double parallelDistortion = Cluster.distortion(pKmeansResult);
-            if(serialDistortion != parallelDistortion) {
-                System.out.println("Attenzione: DISTORSIONI DIVERSE!!!");
-                System.out.println("Seriale: "+serialDistortion+", parallela: "+parallelDistortion);
-            }
-             */
-
+            //Calcolo e visualizzazione dello speedup
             double speedup = kmeans.getElapsedTime() * 1.0 / pkmeans.getElapsedTime();
             System.out.println("Speedup: " +speedup);
         }

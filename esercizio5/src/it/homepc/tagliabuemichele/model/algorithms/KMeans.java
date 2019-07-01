@@ -1,3 +1,6 @@
+/**
+ * Implementazione seriale di KMeans
+ */
 package it.homepc.tagliabuemichele.model.algorithms;
 
 import it.homepc.tagliabuemichele.model.City;
@@ -14,7 +17,7 @@ public class KMeans extends Algorithm {
     private int k, q;
 
     /**
-     *
+     * Costruttore
      * @param cities lista di città di cui computare
      *               il cluster
      * @param k numero di cluster richiesti
@@ -27,6 +30,12 @@ public class KMeans extends Algorithm {
         this.q = q;
     }
 
+    /**
+     * Avvia il calcolo dell'algoritmo
+     * @param iterationCallback callback che, se impostato, viene eseguito ad ogni
+     *                          iterazione (serve per la risposta alla domanda 3)
+     * @return la lista dei cluster calcolati
+     */
     @Override
     public List<Cluster> start(Consumer<IterationData> iterationCallback) {
         this.startTime = System.currentTimeMillis();
@@ -62,6 +71,11 @@ public class KMeans extends Algorithm {
         return clusters;
     }
 
+    /**
+     * Crea i cluster vuoti
+     * @param number il numero di cluster vuoti da creare
+     * @return i cluster vuoti appena creati
+     */
     protected static List<Cluster> emptyCluster(int number) {
         List<Cluster> clusters = new ArrayList<>();
         for(int i=0;i<number;i++) {
